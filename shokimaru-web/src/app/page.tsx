@@ -2,6 +2,9 @@ import Button from "@/components/Button";
 import Card from "@/components/Card";
 import MoonPhase from "@/components/MoonPhase";
 import OptimizedImage from "@/components/OptimizedImage";
+import AnimatedSection from "@/components/AnimatedSection";
+import ParallaxSection from "@/components/ParallaxSection";
+import AnimatedBackground from "@/components/AnimatedBackground";
 import { getFishingResults } from "@/lib/supabase/fishing-results";
 import Link from "next/link";
 
@@ -11,18 +14,20 @@ export default async function Home() {
 
   return (
     <>
+      <AnimatedBackground />
       {/* ヒーローセクション */}
       <section className="relative min-h-[80vh] flex items-center justify-center overflow-hidden">
         {/* 背景画像 */}
         <div className="absolute inset-0 z-0">
-          <div className="absolute inset-0 bg-gradient-to-b from-ocean-dark/70 via-ocean/50 to-primary-900/80 z-10" />
-          <OptimizedImage
-            src="/hero-image.jpg"
-            alt="萩湾の美しい海"
-            fill
-            priority
-            className="object-cover"
-          />
+          <div className="absolute inset-0">
+            <OptimizedImage
+              src="/hero-image.jpg"
+              alt="萩湾の美しい海"
+              fill
+              priority
+              className="object-cover"
+            />
+          </div>
         </div>
         
         {/* 装飾的な波 */}
@@ -33,56 +38,63 @@ export default async function Home() {
         </div>
 
         <div className="container-custom text-center relative z-20">
-          <div className="animate-float">
-            <h1 className="text-5xl md:text-7xl font-bold mb-6 text-white text-shadow-lg">
-              萩湾でイカ釣り体験
-            </h1>
-            <p className="text-xl md:text-3xl mb-10 text-white/90 text-shadow">
-              初心者・女性大歓迎！翔葵丸で楽しい釣り体験を
-            </p>
-          </div>
+          <AnimatedSection animation="fade" delay={300}>
+            <div className="animate-float">
+              <h1 className="text-5xl md:text-7xl font-bold mb-6 text-white text-shadow-lg">
+                旬のイカで最高の1日を！
+              </h1>
+              <p className="text-xl md:text-3xl mb-10 text-white/90 text-shadow animate-slide-in-up stagger-2">
+                初心者・女性も大歓迎！翔葵丸で楽しい釣り体験を
+              </p>
+            </div>
+          </AnimatedSection>
           
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button href="/contact" size="lg" variant="accent">
-              今すぐ予約する
-            </Button>
-            <Button href="/results" variant="outline" size="lg" className="!text-white !border-white hover:!bg-white/20">
-              釣果を見る
-            </Button>
-          </div>
-          
-          {/* スクロールインジケーター */}
-          <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
-            <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
-            </svg>
-          </div>
+          <AnimatedSection animation="zoom" delay={600}>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Button href="/contact" size="lg" variant="accent" className="animate-pulse-slow">
+                今すぐ予約する
+              </Button>
+              <Button href="/results" variant="outline" size="lg" className="!text-white !border-white hover:!bg-white/20 animate-slide-in-right stagger-3">
+                釣果を見る
+              </Button>
+            </div>
+          </AnimatedSection>
         </div>
       </section>
 
       {/* 最新釣果セクション */}
-      <section className="section-padding bg-gray-50">
-        <div className="container-custom">
-          <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold mb-4 title-decorated">最新の釣果</h2>
-            <p className="text-gray-600">お客様の素晴らしい釣果をご紹介します</p>
-          </div>
+      <section className="section-padding bg-gray-50 relative overflow-hidden">
+        <ParallaxSection speed={0.3} className="absolute inset-0">
+          <div className="absolute top-0 right-0 w-96 h-96 bg-gradient-to-br from-primary-100/30 to-secondary-100/30 rounded-full blur-3xl animate-morph" />
+          <div className="absolute bottom-0 left-0 w-80 h-80 bg-gradient-to-tr from-secondary-100/30 to-accent/10 rounded-full blur-3xl animate-morph" style={{ animationDelay: '3s' }} />
+        </ParallaxSection>
+        
+        <div className="container-custom relative">
+          <AnimatedSection animation="slide-up">
+            <div className="text-center mb-12">
+              <h2 className="text-4xl font-bold mb-4 title-decorated animate-slide-in-up">最新の釣果</h2>
+              <p className="text-gray-600 animate-fade-in stagger-2">お客様の素晴らしい釣果をご紹介します</p>
+            </div>
+          </AnimatedSection>
           
           {latestResults.length > 0 ? (
             <>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                {latestResults.map((result) => (
-                  <Link href={`/results/${result.id}`} key={result.id}>
-                    <Card hover className="h-full group">
+                {latestResults.map((result, index) => (
+                  <AnimatedSection key={result.id} animation="zoom" delay={index * 200}>
+                    <Link href={`/results/${result.id}`}>
+                      <Card hover className="h-full group ">
                       {result.image_url ? (
                         <div className="aspect-video relative overflow-hidden rounded-xl mb-4">
-                          <OptimizedImage
-                            src={result.image_url}
-                            alt={`${result.date}の釣果`}
-                            fill
-                            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                            className="object-cover group-hover:scale-110 transition-transform duration-300"
-                          />
+                          <div className="absolute inset-0">
+                            <OptimizedImage
+                              src={result.image_url}
+                              alt={`${result.date}の釣果`}
+                              fill
+                              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                              className="object-cover group-hover:scale-110 transition-transform duration-300"
+                            />
+                          </div>
                           <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                         </div>
                       ) : (
@@ -128,16 +140,19 @@ export default async function Home() {
                           )}
                         </div>
                       </div>
-                    </Card>
-                  </Link>
+                      </Card>
+                    </Link>
+                  </AnimatedSection>
                 ))}
               </div>
               
-              <div className="text-center mt-12">
-                <Button href="/results" variant="primary" size="lg">
-                  もっと釣果を見る
-                </Button>
-              </div>
+              <AnimatedSection animation="fade" delay={600}>
+                <div className="text-center mt-12">
+                  <Button href="/results" variant="primary" size="lg" className="animate-wiggle">
+                    もっと釣果を見る
+                  </Button>
+                </div>
+              </AnimatedSection>
             </>
           ) : (
             <div className="text-center py-12">
@@ -149,77 +164,101 @@ export default async function Home() {
       </section>
 
       {/* サービス紹介セクション */}
-      <section className="section-padding bg-white">
-        <div className="container-custom">
-          <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold mb-4 title-decorated">翔葵丸の特徴</h2>
-            <p className="text-gray-600">安心・安全・楽しいイカ釣り体験をお約束します</p>
-          </div>
+      <section className="section-padding bg-white relative overflow-hidden">
+        <div className="container-custom relative">
+          <AnimatedSection animation="slide-down">
+            <div className="text-center mb-12">
+              <h2 className="text-4xl font-bold mb-4 title-decorated animate-slide-in-down">翔葵丸の特徴</h2>
+              <p className="text-gray-600 animate-fade-in-slow">安心・安全・楽しいイカ釣り体験をお約束します</p>
+            </div>
+          </AnimatedSection>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <Card gradient="primary" className="text-center">
-              <div className="mb-4">
-                <div className="w-20 h-20 mx-auto bg-white/20 rounded-full flex items-center justify-center">
-                  <svg className="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
-                  </svg>
+            <AnimatedSection animation="slide-left" delay={0}>
+              <Card gradient="primary" className="text-center group hover:animate-wiggle">
+                <div className="mb-4">
+                  <div className="w-20 h-20 mx-auto bg-white/20 rounded-full flex items-center justify-center animate-pulse-slow">
+                    <svg className="w-10 h-10 text-white animate-bounce-slow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
+                    </svg>
+                  </div>
                 </div>
-              </div>
-              <h3 className="text-2xl font-bold mb-3">初心者歓迎</h3>
-              <p className="text-white/90">
-                道具の使い方から釣り方まで、船長が丁寧にサポートいたします
-              </p>
-            </Card>
+                <h3 className="text-2xl font-bold mb-3">初心者歓迎</h3>
+                <p className="text-white/90">
+                  道具の使い方から釣り方まで、船長が丁寧にサポートいたします
+                </p>
+              </Card>
+            </AnimatedSection>
             
-            <Card gradient="secondary" className="text-center">
-              <div className="mb-4">
-                <div className="w-20 h-20 mx-auto bg-white/20 rounded-full flex items-center justify-center">
-                  <svg className="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-                  </svg>
+            <AnimatedSection animation="slide-up" delay={200}>
+              <Card gradient="secondary" className="text-center group hover:animate-wiggle">
+                <div className="mb-4">
+                  <div className="w-20 h-20 mx-auto bg-white/20 rounded-full flex items-center justify-center animate-spin-slow">
+                    <svg className="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                    </svg>
+                  </div>
                 </div>
-              </div>
-              <h3 className="text-2xl font-bold mb-3">安全第一</h3>
-              <p className="text-white/90">
-                最新の安全設備を完備。女性やお子様も安心してご乗船いただけます
-              </p>
-            </Card>
+                <h3 className="text-2xl font-bold mb-3">安全第一</h3>
+                <p className="text-white/90">
+                  最新の安全設備を完備。女性やお子様も安心してご乗船いただけます
+                </p>
+              </Card>
+            </AnimatedSection>
             
-            <Card gradient="ocean" className="text-center">
-              <div className="mb-4">
-                <div className="w-20 h-20 mx-auto bg-white/20 rounded-full flex items-center justify-center">
-                  <svg className="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                  </svg>
+            <AnimatedSection animation="slide-right" delay={400}>
+              <Card gradient="ocean" className="text-center group hover:animate-wiggle">
+                <div className="mb-4">
+                  <div className="w-20 h-20 mx-auto bg-white/20 rounded-full flex items-center justify-center animate-bounce-slow">
+                    <svg className="w-10 h-10 text-white animate-wiggle" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                  </div>
                 </div>
-              </div>
-              <h3 className="text-2xl font-bold mb-3">楽しい体験</h3>
-              <p className="text-white/90">
-                萩湾の美しい海で、思い出に残るイカ釣り体験をご提供します
-              </p>
-            </Card>
+                <h3 className="text-2xl font-bold mb-3">楽しい体験</h3>
+                <p className="text-white/90">
+                  萩湾の美しい海で、思い出に残るイカ釣り体験をご提供します
+                </p>
+              </Card>
+            </AnimatedSection>
           </div>
         </div>
       </section>
 
       {/* CTAセクション */}
-      <section className="section-padding bg-gradient-to-r from-primary-500 to-secondary-500">
-        <div className="container-custom text-center">
-          <h2 className="text-4xl font-bold text-white mb-6">
-            萩湾でイカ釣りを楽しみませんか？
-          </h2>
-          <p className="text-xl text-white/90 mb-8 max-w-2xl mx-auto">
-            初心者の方も大歓迎！道具はすべてレンタル可能です。<br />
-            まずはお気軽にお問い合わせください。
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button href="/contact" variant="accent" size="lg">
-              予約・お問い合わせ
-            </Button>
-            <Button href="/pricing" variant="outline" size="lg" className="!text-white !border-white hover:!bg-white/20">
-              料金を確認する
-            </Button>
+      <section className="section-padding bg-gradient-to-r from-primary-500 to-secondary-500 relative overflow-hidden">
+        <ParallaxSection speed={0.5} className="absolute inset-0">
+          <div className="absolute inset-0">
+            <div className="absolute top-10 left-10 w-32 h-32 bg-white/10 rounded-full animate-pulse-slow" />
+            <div className="absolute bottom-10 right-10 w-48 h-48 bg-white/10 rounded-full animate-float" style={{ animationDelay: '2s' }} />
+            <div className="absolute top-1/2 left-1/3 w-24 h-24 bg-white/10 rounded-full animate-bounce-slow" style={{ animationDelay: '1s' }} />
           </div>
+        </ParallaxSection>
+        
+        <div className="container-custom text-center relative">
+          <AnimatedSection animation="zoom">
+            <h2 className="text-4xl font-bold text-white mb-6 ">
+              萩湾でイカ釣りを楽しみませんか？
+            </h2>
+          </AnimatedSection>
+          
+          <AnimatedSection animation="fade" delay={300}>
+            <p className="text-xl text-white/90 mb-8 max-w-2xl mx-auto">
+              初心者の方も大歓迎！道具はすべてレンタル可能です。<br />
+              まずはお気軽にお問い合わせください。
+            </p>
+          </AnimatedSection>
+          
+          <AnimatedSection animation="slide-up" delay={600}>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Button href="/contact" variant="accent" size="lg" className="animate-pulse-slow ">
+                予約・お問い合わせ
+              </Button>
+              <Button href="/pricing" variant="outline" size="lg" className="!text-white !border-white hover:!bg-white/20 animate-slide-in-right stagger-3">
+                料金を確認する
+              </Button>
+            </div>
+          </AnimatedSection>
         </div>
       </section>
     </>

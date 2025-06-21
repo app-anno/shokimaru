@@ -53,7 +53,7 @@ export default function OptimizedImage({
   }
 
   return (
-    <div className={`relative ${className}`}>
+    <>
       {fill ? (
         <Image
           src={src}
@@ -62,13 +62,17 @@ export default function OptimizedImage({
           sizes={sizes || "100vw"}
           quality={quality}
           priority={priority}
-          className={`duration-700 ease-in-out ${
+          className={`duration-700 ease-in-out ${className} ${
             isLoading ? 'scale-105 blur-lg' : 'scale-100 blur-0'
           }`}
           onLoad={() => setIsLoading(false)}
-          onError={() => setHasError(true)}
+          onError={(e) => {
+            console.error('Image load error:', src, e)
+            setHasError(true)
+          }}
         />
       ) : (
+        <div className={`relative ${className}`}>
         <Image
           src={src}
           alt={alt}
@@ -80,12 +84,16 @@ export default function OptimizedImage({
             isLoading ? 'scale-105 blur-lg' : 'scale-100 blur-0'
           }`}
           onLoad={() => setIsLoading(false)}
-          onError={() => setHasError(true)}
+          onError={(e) => {
+            console.error('Image load error:', src, e)
+            setHasError(true)
+          }}
         />
+        </div>
       )}
-      {isLoading && (
+      {isLoading && !fill && (
         <div className="absolute inset-0 bg-gray-200 animate-pulse" />
       )}
-    </div>
+    </>
   )
 }

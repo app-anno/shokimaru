@@ -11,13 +11,13 @@ export default function Footer() {
             <p className="text-gray-300 leading-relaxed">
               山口県萩市萩湾で営業する釣り船です。
               <br />
-              初心者・女性大歓迎！
+              初心者・女性も大歓迎！
               <br />
               イカ釣りを楽しみましょう。
             </p>
             <div className="mt-6 flex space-x-4">
               <a
-                href="https://instagram.com"
+                href="https://instagram.com/shokimaru1"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="group"
@@ -85,6 +85,10 @@ export default function Footer() {
                 <li className="flex items-center">
                   <span className="text-secondary-400 mr-2">•</span>
                   お電話
+                </li>
+                <li className="flex items-center">
+                  <span className="text-secondary-400 mr-2">•</span>
+                  ネット予約フォーム
                 </li>
               </ul>
               <Link href="/contact" className="inline-flex items-center mt-4 text-secondary-400 hover:text-secondary-300 transition-colors group">

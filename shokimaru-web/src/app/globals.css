@@ -167,6 +167,274 @@
     100% { transform: translateX(-100%); }
   }
 
+  /* 回転アニメーション */
+  .animate-spin-slow {
+    animation: spin 8s linear infinite;
+  }
+
+  .animate-spin-reverse {
+    animation: spin-reverse 10s linear infinite;
+  }
+
+  @keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+
+  @keyframes spin-reverse {
+    from { transform: rotate(360deg); }
+    to { transform: rotate(0deg); }
+  }
+
+  /* パルスアニメーション */
+  .animate-pulse-slow {
+    animation: pulse-slow 3s ease-in-out infinite;
+  }
+
+  @keyframes pulse-slow {
+    0%, 100% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.05); opacity: 0.8; }
+  }
+
+  /* バウンスアニメーション */
+  .animate-bounce-slow {
+    animation: bounce-slow 2s ease-in-out infinite;
+  }
+
+  @keyframes bounce-slow {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+  }
+
+  /* 揺れアニメーション */
+  .animate-wiggle {
+    animation: wiggle 2.5s ease-in-out infinite;
+  }
+
+  @keyframes wiggle {
+    0%, 100% { transform: rotate(-3deg); }
+    50% { transform: rotate(3deg); }
+  }
+
+  /* スライドイン */
+  .animate-slide-in-up {
+    animation: slide-in-up 0.5s ease-out forwards;
+  }
+
+  .animate-slide-in-down {
+    animation: slide-in-down 0.5s ease-out forwards;
+  }
+
+  .animate-slide-in-left {
+    animation: slide-in-left 0.5s ease-out forwards;
+  }
+
+  .animate-slide-in-right {
+    animation: slide-in-right 0.5s ease-out forwards;
+  }
+
+  @keyframes slide-in-up {
+    from { transform: translateY(100%); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+  }
+
+  @keyframes slide-in-down {
+    from { transform: translateY(-100%); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+  }
+
+  @keyframes slide-in-left {
+    from { transform: translateX(-100%); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+  }
+
+  @keyframes slide-in-right {
+    from { transform: translateX(100%); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+  }
+
+  /* フェードイン */
+  .animate-fade-in {
+    animation: fade-in 1s ease-out forwards;
+  }
+
+  .animate-fade-in-slow {
+    animation: fade-in 2s ease-out forwards;
+  }
+
+  @keyframes fade-in {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  /* ズームイン */
+  .animate-zoom-in {
+    animation: zoom-in 0.5s ease-out forwards;
+  }
+
+  @keyframes zoom-in {
+    from { transform: scale(0.8); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+  }
+
+  /* シェイク */
+  .animate-shake {
+    animation: shake 0.82s cubic-bezier(.36,.07,.19,.97) both;
+  }
+
+  @keyframes shake {
+    10%, 90% { transform: translate3d(-1px, 0, 0); }
+    20%, 80% { transform: translate3d(2px, 0, 0); }
+    30%, 50%, 70% { transform: translate3d(-4px, 0, 0); }
+    40%, 60% { transform: translate3d(4px, 0, 0); }
+  }
+
+  /* グロー */
+  .animate-glow {
+    animation: glow 2s ease-in-out infinite alternate;
+  }
+
+  @keyframes glow {
+    from { box-shadow: 0 0 5px rgba(74, 141, 181, 0.5); }
+    to { box-shadow: 0 0 20px rgba(74, 141, 181, 0.8), 0 0 30px rgba(74, 141, 181, 0.6); }
+  }
+
+  /* パララックス */
+  .parallax-slow {
+    transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+
+  .parallax-fast {
+    transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+
+  /* リップル効果 */
+  .ripple {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .ripple::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.5);
+    transform: translate(-50%, -50%);
+    animation: ripple-effect 0.6s ease-out;
+  }
+
+  @keyframes ripple-effect {
+    to {
+      width: 200%;
+      height: 200%;
+      opacity: 0;
+    }
+  }
+
+  /* スケルトンローディング */
+  .skeleton-loading {
+    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+    background-size: 200% 100%;
+    animation: skeleton 1.5s ease-in-out infinite;
+  }
+
+  @keyframes skeleton {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+  }
+
+  /* 3D回転 */
+  .animate-flip-x {
+    animation: flip-x 1s ease-in-out;
+  }
+
+  .animate-flip-y {
+    animation: flip-y 1s ease-in-out;
+  }
+
+  @keyframes flip-x {
+    0% { transform: perspective(400px) rotateX(0); }
+    100% { transform: perspective(400px) rotateX(360deg); }
+  }
+
+  @keyframes flip-y {
+    0% { transform: perspective(400px) rotateY(0); }
+    100% { transform: perspective(400px) rotateY(360deg); }
+  }
+
+  /* 波紋エフェクト */
+  .wave-effect {
+    position: relative;
+  }
+
+  .wave-effect::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, rgba(74, 141, 181, 0.3) 0%, transparent 70%);
+    transform: translate(-50%, -50%) scale(0);
+    animation: wave-expand 1s ease-out infinite;
+  }
+
+  @keyframes wave-expand {
+    to {
+      transform: translate(-50%, -50%) scale(2);
+      opacity: 0;
+    }
+  }
+
+  /* タイピングアニメーション */
+  .animate-typing {
+    overflow: hidden;
+    white-space: nowrap;
+    animation: typing 3.5s steps(40, end), blink-caret .75s step-end infinite;
+    border-right: .15em solid orange;
+  }
+
+  @keyframes typing {
+    from { width: 0 }
+    to { width: 100% }
+  }
+
+  @keyframes blink-caret {
+    from, to { border-color: transparent }
+    50% { border-color: orange; }
+  }
+
+  /* モーフィング */
+  .animate-morph {
+    animation: morph 8s ease-in-out infinite;
+  }
+
+  @keyframes morph {
+    0%, 100% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
+    50% { border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%; }
+  }
+
+  /* ブラー効果 */
+  .animate-blur {
+    animation: blur 3s ease-in-out infinite;
+  }
+
+  @keyframes blur {
+    0%, 100% { filter: blur(0px); }
+    50% { filter: blur(4px); }
+  }
+
+  /* スタガーアニメーション用 */
+  .stagger-1 { animation-delay: 0.1s; }
+  .stagger-2 { animation-delay: 0.2s; }
+  .stagger-3 { animation-delay: 0.3s; }
+  .stagger-4 { animation-delay: 0.4s; }
+  .stagger-5 { animation-delay: 0.5s; }
+
   /* ガラス効果 */
   .glass {
     @apply backdrop-blur-md bg-white/70 border border-white/20 shadow-lg;
@@ -248,5 +516,9 @@
 
   .glow-accent {
     box-shadow: 0 0 20px rgba(255, 140, 66, 0.4);
+  }
+  
+  .shadow-glow-blue {
+    box-shadow: 0 0 30px rgba(59, 130, 246, 0.4);
   }
 }
