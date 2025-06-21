@@ -50,131 +50,329 @@ export default function ContactPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
             {/* LINE */}
             <AnimatedSection animation="slide-left" delay={0}>
-              <Card className="text-center hover:scale-105 transition-transform duration-300 group hover:animate-pulse-slow">
-                <div className="mb-6">
-                  <div className="w-20 h-20 bg-gradient-to-br from-green-400 to-green-600 rounded-full flex items-center justify-center mx-auto mb-4 animate-bounce-slow shadow-glow-green">
-                    <span className="text-white text-3xl">📱</span>
+              <div className="relative group">
+                {/* 背景の装飾 */}
+                <div className="absolute -inset-1 bg-gradient-to-r from-green-400 via-green-500 to-green-600 rounded-3xl blur-xl opacity-25 group-hover:opacity-40 transition duration-500 animate-pulse-slow"></div>
+                
+                <Card className="relative bg-gradient-to-br from-white via-white to-green-50/30 text-center hover:scale-[1.02] transition-all duration-500 group hover:shadow-2xl overflow-hidden">
+                  {/* 装飾的な背景要素 */}
+                  <div className="absolute top-0 right-0 w-40 h-40 bg-gradient-to-br from-green-200/20 to-green-300/20 rounded-full blur-3xl"></div>
+                  <div className="absolute bottom-0 left-0 w-32 h-32 bg-gradient-to-tr from-green-300/20 to-green-200/20 rounded-full blur-3xl"></div>
+                  
+                  {/* おすすめバッジ */}
+                  <div className="absolute top-4 right-4 bg-gradient-to-r from-green-500 to-green-600 text-white text-xs font-bold px-3 py-1 rounded-full shadow-lg animate-bounce-slow">
+                    おすすめ
                   </div>
-                  <h3 className="text-2xl font-bold mb-2 group-hover:text-green-600 transition-colors">LINE</h3>
-                  <p className="text-gray-600 mb-4">
-                    一番スムーズにご予約いただけます
-                  </p>
-                </div>
-                <div className="space-y-2 mb-6">
-                  <p className="text-sm text-gray-600">
-                    友だち追加後、メッセージをお送りください
-                  </p>
-                  <p className="font-bold text-green-600 animate-pulse-slow">QRコードを読み取って友だち追加</p>
-                </div>
-                <div className="mb-6">
-                  <div className="relative w-48 h-48 mx-auto">
-                    <Image
-                      src="/line.jpg"
-                      alt="LINE QRコード"
-                      fill
-                      className="object-contain"
-                    />
+                  
+                  <div className="relative z-10">
+                    <div className="mb-6">
+                      <div className="relative w-24 h-24 mx-auto mb-6">
+                        <div className="absolute inset-0 bg-gradient-to-br from-green-400 to-green-600 rounded-3xl rotate-6 group-hover:rotate-12 transition-transform duration-500"></div>
+                        <div className="absolute inset-0 bg-gradient-to-br from-green-500 to-green-700 rounded-3xl flex items-center justify-center shadow-2xl">
+                          <svg className="w-12 h-12 text-white" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M18.205 2.25h3.308l-7.227 8.26 8.502 11.24H16.13l-5.214-6.817L4.95 21.75H1.64l7.73-8.835L1.215 2.25H8.04l4.713 6.231zm-1.161 17.52h1.833L7.045 4.126H5.078z"/>
+                          </svg>
+                        </div>
+                        {/* 光るエフェクト */}
+                        <div className="absolute -inset-4 bg-green-400 rounded-full opacity-0 group-hover:opacity-30 blur-xl transition-opacity duration-500 animate-pulse"></div>
+                      </div>
+                      <h3 className="text-3xl font-bold mb-3 bg-gradient-to-r from-green-600 to-green-700 bg-clip-text text-transparent">LINE</h3>
+                      <p className="text-gray-700 mb-2 font-medium">
+                        一番スムーズにご予約いただけます
+                      </p>
+                      <div className="flex items-center justify-center gap-2 text-sm text-green-600">
+                        <span className="inline-block w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
+                        <span>返信率100%・平均返信時間30分</span>
+                      </div>
+                    </div>
+                    
+                    <div className="bg-gradient-to-br from-green-50 to-green-100/50 rounded-2xl p-4 mb-6 backdrop-blur-sm">
+                      <p className="text-sm text-gray-700 mb-2">
+                        友だち追加後、メッセージをお送りください
+                      </p>
+                      <p className="font-bold text-green-700 text-lg animate-pulse-slow">QRコードを読み取って友だち追加</p>
+                    </div>
+                    
+                    <div className="mb-6">
+                      <div className="relative w-48 h-48 mx-auto group">
+                        <div className="absolute inset-0 bg-gradient-to-br from-green-400 to-green-600 rounded-2xl opacity-20 group-hover:opacity-30 blur-xl transition-opacity duration-300"></div>
+                        <div className="relative w-full h-full bg-white p-2 rounded-2xl shadow-xl">
+                          <div className="relative w-full h-full">
+                            <Image
+                              src="/line.jpg"
+                              alt="LINE QRコード"
+                              fill
+                              className="object-contain rounded-lg"
+                            />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <div className="relative">
+                      <div className="absolute inset-0 bg-gradient-to-r from-green-400 to-green-600 rounded-xl blur opacity-50"></div>
+                      <button className="relative w-full bg-gradient-to-r from-green-500 to-green-600 text-white font-bold py-4 px-6 rounded-xl hover:from-green-600 hover:to-green-700 transform hover:scale-105 transition-all duration-300 shadow-lg disabled:opacity-70 disabled:cursor-not-allowed" disabled>
+                        <span className="flex items-center justify-center gap-2">
+                          <span>上記QRコードから友だち追加</span>
+                          <svg className="w-5 h-5 animate-bounce-slow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                          </svg>
+                        </span>
+                      </button>
+                    </div>
                   </div>
-                </div>
-                <Button href="#" variant="primary" className="hover:animate-wiggle" disabled>
-                  上記QRコードから友だち追加
-                </Button>
-              </Card>
+                </Card>
+              </div>
             </AnimatedSection>
 
             {/* Instagram */}
             <AnimatedSection animation="slide-up" delay={200}>
-              <Card className="text-center hover:scale-105 transition-transform duration-300 group hover:animate-pulse-slow">
-                <div className="mb-6">
-                  <div className="w-20 h-20 bg-gradient-to-br from-purple-600 to-pink-500 rounded-full flex items-center justify-center mx-auto mb-4 animate-spin-slow shadow-glow-purple">
-                    <span className="text-white text-3xl">📸</span>
+              <div className="relative group">
+                {/* 背景の装飾 */}
+                <div className="absolute -inset-1 bg-gradient-to-r from-purple-400 via-pink-500 to-pink-600 rounded-3xl blur-xl opacity-25 group-hover:opacity-40 transition duration-500 animate-pulse-slow"></div>
+                
+                <Card className="relative bg-gradient-to-br from-white via-white to-purple-50/30 text-center hover:scale-[1.02] transition-all duration-500 group hover:shadow-2xl overflow-hidden">
+                  {/* 装飾的な背景要素 */}
+                  <div className="absolute top-0 left-0 w-40 h-40 bg-gradient-to-br from-purple-200/20 to-pink-300/20 rounded-full blur-3xl"></div>
+                  <div className="absolute bottom-0 right-0 w-32 h-32 bg-gradient-to-tr from-pink-300/20 to-purple-200/20 rounded-full blur-3xl"></div>
+                  
+                  <div className="relative z-10">
+                    <div className="mb-6">
+                      <div className="relative w-24 h-24 mx-auto mb-6">
+                        <div className="absolute inset-0 bg-gradient-to-br from-purple-400 via-pink-500 to-pink-600 rounded-3xl rotate-6 group-hover:rotate-12 transition-transform duration-500"></div>
+                        <div className="absolute inset-0 bg-gradient-to-br from-purple-500 via-pink-600 to-pink-700 rounded-3xl flex items-center justify-center shadow-2xl">
+                          <svg className="w-12 h-12 text-white" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zM5.838 12a6.162 6.162 0 1112.324 0 6.162 6.162 0 01-12.324 0zM12 16a4 4 0 110-8 4 4 0 010 8zm4.965-10.405a1.44 1.44 0 112.881.001 1.44 1.44 0 01-2.881-.001z"/>
+                          </svg>
+                        </div>
+                        {/* 光るエフェクト */}
+                        <div className="absolute -inset-4 bg-gradient-to-r from-purple-400 to-pink-400 rounded-full opacity-0 group-hover:opacity-30 blur-xl transition-opacity duration-500 animate-pulse"></div>
+                      </div>
+                      <h3 className="text-3xl font-bold mb-3 bg-gradient-to-r from-purple-600 via-pink-600 to-pink-700 bg-clip-text text-transparent">Instagram</h3>
+                      <p className="text-gray-700 mb-2 font-medium">
+                        DMでお問い合わせください
+                      </p>
+                      <div className="flex items-center justify-center gap-2 text-sm text-purple-600">
+                        <span className="inline-block w-2 h-2 bg-purple-500 rounded-full animate-pulse"></span>
+                        <span>最新釣果を毎日更新中</span>
+                      </div>
+                    </div>
+                    
+                    <div className="bg-gradient-to-br from-purple-50 to-pink-100/50 rounded-2xl p-4 mb-6 backdrop-blur-sm">
+                      <p className="text-sm text-gray-700 mb-2">
+                        最新の釣果情報も配信中！
+                      </p>
+                      <p className="font-bold text-2xl bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent animate-pulse-slow">@shokimaru1</p>
+                    </div>
+                    
+                    <div className="mb-6">
+                      <div className="relative w-48 h-48 mx-auto group">
+                        <div className="absolute inset-0 bg-gradient-to-br from-purple-400 to-pink-600 rounded-2xl opacity-20 group-hover:opacity-30 blur-xl transition-opacity duration-300"></div>
+                        <div className="relative w-full h-full bg-white p-2 rounded-2xl shadow-xl">
+                          <div className="relative w-full h-full">
+                            <Image
+                              src="/insta.jpg"
+                              alt="Instagram QRコード"
+                              fill
+                              className="object-contain rounded-lg"
+                            />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <Link
+                      href="https://instagram.com/shokimaru1"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="relative block group"
+                    >
+                      <div className="absolute inset-0 bg-gradient-to-r from-purple-400 via-pink-500 to-pink-600 rounded-xl blur opacity-50 group-hover:opacity-70 transition-opacity duration-300"></div>
+                      <div className="relative w-full bg-gradient-to-r from-purple-500 via-pink-600 to-pink-700 text-white font-bold py-4 px-6 rounded-xl transform group-hover:scale-105 transition-all duration-300 shadow-lg">
+                        <span className="flex items-center justify-center gap-2">
+                          <span>Instagramへ</span>
+                          <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                          </svg>
+                        </span>
+                      </div>
+                    </Link>
                   </div>
-                  <h3 className="text-2xl font-bold mb-2 group-hover:text-purple-600 transition-colors">Instagram</h3>
-                  <p className="text-gray-600 mb-4">
-                    DMでお問い合わせください
-                  </p>
-                </div>
-                <div className="space-y-2 mb-6">
-                  <p className="text-sm text-gray-600">
-                    最新の釣果情報も配信中！
-                  </p>
-                  <p className="font-bold text-gradient animate-pulse-slow">@shokimaru1</p>
-                </div>
-                <div className="mb-6">
-                  <div className="relative w-48 h-48 mx-auto">
-                    <Image
-                      src="/insta.jpg"
-                      alt="Instagram QRコード"
-                      fill
-                      className="object-contain"
-                    />
-                  </div>
-                </div>
-                <Link
-                  href="https://instagram.com/shokimaru1"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="btn-primary inline-block hover:animate-wiggle"
-                >
-                  Instagramへ
-                </Link>
-              </Card>
+                </Card>
+              </div>
             </AnimatedSection>
 
             {/* 電話 */}
             <AnimatedSection animation="slide-right" delay={400}>
-              <Card className="text-center hover:scale-105 transition-transform duration-300 group hover:animate-pulse-slow">
-                <div className="mb-6">
-                  <div className="w-20 h-20 bg-gradient-to-br from-primary-400 to-primary-600 rounded-full flex items-center justify-center mx-auto mb-4 animate-bounce-slow shadow-glow">
-                    <span className="text-white text-3xl">📞</span>
+              <div className="relative group">
+                {/* 背景の装飾 */}
+                <div className="absolute -inset-1 bg-gradient-to-r from-primary-400 to-primary-600 rounded-3xl blur-xl opacity-25 group-hover:opacity-40 transition duration-500 animate-pulse-slow"></div>
+                
+                <Card className="relative bg-gradient-to-br from-white via-white to-primary-50/30 text-center hover:scale-[1.02] transition-all duration-500 group hover:shadow-2xl overflow-hidden">
+                  {/* 装飾的な背景要素 */}
+                  <div className="absolute top-0 right-0 w-40 h-40 bg-gradient-to-br from-primary-200/20 to-secondary-300/20 rounded-full blur-3xl"></div>
+                  <div className="absolute bottom-0 left-0 w-32 h-32 bg-gradient-to-tr from-secondary-300/20 to-primary-200/20 rounded-full blur-3xl"></div>
+                  
+                  {/* 営業中インジケーター */}
+                  <div className="absolute top-4 left-4 flex items-center gap-2 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full shadow-md">
+                    <span className="inline-block w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
+                    <span className="text-xs font-medium text-gray-700">営業時間内</span>
                   </div>
-                  <h3 className="text-2xl font-bold mb-2 group-hover:text-primary-600 transition-colors">お電話</h3>
-                  <p className="text-gray-600 mb-4">
-                    お急ぎの方はお電話でどうぞ
-                  </p>
-                </div>
-                <div className="space-y-2 mb-6">
-                  <p className="text-sm text-gray-600">
-                    受付時間：8:00〜20:00
-                  </p>
-                  <p className="font-bold text-xl text-primary-600 animate-pulse-slow">090-2053-9539</p>
-                </div>
-                <Link
-                  href="tel:090-2053-9539"
-                  className="btn-primary inline-block hover:animate-wiggle"
-                >
-                  電話をかける
-                </Link>
-              </Card>
+                  
+                  <div className="relative z-10">
+                    <div className="mb-6">
+                      <div className="relative w-24 h-24 mx-auto mb-6">
+                        <div className="absolute inset-0 bg-gradient-to-br from-primary-400 to-primary-600 rounded-3xl rotate-6 group-hover:rotate-12 transition-transform duration-500"></div>
+                        <div className="absolute inset-0 bg-gradient-to-br from-primary-500 to-primary-700 rounded-3xl flex items-center justify-center shadow-2xl">
+                          <svg className="w-12 h-12 text-white animate-wiggle" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                          </svg>
+                        </div>
+                        {/* 光るエフェクト */}
+                        <div className="absolute -inset-4 bg-primary-400 rounded-full opacity-0 group-hover:opacity-30 blur-xl transition-opacity duration-500 animate-pulse"></div>
+                      </div>
+                      <h3 className="text-3xl font-bold mb-3 bg-gradient-to-r from-primary-600 to-primary-700 bg-clip-text text-transparent">お電話</h3>
+                      <p className="text-gray-700 mb-2 font-medium">
+                        お急ぎの方はお電話でどうぞ
+                      </p>
+                      <div className="flex items-center justify-center gap-2 text-sm text-primary-600">
+                        <span className="inline-block w-2 h-2 bg-primary-500 rounded-full animate-pulse"></span>
+                        <span>船長直通・即対応</span>
+                      </div>
+                    </div>
+                    
+                    <div className="bg-gradient-to-br from-primary-50 to-secondary-100/50 rounded-2xl p-4 mb-6 backdrop-blur-sm">
+                      <p className="text-sm text-gray-700 mb-2">
+                        受付時間：8:00〜20:00
+                      </p>
+                      <p className="font-bold text-3xl text-primary-700 animate-pulse-slow tracking-wider">090-2053-9539</p>
+                    </div>
+                    
+                    <div className="flex items-center justify-center gap-4 mb-6 text-sm">
+                      <div className="flex items-center gap-2 text-gray-600">
+                        <svg className="w-4 h-4 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+                          <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                        </svg>
+                        <span>即対応</span>
+                      </div>
+                      <div className="flex items-center gap-2 text-gray-600">
+                        <svg className="w-4 h-4 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+                          <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                        </svg>
+                        <span>船長直通</span>
+                      </div>
+                    </div>
+                    
+                    <Link
+                      href="tel:090-2053-9539"
+                      className="relative block group"
+                    >
+                      <div className="absolute inset-0 bg-gradient-to-r from-primary-400 to-primary-600 rounded-xl blur opacity-50 group-hover:opacity-70 transition-opacity duration-300"></div>
+                      <div className="relative w-full bg-gradient-to-r from-primary-500 to-primary-600 text-white font-bold py-4 px-6 rounded-xl transform group-hover:scale-105 transition-all duration-300 shadow-lg">
+                        <span className="flex items-center justify-center gap-2">
+                          <svg className="w-5 h-5 animate-wiggle" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                          </svg>
+                          <span>電話をかける</span>
+                        </span>
+                      </div>
+                    </Link>
+                  </div>
+                </Card>
+              </div>
             </AnimatedSection>
 
             {/* Google Form */}
             <AnimatedSection animation="slide-up" delay={600}>
-              <Card className="text-center hover:scale-105 transition-transform duration-300 group hover:animate-pulse-slow">
-                <div className="mb-6">
-                  <div className="w-20 h-20 bg-gradient-to-br from-blue-400 to-blue-600 rounded-full flex items-center justify-center mx-auto mb-4 animate-spin-slow shadow-glow-blue">
-                    <span className="text-white text-3xl">📝</span>
+              <div className="relative group">
+                {/* 背景の装飾 */}
+                <div className="absolute -inset-1 bg-gradient-to-r from-blue-400 to-blue-600 rounded-3xl blur-xl opacity-25 group-hover:opacity-40 transition duration-500 animate-pulse-slow"></div>
+                
+                <Card className="relative bg-gradient-to-br from-white via-white to-blue-50/30 text-center hover:scale-[1.02] transition-all duration-500 group hover:shadow-2xl overflow-hidden">
+                  {/* 装飾的な背景要素 */}
+                  <div className="absolute top-0 left-0 w-40 h-40 bg-gradient-to-br from-blue-200/20 to-cyan-300/20 rounded-full blur-3xl"></div>
+                  <div className="absolute bottom-0 right-0 w-32 h-32 bg-gradient-to-tr from-cyan-300/20 to-blue-200/20 rounded-full blur-3xl"></div>
+                  
+                  {/* 24時間対応バッジ */}
+                  <div className="absolute top-4 right-4 bg-gradient-to-r from-blue-500 to-blue-600 text-white text-xs font-bold px-3 py-1 rounded-full shadow-lg">
+                    24時間受付
                   </div>
-                  <h3 className="text-2xl font-bold mb-2 group-hover:text-blue-600 transition-colors">ネット予約</h3>
-                  <p className="text-gray-600 mb-4">
-                    24時間いつでも予約可能
-                  </p>
-                </div>
-                <div className="space-y-2 mb-6">
-                  <p className="text-sm text-gray-600">
-                    必要事項を入力するだけ
-                  </p>
-                  <p className="font-bold text-blue-600 animate-pulse-slow">かんたんWeb予約</p>
-                </div>
-                <Link
-                  href="https://docs.google.com/forms/d/e/1FAIpQLSdQClTGB2pHZ1eFxMQOMrA3JIJ5KhymKuwIwgFPxaJJQDyO5Q/viewform"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="btn-primary inline-block hover:animate-wiggle"
-                >
-                  予約フォームへ
-                </Link>
-              </Card>
+                  
+                  <div className="relative z-10">
+                    <div className="mb-6">
+                      <div className="relative w-24 h-24 mx-auto mb-6">
+                        <div className="absolute inset-0 bg-gradient-to-br from-blue-400 to-blue-600 rounded-3xl rotate-6 group-hover:rotate-12 transition-transform duration-500"></div>
+                        <div className="absolute inset-0 bg-gradient-to-br from-blue-500 to-blue-700 rounded-3xl flex items-center justify-center shadow-2xl">
+                          <svg className="w-12 h-12 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                          </svg>
+                        </div>
+                        {/* 光るエフェクト */}
+                        <div className="absolute -inset-4 bg-blue-400 rounded-full opacity-0 group-hover:opacity-30 blur-xl transition-opacity duration-500 animate-pulse"></div>
+                      </div>
+                      <h3 className="text-3xl font-bold mb-3 bg-gradient-to-r from-blue-600 to-blue-700 bg-clip-text text-transparent">ネット予約</h3>
+                      <p className="text-gray-700 mb-2 font-medium">
+                        24時間いつでも予約可能
+                      </p>
+                      <div className="flex items-center justify-center gap-2 text-sm text-blue-600">
+                        <span className="inline-block w-2 h-2 bg-blue-500 rounded-full animate-pulse"></span>
+                        <span>3分で簡単予約完了</span>
+                      </div>
+                    </div>
+                    
+                    <div className="bg-gradient-to-br from-blue-50 to-cyan-100/50 rounded-2xl p-4 mb-6 backdrop-blur-sm">
+                      <p className="text-sm text-gray-700 mb-2">
+                        必要事項を入力するだけ
+                      </p>
+                      <p className="font-bold text-blue-700 text-lg animate-pulse-slow">かんたんWeb予約</p>
+                    </div>
+                    
+                    <div className="grid grid-cols-3 gap-4 mb-6">
+                      <div className="text-center">
+                        <div className="w-12 h-12 bg-gradient-to-br from-blue-100 to-blue-200 rounded-xl flex items-center justify-center mx-auto mb-2">
+                          <svg className="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                          </svg>
+                        </div>
+                        <p className="text-xs text-gray-600">24時間対応</p>
+                      </div>
+                      <div className="text-center">
+                        <div className="w-12 h-12 bg-gradient-to-br from-blue-100 to-blue-200 rounded-xl flex items-center justify-center mx-auto mb-2">
+                          <svg className="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                          </svg>
+                        </div>
+                        <p className="text-xs text-gray-600">簡単入力</p>
+                      </div>
+                      <div className="text-center">
+                        <div className="w-12 h-12 bg-gradient-to-br from-blue-100 to-blue-200 rounded-xl flex items-center justify-center mx-auto mb-2">
+                          <svg className="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                          </svg>
+                        </div>
+                        <p className="text-xs text-gray-600">即時確認</p>
+                      </div>
+                    </div>
+                    
+                    <Link
+                      href="https://docs.google.com/forms/d/e/1FAIpQLSdQClTGB2pHZ1eFxMQOMrA3JIJ5KhymKuwIwgFPxaJJQDyO5Q/viewform"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="relative block group"
+                    >
+                      <div className="absolute inset-0 bg-gradient-to-r from-blue-400 to-blue-600 rounded-xl blur opacity-50 group-hover:opacity-70 transition-opacity duration-300"></div>
+                      <div className="relative w-full bg-gradient-to-r from-blue-500 to-blue-600 text-white font-bold py-4 px-6 rounded-xl transform group-hover:scale-105 transition-all duration-300 shadow-lg">
+                        <span className="flex items-center justify-center gap-2">
+                          <span>予約フォームへ</span>
+                          <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                          </svg>
+                        </span>
+                      </div>
+                    </Link>
+                  </div>
+                </Card>
+              </div>
             </AnimatedSection>
           </div>
         </div>
@@ -253,7 +451,6 @@ export default function ContactPage() {
                 </h3>
                 <ul className="space-y-3 text-gray-700">
                   {[
-                    "団体（10名以上）での利用について",
                     "悪天候時の対応について",
                     "釣り方のレクチャーについて",
                     "アクセス方法について",

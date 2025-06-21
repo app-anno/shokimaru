@@ -4,6 +4,7 @@ import OptimizedImage from "@/components/OptimizedImage";
 import AnimatedSection from "@/components/AnimatedSection";
 import ParallaxSection from "@/components/ParallaxSection";
 import AnimatedBackground from "@/components/AnimatedBackground";
+import SquidAnimation from "@/components/SquidAnimation";
 import { getFishingResults } from "@/lib/supabase/fishing-results";
 import Link from "next/link";
 
@@ -29,11 +30,9 @@ export default async function Home() {
           </div>
         </div>
         
-        {/* 装飾的な波 */}
+        {/* 装飾的な波とイカ */}
         <div className="absolute -bottom-[2px] left-0 right-0 z-10">
-          <svg viewBox="0 0 1440 120" className="w-full h-16 sm:h-20 md:h-32">
-            <path fill="#f8fafb" fillOpacity="1" d="M0,32L48,37.3C96,43,192,53,288,58.7C384,64,480,64,576,58.7C672,53,768,43,864,48C960,53,1056,75,1152,80C1248,85,1344,75,1392,69.3L1440,64L1440,120L1392,120C1344,120,1248,120,1152,120C1056,120,960,120,864,120C768,120,672,120,576,120C480,120,384,120,288,120C192,120,96,120,48,120L0,120Z"></path>
-          </svg>
+          <SquidAnimation />
         </div>
 
         <div className="container-custom text-center relative z-20">
@@ -91,8 +90,8 @@ export default async function Home() {
                       <div className="absolute -bottom-20 -left-20 w-40 h-40 bg-gradient-to-tr from-secondary-200/20 to-ocean-light/20 rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
                       
                       {result.image_url ? (
-                        <div className="aspect-square relative overflow-hidden rounded-2xl mb-4 shadow-inner">
-                          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent z-10" />
+                        <div className="aspect-square relative overflow-hidden rounded-2xl shadow-inner">
+                          <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent z-10" />
                           <div className="absolute inset-0">
                             <OptimizedImage
                               src={result.image_url}
@@ -113,7 +112,7 @@ export default async function Home() {
                           </div>
                           
                           {/* 日付ラベル */}
-                          <div className="absolute bottom-4 left-4 z-30">
+                          <div className="absolute top-4 left-4 z-30">
                             <div className="bg-white/95 backdrop-blur-sm rounded-xl px-3 py-1 shadow-lg">
                               <p className="text-sm font-medium text-gray-800">
                                 {new Date(result.date).toLocaleDateString('ja-JP', {
@@ -123,9 +122,35 @@ export default async function Home() {
                               </p>
                             </div>
                           </div>
+                          
+                          {/* 釣果詳細（画像上に配置） */}
+                          <div className="absolute bottom-0 left-0 right-0 z-30 p-4">
+                            <div className="bg-white/95 backdrop-blur-md rounded-xl p-3 shadow-xl">
+                              <div className="grid grid-cols-3 gap-2 text-center">
+                                {result.participants_count && (
+                                  <>
+                                    <div>
+                                      <p className="text-[10px] text-gray-600">参加</p>
+                                      <p className="text-sm font-bold text-gray-800">{result.participants_count}名</p>
+                                    </div>
+                                    <div>
+                                      <p className="text-[10px] text-gray-600">平均</p>
+                                      <p className="text-sm font-bold text-primary-600">{Math.round(result.catch_count / result.participants_count)}杯</p>
+                                    </div>
+                                  </>
+                                )}
+                                {result.size && (
+                                  <div className={result.participants_count ? '' : 'col-span-3'}>
+                                    <p className="text-[10px] text-gray-600">サイズ</p>
+                                    <p className="text-sm font-bold text-gray-800">{result.size}</p>
+                                  </div>
+                                )}
+                              </div>
+                            </div>
+                          </div>
                         </div>
                       ) : (
-                        <div className="aspect-square bg-gradient-to-br from-gray-100 via-gray-50 to-primary-50 rounded-2xl mb-4 flex items-center justify-center relative overflow-hidden shadow-inner">
+                        <div className="aspect-square bg-gradient-to-br from-gray-100 via-gray-50 to-primary-50 rounded-2xl flex items-center justify-center relative overflow-hidden shadow-inner">
                           <div className="absolute inset-0 bg-gradient-to-br from-primary-100/20 to-secondary-100/20 animate-pulse" />
                           <svg className="w-24 h-24 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
@@ -133,7 +158,7 @@ export default async function Home() {
                         </div>
                       )}
                       
-                      <div className="relative z-10 space-y-4">
+                      <div className="relative z-10 p-4 space-y-3">
                         {/* 条件カード */}
                         <div className="grid grid-cols-2 gap-3 mb-4">
                           {result.weather && (
@@ -204,87 +229,54 @@ export default async function Home() {
                         
                         {/* 月齢 */}
                         {result.moon_age !== null && (
-                          <div className="bg-gradient-to-br from-indigo-900 to-purple-900 rounded-xl p-4 shadow-lg relative overflow-hidden">
-                            <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
-                            <div className="relative z-10">
-                              <div className="flex items-center justify-between mb-2">
-                                <h4 className="text-white/80 text-sm font-medium">月齢</h4>
-                                <span className="text-white font-bold text-lg">{result.moon_age}日</span>
+                          <div className="bg-gradient-to-br from-indigo-50 to-purple-50 rounded-xl p-3 shadow-md border border-indigo-100">
+                            <div className="flex items-center gap-2">
+                              <div className="w-8 h-8 relative flex-shrink-0">
+                                {result.moon_age <= 1 && (
+                                  <div className="w-full h-full rounded-full bg-gray-900 border border-gray-600" />
+                                )}
+                                {result.moon_age > 1 && result.moon_age <= 6 && (
+                                  <div className="w-full h-full rounded-full bg-gradient-to-l from-gray-900 to-yellow-100 border border-yellow-300" />
+                                )}
+                                {result.moon_age > 6 && result.moon_age <= 8 && (
+                                  <div className="w-full h-full rounded-full bg-gradient-to-r from-yellow-100 to-gray-900 border border-yellow-300" />
+                                )}
+                                {result.moon_age > 8 && result.moon_age <= 13 && (
+                                  <div className="w-full h-full rounded-full bg-gradient-to-l from-gray-900 via-yellow-100 to-yellow-100 border border-yellow-300" />
+                                )}
+                                {result.moon_age > 13 && result.moon_age <= 16 && (
+                                  <div className="w-full h-full rounded-full bg-yellow-100 border border-yellow-400" />
+                                )}
+                                {result.moon_age > 16 && result.moon_age <= 21 && (
+                                  <div className="w-full h-full rounded-full bg-gradient-to-r from-yellow-100 via-yellow-100 to-gray-900 border border-yellow-300" />
+                                )}
+                                {result.moon_age > 21 && result.moon_age <= 23 && (
+                                  <div className="w-full h-full rounded-full bg-gradient-to-l from-yellow-100 to-gray-900 border border-gray-500" />
+                                )}
+                                {result.moon_age > 23 && (
+                                  <div className="w-full h-full rounded-full bg-gray-900 border border-gray-600" />
+                                )}
                               </div>
-                              <div className="flex items-center gap-3">
-                                <div className="w-12 h-12 relative">
-                                  {result.moon_age <= 1 && (
-                                    <div className="w-full h-full rounded-full bg-gray-900 border-2 border-gray-700 shadow-inner" />
-                                  )}
-                                  {result.moon_age > 1 && result.moon_age <= 6 && (
-                                    <div className="w-full h-full rounded-full bg-gradient-to-l from-gray-900 to-yellow-100 border-2 border-yellow-200 shadow-lg" />
-                                  )}
-                                  {result.moon_age > 6 && result.moon_age <= 8 && (
-                                    <div className="w-full h-full rounded-full bg-gradient-to-r from-yellow-100 to-gray-900 border-2 border-yellow-200 shadow-lg" />
-                                  )}
-                                  {result.moon_age > 8 && result.moon_age <= 13 && (
-                                    <div className="w-full h-full rounded-full bg-gradient-to-l from-gray-900 via-yellow-100 to-yellow-100 border-2 border-yellow-200 shadow-lg" />
-                                  )}
-                                  {result.moon_age > 13 && result.moon_age <= 16 && (
-                                    <div className="w-full h-full rounded-full bg-yellow-100 border-2 border-yellow-300 shadow-lg shadow-yellow-200/50" />
-                                  )}
-                                  {result.moon_age > 16 && result.moon_age <= 21 && (
-                                    <div className="w-full h-full rounded-full bg-gradient-to-r from-yellow-100 via-yellow-100 to-gray-900 border-2 border-yellow-200 shadow-lg" />
-                                  )}
-                                  {result.moon_age > 21 && result.moon_age <= 23 && (
-                                    <div className="w-full h-full rounded-full bg-gradient-to-l from-yellow-100 to-gray-900 border-2 border-gray-600 shadow-lg" />
-                                  )}
-                                  {result.moon_age > 23 && (
-                                    <div className="w-full h-full rounded-full bg-gray-900 border-2 border-gray-700 shadow-inner" />
-                                  )}
+                              <div className="flex-1">
+                                <div className="flex items-center gap-2">
+                                  <p className="text-xs text-gray-600">月齢</p>
+                                  <p className="text-sm font-bold text-gray-800">{result.moon_age}日</p>
                                 </div>
-                                <div className="flex-1">
-                                  <p className="text-white/90 text-sm font-medium">
-                                    {result.moon_age <= 1 && '新月'}
-                                    {result.moon_age > 1 && result.moon_age <= 6 && '三日月'}
-                                    {result.moon_age > 6 && result.moon_age <= 8 && '上弦の月'}
-                                    {result.moon_age > 8 && result.moon_age <= 13 && '十日月'}
-                                    {result.moon_age > 13 && result.moon_age <= 16 && '満月'}
-                                    {result.moon_age > 16 && result.moon_age <= 21 && '下弦の月'}
-                                    {result.moon_age > 21 && result.moon_age <= 23 && '二十三夜月'}
-                                    {result.moon_age > 23 && '晦日月'}
-                                  </p>
-                                  <p className="text-white/60 text-xs">
-                                    {result.moon_age <= 3 && '活性が高まりやすい'}
-                                    {result.moon_age > 3 && result.moon_age <= 8 && '安定した釣果'}
-                                    {result.moon_age > 8 && result.moon_age <= 16 && '大型が期待できる'}
-                                    {result.moon_age > 16 && result.moon_age <= 23 && '潮の動きに注目'}
-                                    {result.moon_age > 23 && '新月に向けて活性上昇'}
-                                  </p>
-                                </div>
+                                <p className="text-xs text-gray-600">
+                                  {result.moon_age <= 1 && '新月'}
+                                  {result.moon_age > 1 && result.moon_age <= 6 && '三日月'}
+                                  {result.moon_age > 6 && result.moon_age <= 8 && '上弦'}
+                                  {result.moon_age > 8 && result.moon_age <= 13 && '十日月'}
+                                  {result.moon_age > 13 && result.moon_age <= 16 && '満月'}
+                                  {result.moon_age > 16 && result.moon_age <= 21 && '下弦'}
+                                  {result.moon_age > 21 && result.moon_age <= 23 && '二十三夜'}
+                                  {result.moon_age > 23 && '晦日月'}
+                                </p>
                               </div>
                             </div>
                           </div>
                         )}
                         
-                        {/* 釣果詳細 */}
-                        <div className="pt-4 border-t-2 border-gray-100">
-                          <div className="bg-gradient-to-r from-primary-50 to-secondary-50 rounded-xl p-4 shadow-inner">
-                            {result.participants_count && (
-                              <div className="flex items-center justify-between mb-2">
-                                <span className="text-sm font-medium text-gray-600">参加人数</span>
-                                <span className="text-lg font-bold text-primary-700">{result.participants_count}名</span>
-                              </div>
-                            )}
-                            {result.participants_count && (
-                              <div className="flex items-center justify-between">
-                                <span className="text-sm font-medium text-gray-600">1人平均</span>
-                                <span className="text-xl font-bold text-gradient">{Math.round(result.catch_count / result.participants_count)}杯</span>
-                              </div>
-                            )}
-                            {result.size && (
-                              <div className="mt-3 pt-3 border-t border-primary-100">
-                                <p className="text-sm text-gray-600">サイズ</p>
-                                <p className="text-lg font-semibold text-gray-800">{result.size}</p>
-                              </div>
-                            )}
-                          </div>
-                        </div>
                         
                         {/* ホバーアクション */}
                         <div className="mt-4 opacity-0 group-hover:opacity-100 transition-all duration-300">

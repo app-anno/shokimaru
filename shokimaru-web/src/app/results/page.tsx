@@ -78,7 +78,7 @@ export default async function ResultsPage({
                       
                       {result.image_url ? (
                         <div className="aspect-square relative overflow-hidden">
-                          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent z-10" />
+                          <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent z-10" />
                           <Image
                             src={result.image_url}
                             alt={`${formatDate(result.date)}の釣果`}
@@ -96,7 +96,7 @@ export default async function ResultsPage({
                           </div>
                           
                           {/* 日付ラベル */}
-                          <div className="absolute bottom-4 left-4 z-30">
+                          <div className="absolute top-4 left-4 z-30">
                             <div className="bg-white/95 backdrop-blur-sm rounded-xl px-4 py-2 shadow-xl">
                               <p className="text-lg font-medium text-gray-800">
                                 {new Date(result.date).toLocaleDateString('ja-JP', {
@@ -105,6 +105,32 @@ export default async function ResultsPage({
                                   day: 'numeric'
                                 })}
                               </p>
+                            </div>
+                          </div>
+                          
+                          {/* 釣果詳細（画像上に配置） */}
+                          <div className="absolute bottom-0 left-0 right-0 z-30 p-4">
+                            <div className="bg-white/95 backdrop-blur-md rounded-xl p-3 shadow-xl">
+                              <div className="grid grid-cols-3 gap-2 text-center">
+                                {result.participants_count && (
+                                  <>
+                                    <div>
+                                      <p className="text-[10px] text-gray-600">参加</p>
+                                      <p className="text-sm font-bold text-gray-800">{result.participants_count}名</p>
+                                    </div>
+                                    <div>
+                                      <p className="text-[10px] text-gray-600">平均</p>
+                                      <p className="text-sm font-bold text-primary-600">{Math.round(result.catch_count / result.participants_count)}杯</p>
+                                    </div>
+                                  </>
+                                )}
+                                {result.size && (
+                                  <div className={result.participants_count ? '' : 'col-span-3'}>
+                                    <p className="text-[10px] text-gray-600">サイズ</p>
+                                    <p className="text-sm font-bold text-gray-800">{result.size}</p>
+                                  </div>
+                                )}
+                              </div>
                             </div>
                           </div>
                         </div>
@@ -188,41 +214,40 @@ export default async function ResultsPage({
                         </div>
                         
                         {result.moon_age !== null && (
-                          <div className="bg-gradient-to-br from-indigo-900 to-purple-900 rounded-lg p-3 shadow-lg relative overflow-hidden">
-                            <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
-                            <div className="relative z-10 flex items-center gap-3">
-                              <div className="w-10 h-10 relative flex-shrink-0">
+                          <div className="bg-gradient-to-br from-indigo-50 to-purple-50 rounded-lg p-2.5 shadow border border-indigo-100">
+                            <div className="flex items-center gap-2">
+                              <div className="w-8 h-8 relative flex-shrink-0">
                                 {result.moon_age <= 1 && (
-                                  <div className="w-full h-full rounded-full bg-gray-900 border border-gray-700 shadow-inner" />
+                                  <div className="w-full h-full rounded-full bg-gray-900 border border-gray-600" />
                                 )}
                                 {result.moon_age > 1 && result.moon_age <= 6 && (
-                                  <div className="w-full h-full rounded-full bg-gradient-to-l from-gray-900 to-yellow-100 border border-yellow-200/50" />
+                                  <div className="w-full h-full rounded-full bg-gradient-to-l from-gray-900 to-yellow-100 border border-yellow-300" />
                                 )}
                                 {result.moon_age > 6 && result.moon_age <= 8 && (
-                                  <div className="w-full h-full rounded-full bg-gradient-to-r from-yellow-100 to-gray-900 border border-yellow-200/50" />
+                                  <div className="w-full h-full rounded-full bg-gradient-to-r from-yellow-100 to-gray-900 border border-yellow-300" />
                                 )}
                                 {result.moon_age > 8 && result.moon_age <= 13 && (
-                                  <div className="w-full h-full rounded-full bg-gradient-to-l from-gray-900 via-yellow-100 to-yellow-100 border border-yellow-200/50" />
+                                  <div className="w-full h-full rounded-full bg-gradient-to-l from-gray-900 via-yellow-100 to-yellow-100 border border-yellow-300" />
                                 )}
                                 {result.moon_age > 13 && result.moon_age <= 16 && (
-                                  <div className="w-full h-full rounded-full bg-yellow-100 border border-yellow-300/50 shadow-md shadow-yellow-200/30" />
+                                  <div className="w-full h-full rounded-full bg-yellow-100 border border-yellow-400" />
                                 )}
                                 {result.moon_age > 16 && result.moon_age <= 21 && (
-                                  <div className="w-full h-full rounded-full bg-gradient-to-r from-yellow-100 via-yellow-100 to-gray-900 border border-yellow-200/50" />
+                                  <div className="w-full h-full rounded-full bg-gradient-to-r from-yellow-100 via-yellow-100 to-gray-900 border border-yellow-300" />
                                 )}
                                 {result.moon_age > 21 && result.moon_age <= 23 && (
-                                  <div className="w-full h-full rounded-full bg-gradient-to-l from-yellow-100 to-gray-900 border border-gray-600/50" />
+                                  <div className="w-full h-full rounded-full bg-gradient-to-l from-yellow-100 to-gray-900 border border-gray-500" />
                                 )}
                                 {result.moon_age > 23 && (
-                                  <div className="w-full h-full rounded-full bg-gray-900 border border-gray-700 shadow-inner" />
+                                  <div className="w-full h-full rounded-full bg-gray-900 border border-gray-600" />
                                 )}
                               </div>
                               <div className="flex-1">
-                                <div className="flex items-center gap-2 mb-1">
-                                  <p className="text-white/80 text-xs">月齢</p>
-                                  <p className="text-white font-bold text-sm">{result.moon_age}日</p>
+                                <div className="flex items-center gap-2">
+                                  <p className="text-[10px] text-gray-500 leading-tight">月齢</p>
+                                  <p className="text-xs font-bold text-gray-800">{result.moon_age}日</p>
                                 </div>
-                                <p className="text-white/90 text-xs font-medium">
+                                <p className="text-[10px] text-gray-600">
                                   {result.moon_age <= 1 && '新月'}
                                   {result.moon_age > 1 && result.moon_age <= 6 && '三日月'}
                                   {result.moon_age > 6 && result.moon_age <= 8 && '上弦'}
@@ -238,27 +263,6 @@ export default async function ResultsPage({
                         )}
                       </div>
                       
-                      {/* 釣果詳細 */}
-                      <div className="bg-gradient-to-br from-primary-50 to-secondary-50 rounded-xl p-4 shadow-inner">
-                        {result.participants_count && (
-                          <>
-                            <div className="flex items-center justify-between mb-2">
-                              <span className="text-sm font-medium text-gray-600">参加人数</span>
-                              <span className="text-lg font-bold text-primary-700">{result.participants_count}名</span>
-                            </div>
-                            <div className="flex items-center justify-between mb-3">
-                              <span className="text-sm font-medium text-gray-600">1人平均</span>
-                              <span className="text-2xl font-bold text-gradient">{Math.round(result.catch_count / result.participants_count)}杯</span>
-                            </div>
-                          </>
-                        )}
-                        {result.size && (
-                          <div className={`${result.participants_count ? 'pt-3 border-t border-primary-100' : ''}`}>
-                            <p className="text-sm text-gray-600">サイズ</p>
-                            <p className="text-lg font-semibold text-gray-800">{result.size}</p>
-                          </div>
-                        )}
-                      </div>
                       
                       {/* ホバーアクション */}
                       <div className="mt-4 opacity-0 group-hover:opacity-100 transition-all duration-300">
