@@ -111,7 +111,9 @@ CLAUDE.mdが肥大化することを防ぐため、以下の基準で適切に�
 - Vercel（ホスティング）
 
 ### カラーテーマ
-- Primary: #0EA5E9 (Sky Blue - 爽やかな海)
-- Secondary: #06B6D4 (Cyan - アクセント)
-- Background: #F0F9FF (Sky 50 - 薄い青)
-- Text: #0C4A6E (Sky 900 - 濃い青)
+- Primary: #4a8db5 (落ち着いた青緑 - メインカラー)
+- Secondary: #64acc8 (明るい青緑 - サブカラー)
+- Accent: #ff8c42 (夕焼けオレンジ - アクセント)
+- Ocean: #2e5f7a (深海ブルー)
+- Background: #f8fafb (薄いグレー)
+- Text: #1e2936 (濃いグレー)

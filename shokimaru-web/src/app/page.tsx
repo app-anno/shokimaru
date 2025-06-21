@@ -12,9 +12,10 @@ export default async function Home() {
   return (
     <>
       {/* ヒーローセクション */}
-      <section className="relative bg-gradient-to-b from-background to-white py-20 overflow-hidden">
+      <section className="relative min-h-[80vh] flex items-center justify-center overflow-hidden">
+        {/* 背景画像 */}
         <div className="absolute inset-0 z-0">
-          <div className="absolute inset-0 bg-gradient-to-b from-background/90 to-white/90 z-10" />
+          <div className="absolute inset-0 bg-gradient-to-b from-ocean-dark/70 via-ocean/50 to-primary-900/80 z-10" />
           <OptimizedImage
             src="/hero-image.jpg"
             alt="萩湾の美しい海"
@@ -23,133 +24,202 @@ export default async function Home() {
             className="object-cover"
           />
         </div>
+        
+        {/* 装飾的な波 */}
+        <div className="absolute bottom-0 left-0 right-0 z-10">
+          <svg viewBox="0 0 1440 120" className="w-full h-20 md:h-32">
+            <path fill="#f8fafb" fillOpacity="1" d="M0,32L48,37.3C96,43,192,53,288,58.7C384,64,480,64,576,58.7C672,53,768,43,864,48C960,53,1056,75,1152,80C1248,85,1344,75,1392,69.3L1440,64L1440,120L1392,120C1344,120,1248,120,1152,120C1056,120,960,120,864,120C768,120,672,120,576,120C480,120,384,120,288,120C192,120,96,120,48,120L0,120Z"></path>
+          </svg>
+        </div>
+
         <div className="container-custom text-center relative z-20">
-          <h1 className="text-4xl md:text-6xl font-bold mb-6 text-white drop-shadow-lg">
-            萩湾でイカ釣り体験
-          </h1>
-          <p className="text-xl md:text-2xl mb-8 text-white drop-shadow">
-            初心者・女性大歓迎！翔葵丸で楽しい釣り体験を
-          </p>
+          <div className="animate-float">
+            <h1 className="text-5xl md:text-7xl font-bold mb-6 text-white text-shadow-lg">
+              萩湾でイカ釣り体験
+            </h1>
+            <p className="text-xl md:text-3xl mb-10 text-white/90 text-shadow">
+              初心者・女性大歓迎！翔葵丸で楽しい釣り体験を
+            </p>
+          </div>
+          
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button href="/contact" size="lg">
+            <Button href="/contact" size="lg" variant="accent">
               今すぐ予約する
             </Button>
-            <Button href="/results" variant="secondary" size="lg">
+            <Button href="/results" variant="outline" size="lg" className="!text-white !border-white hover:!bg-white/20">
               釣果を見る
             </Button>
+          </div>
+          
+          {/* スクロールインジケーター */}
+          <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
+            <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+            </svg>
           </div>
         </div>
       </section>
 
       {/* 最新釣果セクション */}
-      <section className="py-16 bg-white">
+      <section className="section-padding bg-gray-50">
         <div className="container-custom">
-          <h2 className="text-3xl font-bold text-center mb-12">最新の釣果</h2>
+          <div className="text-center mb-12">
+            <h2 className="text-4xl font-bold mb-4 title-decorated">最新の釣果</h2>
+            <p className="text-gray-600">お客様の素晴らしい釣果をご紹介します</p>
+          </div>
+          
           {latestResults.length > 0 ? (
             <>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                 {latestResults.map((result) => (
                   <Link href={`/results/${result.id}`} key={result.id}>
-                    <Card className="h-full hover:shadow-xl transition-shadow">
+                    <Card hover className="h-full group">
                       {result.image_url ? (
-                        <div className="aspect-video relative overflow-hidden rounded mb-4">
+                        <div className="aspect-video relative overflow-hidden rounded-xl mb-4">
                           <OptimizedImage
                             src={result.image_url}
                             alt={`${result.date}の釣果`}
                             fill
                             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                            className="object-cover"
+                            className="object-cover group-hover:scale-110 transition-transform duration-300"
                           />
+                          <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                         </div>
                       ) : (
-                        <div className="aspect-video bg-gray-200 rounded mb-4 flex items-center justify-center">
-                          <p className="text-gray-500">画像なし</p>
+                        <div className="aspect-video bg-gradient-to-br from-gray-100 to-gray-200 rounded-xl mb-4 flex items-center justify-center">
+                          <p className="text-gray-400">画像なし</p>
                         </div>
                       )}
-                      <h3 className="font-bold text-lg mb-2">
-                        {new Date(result.date).toLocaleDateString('ja-JP', {
-                          year: 'numeric',
-                          month: 'long',
-                          day: 'numeric'
-                        })}
-                      </h3>
-                      <div className="space-y-1 text-sm">
-                        {result.weather && (
-                          <p className="text-gray-600">天気：{result.weather}</p>
-                        )}
-                        {result.tide_type && (
-                          <p className="text-gray-600">潮：{result.tide_type}</p>
-                        )}
+                      
+                      <div className="space-y-3">
+                        <h3 className="font-bold text-xl text-gray-800">
+                          {new Date(result.date).toLocaleDateString('ja-JP', {
+                            year: 'numeric',
+                            month: 'long',
+                            day: 'numeric'
+                          })}
+                        </h3>
+                        
+                        <div className="flex flex-wrap gap-2">
+                          {result.weather && (
+                            <span className="badge badge-secondary">
+                              {result.weather}
+                            </span>
+                          )}
+                          {result.tide_type && (
+                            <span className="badge badge-primary">
+                              {result.tide_type}
+                            </span>
+                          )}
+                        </div>
+                        
                         {result.moon_age !== null && (
                           <div className="mt-2">
                             <MoonPhase moonAge={result.moon_age} />
                           </div>
                         )}
+                        
+                        <div className="pt-3 border-t border-gray-200">
+                          <p className="text-primary-600 font-bold text-2xl">
+                            {result.catch_count}杯
+                          </p>
+                          {result.size && (
+                            <p className="text-gray-600 text-sm mt-1">サイズ：{result.size}</p>
+                          )}
+                        </div>
                       </div>
-                      <p className="text-primary font-bold text-lg mt-3">
-                        {result.catch_count}杯釣れました！
-                      </p>
-                      {result.size && (
-                        <p className="text-gray-600 text-sm">サイズ：{result.size}</p>
-                      )}
                     </Card>
                   </Link>
                 ))}
               </div>
-              <div className="text-center mt-8">
-                <Button href="/results">もっと見る</Button>
+              
+              <div className="text-center mt-12">
+                <Button href="/results" variant="primary" size="lg">
+                  もっと釣果を見る
+                </Button>
               </div>
             </>
           ) : (
             <div className="text-center py-12">
-              <p className="text-gray-500 mb-4">まだ釣果情報がありません</p>
-              <Button href="/contact">最初のお客様になる</Button>
+              <p className="text-gray-500 mb-6">まだ釣果が登録されていません</p>
+              <Button href="/contact">予約して最初の釣果を登録しましょう！</Button>
             </div>
           )}
         </div>
       </section>
 
       {/* サービス紹介セクション */}
-      <section className="py-16 bg-background">
+      <section className="section-padding bg-white">
         <div className="container-custom">
-          <h2 className="text-3xl font-bold text-center mb-12">
-            翔葵丸の特徴
-          </h2>
+          <div className="text-center mb-12">
+            <h2 className="text-4xl font-bold mb-4 title-decorated">翔葵丸の特徴</h2>
+            <p className="text-gray-600">安心・安全・楽しいイカ釣り体験をお約束します</p>
+          </div>
+          
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <Card>
-              <h3 className="text-xl font-bold mb-4">初心者歓迎</h3>
-              <p className="text-gray-700">
-                釣りが初めての方でも大丈夫！船長が丁寧にサポートします。
+            <Card gradient="primary" className="text-center">
+              <div className="mb-4">
+                <div className="w-20 h-20 mx-auto bg-white/20 rounded-full flex items-center justify-center">
+                  <svg className="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
+                  </svg>
+                </div>
+              </div>
+              <h3 className="text-2xl font-bold mb-3">初心者歓迎</h3>
+              <p className="text-white/90">
+                道具の使い方から釣り方まで、船長が丁寧にサポートいたします
               </p>
             </Card>
-            <Card>
-              <h3 className="text-xl font-bold mb-4">レンタル竿完備</h3>
-              <p className="text-gray-700">
-                手ぶらでOK！釣り竿のレンタル（1,000円）もご用意しています。
+            
+            <Card gradient="secondary" className="text-center">
+              <div className="mb-4">
+                <div className="w-20 h-20 mx-auto bg-white/20 rounded-full flex items-center justify-center">
+                  <svg className="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                  </svg>
+                </div>
+              </div>
+              <h3 className="text-2xl font-bold mb-3">安全第一</h3>
+              <p className="text-white/90">
+                最新の安全設備を完備。女性やお子様も安心してご乗船いただけます
               </p>
             </Card>
-            <Card>
-              <h3 className="text-xl font-bold mb-4">少人数でゆったり</h3>
-              <p className="text-gray-700">
-                最大6名までの少人数制。ゆったりと釣りを楽しめます。
+            
+            <Card gradient="ocean" className="text-center">
+              <div className="mb-4">
+                <div className="w-20 h-20 mx-auto bg-white/20 rounded-full flex items-center justify-center">
+                  <svg className="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                </div>
+              </div>
+              <h3 className="text-2xl font-bold mb-3">楽しい体験</h3>
+              <p className="text-white/90">
+                萩湾の美しい海で、思い出に残るイカ釣り体験をご提供します
               </p>
             </Card>
           </div>
         </div>
       </section>
 
-      {/* CTA セクション */}
-      <section className="py-16 bg-primary text-white">
+      {/* CTAセクション */}
+      <section className="section-padding bg-gradient-to-r from-primary-500 to-secondary-500">
         <div className="container-custom text-center">
-          <h2 className="text-3xl font-bold mb-6">
-            萩湾でイカ釣りを楽しもう！
+          <h2 className="text-4xl font-bold text-white mb-6">
+            萩湾でイカ釣りを楽しみませんか？
           </h2>
-          <p className="text-xl mb-8">
-            ご予約はLINE・Instagram・お電話から
+          <p className="text-xl text-white/90 mb-8 max-w-2xl mx-auto">
+            初心者の方も大歓迎！道具はすべてレンタル可能です。<br />
+            まずはお気軽にお問い合わせください。
           </p>
-          <Button href="/contact" variant="secondary" size="lg">
-            予約・お問い合わせ
-          </Button>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Button href="/contact" variant="accent" size="lg">
+              予約・お問い合わせ
+            </Button>
+            <Button href="/pricing" variant="outline" size="lg" className="!text-white !border-white hover:!bg-white/20">
+              料金を確認する
+            </Button>
+          </div>
         </div>
       </section>
     </>
