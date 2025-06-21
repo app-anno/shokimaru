@@ -67,10 +67,14 @@ export default function AccessPage() {
                     <div className="animate-slide-in-left" style={{ animationDelay: '200ms' }}>
                       <h3 className="font-semibold mb-1 text-primary-600">住所</h3>
                       <p className="text-gray-700">
-                        山口県萩市
+                        山口県萩市山田 玉江港
                         <br />
                         <span className="text-sm text-gray-600">
-                          ※詳しい港の場所は、ご予約確定後にお知らせいたします
+                          山陰屈指の人気釣りスポット
+                        </span>
+                        <br />
+                        <span className="text-sm text-gray-600">
+                          ※詳しい場所は、ご予約確定後にお知らせいたします
                         </span>
                       </p>
                     </div>
@@ -159,9 +163,9 @@ export default function AccessPage() {
                   <h2 className="text-2xl font-bold mb-4 text-gradient">ご来場時の注意事項</h2>
                   <ul className="space-y-3 text-gray-700">
                     {[
-                      "出船時刻の30分前までにお越しください",
+                      "出船時間の10分前には必ず玉江漁港にお越しください",
                       "天候により出船場所が変更になる場合があります",
-                      "前日に確認のご連絡をさせていただきます",
+                      "前日に天候の状況を見極めて船長が判断し、ご連絡します",
                       "不明な点はお気軽にお問い合わせください"
                     ].map((item, index) => (
                       <li key={index} className="flex items-start animate-slide-in-right" style={{ animationDelay: `${(index + 7) * 100}ms` }}>
@@ -212,10 +216,10 @@ export default function AccessPage() {
           
           <AnimatedSection animation="slide-up" delay={600}>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button href="tel:090-2053-9539" variant="accent" size="lg" className="animate-pulse-slow ">
+              <Button href="tel:090-2053-9539" variant="primary" size="lg" className="animate-pulse-slow ">
                 電話で問い合わせる
               </Button>
-              <Button href="/contact" variant="accent" size="lg" className="animate-pulse-slow">
+              <Button href="/contact" variant="primary" size="lg" className="animate-pulse-slow">
                 お問い合わせフォーム
               </Button>
             </div>

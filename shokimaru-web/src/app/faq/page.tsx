@@ -51,12 +51,12 @@ const faqData: FAQItem[] = [
   {
     category: "reservation",
     question: "キャンセル料はかかりますか？",
-    answer: "現在、キャンセルポリシーは設定しておりませんが、キャンセルされる場合は早めにご連絡をお願いします。天候不良による中止の場合、キャンセル料はいただきません。",
+    answer: "現在、キャンセルポリシーは設定しておりませんが、予約をキャンセルされる場合は早めにご連絡ください。天候不良による中止の場合、キャンセル料はいただきません。",
   },
   {
     category: "reservation",
     question: "悪天候の場合はどうなりますか？",
-    answer: "安全を最優先に、前日の夕方頃に出船可否を判断し、ご連絡いたします。波が高い、風が強いなど危険と判断した場合は中止となります。",
+    answer: "出航又は欠航の判断は、前日に天候の状況を見極めて船長の判断で決定し、ご連絡します。危険を伴う恐れがある無理な出船は致しておりません。",
   },
   {
     category: "other",
@@ -72,6 +72,26 @@ const faqData: FAQItem[] = [
     category: "other",
     question: "支払い方法は？",
     answer: "現金でのお支払いをお願いしています。当日、乗船前にお支払いください。",
+  },
+  {
+    category: "other",
+    question: "集合時間は？",
+    answer: "出船時間の10分前には必ず玉江漁港にお越しください。",
+  },
+  {
+    category: "beginner",
+    question: "安全面での注意事項は？",
+    answer: "ライフジャケットは必ず着用をお願いします。また、船べり（船の外板のてすり上）に座らないでください。遊漁船の運行に関しては船長の判断に従ってください。",
+  },
+  {
+    category: "other",
+    question: "船内でのマナーは？",
+    answer: "タバコを海上や船のデッキに捨てないでください。ゴミは各自お持ち帰りください。魚の血でデッキが汚れましたら洗い流してください。船内での移動、喫煙、飲食、飲酒等は船長の指示に従ってください。",
+  },
+  {
+    category: "other",
+    question: "乗船をお断りする場合はありますか？",
+    answer: "泥酔状態での乗船、乗船中の危険行為は禁止します。体調不良の方は、乗船をお断りする場合があります。",
   },
 ];
 
@@ -224,7 +244,7 @@ export default function FAQPage() {
           </AnimatedSection>
           
           <AnimatedSection animation="slide-up" delay={600}>
-            <Button href="/contact" variant="accent" size="lg" className="animate-pulse-slow ">
+            <Button href="/contact" variant="primary" size="lg" className="animate-pulse-slow ">
               お問い合わせはこちら
             </Button>
           </AnimatedSection>

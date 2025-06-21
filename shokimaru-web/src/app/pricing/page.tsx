@@ -27,7 +27,7 @@ export default function PricingPage() {
       <section className="bg-gradient-to-b from-primary-50 to-white py-16 relative overflow-hidden">
         <div className="absolute inset-0 opacity-30">
           <div className="absolute top-0 right-0 w-96 h-96 bg-gradient-to-br from-primary-200 to-secondary-200 rounded-full blur-3xl animate-morph" />
-          <div className="absolute bottom-0 left-0 w-80 h-80 bg-gradient-to-tr from-secondary-200 to-accent/20 rounded-full blur-3xl animate-morph" style={{ animationDelay: '4s' }} />
+          <div className="absolute bottom-0 left-0 w-80 h-80 bg-gradient-to-tr from-secondary-200 to-primary-200/30 rounded-full blur-3xl animate-morph" style={{ animationDelay: '4s' }} />
         </div>
         
         <div className="container-custom relative">
@@ -71,7 +71,8 @@ export default function PricingPage() {
                 <ul className="text-left space-y-3 mb-6">
                   {[
                     "最少催行人数：2名",
-                    "最大乗船人数：5名",
+                    "最大乗船人数：6名",
+                    "※スタッフが乗る場合、最大5名になります",
                     "出船時間をお選びいただけます",
                     "道具レンタル無料",
                     "初心者講習付き"
@@ -90,15 +91,15 @@ export default function PricingPage() {
 
             {/* チャータープラン */}
             <AnimatedSection animation="slide-right" delay={400}>
-              <Card className="text-center border-2 border-accent relative overflow-hidden hover:animate-wiggle group">
+              <Card className="text-center border-2 border-primary-400 relative overflow-hidden hover:animate-wiggle group">
                 <div className="absolute -top-1 -right-1">
-                  <div className="bg-accent text-white px-4 py-1 text-sm font-bold rounded-bl-lg animate-wiggle">
+                  <div className="bg-primary-600 text-white px-4 py-1 text-sm font-bold rounded-bl-lg animate-wiggle">
                     人気！
                   </div>
                 </div>
                 <div className="mb-6">
-                  <div className="w-20 h-20 mx-auto bg-gradient-to-br from-accent/20 to-accent/30 rounded-full flex items-center justify-center mb-4 animate-spin-slow">
-                    <svg className="w-10 h-10 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <div className="w-20 h-20 mx-auto bg-gradient-to-br from-primary-100 to-primary-200 rounded-full flex items-center justify-center mb-4 animate-spin-slow">
+                    <svg className="w-10 h-10 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
                     </svg>
                   </div>
@@ -114,18 +115,19 @@ export default function PricingPage() {
                 <ul className="text-left space-y-3 mb-6">
                   {[
                     "1艇まるごと貸し切り",
-                    "最大乗船人数：5名",
+                    "最大乗船人数：6名",
+                    "※スタッフが乗る場合、最大5名になります",
                     "時間を気にせず楽しめる",
                     "プライベート空間で釣り",
                     "グループ・家族におすすめ"
                   ].map((item, index) => (
                     <li key={index} className="flex items-start animate-slide-in-left" style={{ animationDelay: `${(index + 3) * 100}ms` }}>
-                      <span className="text-accent mr-2 animate-bounce-slow" style={{ animationDelay: `${index * 200}ms` }}>✓</span>
+                      <span className="text-primary-500 mr-2 animate-bounce-slow" style={{ animationDelay: `${index * 200}ms` }}>✓</span>
                       <span>{item}</span>
                     </li>
                   ))}
                 </ul>
-                <Button href="/contact" variant="accent" fullWidth className="">
+                <Button href="/contact" variant="primary" fullWidth className="">
                   予約する
                 </Button>
               </Card>
@@ -149,31 +151,51 @@ export default function PricingPage() {
         
         <div className="container-custom relative">
           <AnimatedSection animation="zoom">
-            <h2 className="text-3xl font-bold text-center mb-12 title-decorated">無料レンタル品</h2>
+            <h2 className="text-3xl font-bold text-center mb-12 title-decorated">レンタル品</h2>
+          </AnimatedSection>
+          
+          {/* レンタルタックル料金カード */}
+          <div className="max-w-2xl mx-auto mb-12">
+            <AnimatedSection animation="slide-up">
+              <Card className="text-center bg-gradient-to-br from-primary-50 to-primary-100/50">
+                <h3 className="text-2xl font-bold mb-4 text-primary-700">レンタルタックル</h3>
+                <p className="text-4xl font-bold text-primary-600 mb-4">
+                  ¥1,000
+                  <span className="text-lg text-gray-600 font-normal">/1セット</span>
+                </p>
+                <div className="text-sm text-gray-700 space-y-2">
+                  <p>※レンタルタックルの仕掛けが切れた場合、追加の仕掛けは＋1,000円いただきます</p>
+                </div>
+              </Card>
+            </AnimatedSection>
+          </div>
+
+          <AnimatedSection animation="fade" delay={300}>
+            <h3 className="text-2xl font-bold text-center mb-8">基本装備（無料）</h3>
           </AnimatedSection>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
             {[
               {
-                icon: "M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4",
-                title: "釣り竿・リール",
-                description: "イカ釣り専用の竿とリールを無料でお貸しします"
+                icon: "M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 006.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3",
+                title: "ライフジャケット",
+                description: "安全のためのライフジャケットは無料で完備"
               },
               {
                 icon: "M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2",
-                title: "仕掛け・エギ",
-                description: "必要な仕掛けやエギもすべて無料でご用意"
+                title: "氷",
+                description: "釣った魚の保存用の氷を無料でご用意"
               },
               {
-                icon: "M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 006.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3",
-                title: "ライフジャケット",
-                description: "安全のためのライフジャケットも完備"
+                icon: "M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z",
+                title: "初心者講習",
+                description: "釣り方の説明・サポートは無料です"
               }
             ].map((item, index) => (
-              <AnimatedSection key={index} animation="flip" delay={index * 200}>
+              <AnimatedSection key={index} animation="flip" delay={index * 200 + 400}>
                 <Card className="text-center group hover:animate-pulse-slow">
-                  <div className="w-16 h-16 mx-auto bg-primary-100 rounded-full flex items-center justify-center mb-4 group-hover:animate-spin-slow">
-                    <svg className="w-8 h-8 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <div className="w-16 h-16 mx-auto bg-gray-100 rounded-full flex items-center justify-center mb-4 group-hover:animate-spin-slow">
+                    <svg className="w-8 h-8 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d={item.icon} />
                     </svg>
                   </div>
@@ -203,7 +225,7 @@ export default function PricingPage() {
               {
                 step: "2",
                 title: "当日集合",
-                description: "出船時間の15分前に港へお越しください。場所が分からない場合はお気軽にご連絡ください。"
+                description: "出船時間の10分前には必ず玉江漁港にお越しください。場所が分からない場合はお気軽にご連絡ください。"
               },
               {
                 step: "3",
@@ -233,6 +255,53 @@ export default function PricingPage() {
                 </div>
               </AnimatedSection>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 重要事項セクション */}
+      <section className="py-16 bg-gray-50">
+        <div className="container-custom">
+          <AnimatedSection animation="slide-down">
+            <h2 className="text-3xl font-bold text-center mb-12 title-decorated">乗船に関する重要事項</h2>
+          </AnimatedSection>
+          
+          <div className="max-w-4xl mx-auto">
+            <AnimatedSection animation="zoom" delay={200}>
+              <Card className="bg-white/95 backdrop-blur-sm shadow-xl">
+                <h3 className="text-xl font-bold mb-6 text-primary-600">安全のためのお願い</h3>
+                <ul className="space-y-3 text-gray-700">
+                  {[
+                    "ライフジャケットは必ず着用お願い致します",
+                    "船べり（船の外板のてすり上）に座らないでください",
+                    "遊漁船の運行に関しては船長の判断に従ってください",
+                    "泥酔状態での乗船、乗船中の危険行為は禁止します",
+                    "体調不良の方は、乗船をお断りする場合があります"
+                  ].map((item, index) => (
+                    <li key={index} className="flex items-start animate-slide-in-right" style={{ animationDelay: `${index * 100}ms` }}>
+                      <span className="text-primary-500 mr-2">•</span>
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+                
+                <h3 className="text-xl font-bold mb-6 mt-8 text-primary-600">船内でのマナー</h3>
+                <ul className="space-y-3 text-gray-700">
+                  {[
+                    "船内での移動、喫煙、飲食、飲酒等は船長の指示に従ってください",
+                    "タバコを海上や船のデッキに捨てないでください",
+                    "ゴミ、仕掛けや道具の入っていた包装用の袋、糸や針をデッキに捨てないでください",
+                    "魚の血でデッキが汚れましたら洗い流してください",
+                    "ゴミは各自お持ち帰りください"
+                  ].map((item, index) => (
+                    <li key={index} className="flex items-start animate-slide-in-right" style={{ animationDelay: `${(index + 5) * 100}ms` }}>
+                      <span className="text-primary-500 mr-2">•</span>
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </Card>
+            </AnimatedSection>
           </div>
         </div>
       </section>
@@ -273,7 +342,7 @@ export default function PricingPage() {
           
           <AnimatedSection animation="slide-up" delay={600}>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button href="/contact" variant="accent" size="lg" className="animate-pulse-slow ">
+              <Button href="/contact" variant="primary" size="lg" className="animate-pulse-slow ">
                 今すぐ予約する
               </Button>
               <Button href="/faq" variant="outline" size="lg" className="!text-white !border-white hover:!bg-white/20">

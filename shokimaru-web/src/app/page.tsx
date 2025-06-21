@@ -31,7 +31,7 @@ export default async function Home() {
         </div>
         
         {/* 装飾的な波 */}
-        <div className="absolute bottom-0 left-0 right-0 z-10">
+        <div className="absolute -bottom-1 left-0 right-0 z-10">
           <svg viewBox="0 0 1440 120" className="w-full h-20 md:h-32">
             <path fill="#f8fafb" fillOpacity="1" d="M0,32L48,37.3C96,43,192,53,288,58.7C384,64,480,64,576,58.7C672,53,768,43,864,48C960,53,1056,75,1152,80C1248,85,1344,75,1392,69.3L1440,64L1440,120L1392,120C1344,120,1248,120,1152,120C1056,120,960,120,864,120C768,120,672,120,576,120C480,120,384,120,288,120C192,120,96,120,48,120L0,120Z"></path>
           </svg>
@@ -43,15 +43,18 @@ export default async function Home() {
               <h1 className="text-5xl md:text-7xl font-bold mb-6 text-white text-shadow-lg">
                 旬のイカで最高の1日を！
               </h1>
-              <p className="text-xl md:text-3xl mb-10 text-white/90 text-shadow animate-slide-in-up stagger-2">
-                初心者・女性も大歓迎！翔葵丸で楽しい釣り体験を
+              <p className="text-xl md:text-3xl mb-6 text-white/90 text-shadow animate-slide-in-up stagger-2">
+                山陰屈指の人気スポット・玉江港から出船
+              </p>
+              <p className="text-lg md:text-xl mb-10 text-white/80 text-shadow animate-slide-in-up stagger-3">
+                海の上から楽しむ特別な釣り体験をあなたに
               </p>
             </div>
           </AnimatedSection>
           
           <AnimatedSection animation="zoom" delay={600}>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button href="/contact" size="lg" variant="accent" className="animate-pulse-slow">
+              <Button href="/contact" size="lg" variant="primary" className="animate-pulse-slow">
                 今すぐ予約する
               </Button>
               <Button href="/results" variant="outline" size="lg" className="!text-white !border-white hover:!bg-white/20 animate-slide-in-right stagger-3">
@@ -66,7 +69,7 @@ export default async function Home() {
       <section className="section-padding bg-gray-50 relative overflow-hidden">
         <ParallaxSection speed={0.3} className="absolute inset-0">
           <div className="absolute top-0 right-0 w-96 h-96 bg-gradient-to-br from-primary-100/30 to-secondary-100/30 rounded-full blur-3xl animate-morph" />
-          <div className="absolute bottom-0 left-0 w-80 h-80 bg-gradient-to-tr from-secondary-100/30 to-accent/10 rounded-full blur-3xl animate-morph" style={{ animationDelay: '3s' }} />
+          <div className="absolute bottom-0 left-0 w-80 h-80 bg-gradient-to-tr from-secondary-100/30 to-primary-100/30 rounded-full blur-3xl animate-morph" style={{ animationDelay: '3s' }} />
         </ParallaxSection>
         
         <div className="container-custom relative">
@@ -163,6 +166,30 @@ export default async function Home() {
         </div>
       </section>
 
+      {/* 玉江港紹介セクション */}
+      <section className="section-padding bg-gradient-to-b from-ocean-light/10 to-white relative overflow-hidden">
+        <div className="container-custom relative">
+          <AnimatedSection animation="zoom">
+            <div className="max-w-4xl mx-auto text-center mb-16">
+              <h2 className="text-3xl md:text-4xl font-bold mb-6 text-ocean-dark">
+                山陰屈指の人気釣りスポット
+                <br />
+                <span className="text-primary-600 text-5xl md:text-6xl">玉江港</span>
+              </h2>
+              <p className="text-lg text-gray-700 leading-relaxed">
+                山口県萩市山田玉江港は、毎日多くの釣り人で賑わう山陰屈指の人気スポット。
+                <br />
+                この恵まれた漁場から出船する翔葵丸は、
+                <br />
+                陸からでは味わえない海の上での釣りの醍醐味を
+                <br />
+                皆様にお届けしています。
+              </p>
+            </div>
+          </AnimatedSection>
+        </div>
+      </section>
+
       {/* サービス紹介セクション */}
       <section className="section-padding bg-white relative overflow-hidden">
         <div className="container-custom relative">
@@ -238,20 +265,20 @@ export default async function Home() {
         <div className="container-custom text-center relative">
           <AnimatedSection animation="zoom">
             <h2 className="text-4xl font-bold text-white mb-6 ">
-              萩湾でイカ釣りを楽しみませんか？
+              海の上から楽しむ特別な釣り体験
             </h2>
           </AnimatedSection>
           
           <AnimatedSection animation="fade" delay={300}>
             <p className="text-xl text-white/90 mb-8 max-w-2xl mx-auto">
-              初心者の方も大歓迎！道具はすべてレンタル可能です。<br />
-              まずはお気軽にお問い合わせください。
+              玉江港から出船し、陸からでは味わえない釣りの醍醐味を。<br />
+              初心者の方も道具レンタル完備で安心です。
             </p>
           </AnimatedSection>
           
           <AnimatedSection animation="slide-up" delay={600}>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button href="/contact" variant="accent" size="lg" className="animate-pulse-slow ">
+              <Button href="/contact" variant="primary" size="lg" className="animate-pulse-slow ">
                 予約・お問い合わせ
               </Button>
               <Button href="/pricing" variant="outline" size="lg" className="!text-white !border-white hover:!bg-white/20 animate-slide-in-right stagger-3">

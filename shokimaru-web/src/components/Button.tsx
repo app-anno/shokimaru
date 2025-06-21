@@ -4,7 +4,7 @@ interface ButtonProps {
   children: React.ReactNode;
   href?: string;
   onClick?: () => void;
-  variant?: "primary" | "secondary" | "accent" | "outline" | "danger";
+  variant?: "primary" | "secondary" | "outline" | "danger";
   size?: "sm" | "md" | "lg";
   className?: string;
   disabled?: boolean;
@@ -30,7 +30,6 @@ export default function Button({
   const variantClasses = {
     primary: "bg-primary-500 hover:bg-primary-600 active:bg-primary-700 text-white shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 focus:ring-primary-500",
     secondary: "bg-secondary-500 hover:bg-secondary-600 active:bg-secondary-700 text-white shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 focus:ring-secondary-500",
-    accent: "bg-accent hover:bg-accent-dark active:bg-orange-700 text-white shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 focus:ring-accent",
     outline: "border-2 border-primary-500 text-primary-500 hover:bg-primary-50 hover:shadow-md focus:ring-primary-500",
     danger: "bg-error hover:bg-red-600 active:bg-red-700 text-white shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 focus:ring-red-500",
   };

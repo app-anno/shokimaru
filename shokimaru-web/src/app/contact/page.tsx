@@ -26,7 +26,7 @@ export default function ContactPage() {
       {/* ヘッダーセクション */}
       <section className="py-16 relative overflow-hidden">
         <div className="absolute inset-0 opacity-30">
-          <div className="absolute top-0 right-0 w-96 h-96 bg-gradient-to-br from-primary-200/30 to-accent/20 rounded-full blur-3xl animate-morph" />
+          <div className="absolute top-0 right-0 w-96 h-96 bg-gradient-to-br from-primary-200/30 to-secondary-200/30 rounded-full blur-3xl animate-morph" />
           <div className="absolute bottom-0 left-0 w-80 h-80 bg-gradient-to-tr from-secondary-200/30 to-primary-200/30 rounded-full blur-3xl animate-morph" style={{ animationDelay: '2s' }} />
         </div>
         
@@ -167,7 +167,7 @@ export default function ContactPage() {
                   <p className="font-bold text-blue-600 animate-pulse-slow">かんたんWeb予約</p>
                 </div>
                 <Link
-                  href="#"
+                  href="https://docs.google.com/forms/d/e/1FAIpQLSdQClTGB2pHZ1eFxMQOMrA3JIJ5KhymKuwIwgFPxaJJQDyO5Q/viewform"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="btn-primary inline-block hover:animate-wiggle"
@@ -302,10 +302,10 @@ export default function ContactPage() {
               <Card className="bg-white/95 backdrop-blur-sm shadow-2xl animate-pulse-slow">
                 <ul className="space-y-4">
                   {[
-                    "ご予約は先着順となります。人気の日程は早めにお問い合わせください。",
-                    "天候や海況により出船できない場合があります。前日に最終確認のご連絡をいたします。",
-                    "キャンセルされる場合は、できるだけ早めにご連絡をお願いします。",
-                    "ご不明な点がございましたら、お気軽にお問い合わせください。"
+                    "出航又は欠航の判断は、前日に天候の状況を見極めて船長の判断で決定し、ご連絡します。",
+                    "予約をキャンセルされる場合は早めにご連絡ください。",
+                    "危険を伴う恐れがある無理な出船は致しておりません。",
+                    "出船時間の10分前には必ず玉江漁港にお越しください。"
                   ].map((item, index) => (
                     <li key={index} className="flex items-start animate-slide-in-left" style={{ animationDelay: `${(index + 1) * 150}ms` }}>
                       <span className="text-primary-500 mr-3 text-xl animate-wiggle" style={{ animationDelay: `${index * 300}ms` }}>✓</span>
