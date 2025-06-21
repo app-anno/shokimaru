@@ -7,10 +7,10 @@ export function middleware(request: NextRequest) {
     const authHeader = request.headers.get('authorization')
     
     if (!authHeader || !authHeader.startsWith('Basic ')) {
-      return new NextResponse('認証が必要です', {
+      return new NextResponse(null, {
         status: 401,
         headers: {
-          'WWW-Authenticate': 'Basic realm="管理画面"',
+          'WWW-Authenticate': 'Basic realm="Shokimaru Admin"',
         },
       })
     }
@@ -23,10 +23,10 @@ export function middleware(request: NextRequest) {
     const validPassword = process.env.BASIC_AUTH_PASSWORD || 'password'
 
     if (username !== validUsername || password !== validPassword) {
-      return new NextResponse('認証に失敗しました', {
+      return new NextResponse(null, {
         status: 401,
         headers: {
-          'WWW-Authenticate': 'Basic realm="管理画面"',
+          'WWW-Authenticate': 'Basic realm="Shokimaru Admin"',
         },
       })
     }
