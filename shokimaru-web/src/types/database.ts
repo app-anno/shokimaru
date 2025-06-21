@@ -20,6 +20,7 @@ export interface Database {
           size: string | null
           image_url: string | null
           is_public: boolean
+          participants_count: number | null
           created_at: string
           updated_at: string
         }
@@ -33,6 +34,7 @@ export interface Database {
           size?: string | null
           image_url?: string | null
           is_public?: boolean
+          participants_count?: number | null
           created_at?: string
           updated_at?: string
         }
@@ -46,6 +48,7 @@ export interface Database {
           size?: string | null
           image_url?: string | null
           is_public?: boolean
+          participants_count?: number | null
           created_at?: string
           updated_at?: string
         }

@@ -81,6 +81,12 @@ export default async function ResultDetailPage({
                       <dd className="font-medium text-gray-900">{result.tide_type}</dd>
                     </div>
                   )}
+                  {result.participants_count && (
+                    <div className="flex justify-between py-2 border-b border-gray-200">
+                      <dt className="text-gray-600">釣行人数</dt>
+                      <dd className="font-medium text-gray-900">{result.participants_count}名</dd>
+                    </div>
+                  )}
                 </dl>
               </div>
 

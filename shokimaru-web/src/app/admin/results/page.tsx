@@ -86,6 +86,9 @@ export default async function AdminResultsPage({
                       </a>
                     </th>
                     <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
+                      人数
+                    </th>
+                    <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
                       サイズ
                     </th>
                     <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
@@ -113,6 +116,9 @@ export default async function AdminResultsPage({
                       </td>
                       <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                         {result.catch_count}匹
+                      </td>
+                      <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                        {result.participants_count ? `${result.participants_count}名` : '-'}
                       </td>
                       <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                         {result.size || '-'}
