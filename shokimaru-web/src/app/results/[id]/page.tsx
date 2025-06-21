@@ -49,6 +49,11 @@ export default async function ResultDetailPage({
                 <span className="text-4xl font-bold text-sky-600">
                   {result.catch_count}匹
                 </span>
+                {result.participants_count && (
+                  <span className="text-xl text-gray-700">
+                    （1人平均: {Math.round(result.catch_count / result.participants_count)}匹）
+                  </span>
+                )}
                 {result.size && (
                   <span className="text-lg text-gray-600">
                     サイズ: {result.size}
