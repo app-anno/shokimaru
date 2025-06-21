@@ -27,3 +27,15 @@ export function getMoonPhaseDescription(moonAge: number): string {
   if (moonAge < 22) return "満月〜下弦";
   return "下弦〜新月";
 }
+
+// 月齢の絵文字を取得
+export function getMoonPhaseEmoji(moonAge: number): string {
+  if (moonAge === 0 || moonAge === 29) return "🌑";
+  if (moonAge < 7) return "🌒";
+  if (moonAge === 7 || moonAge === 8) return "🌓";
+  if (moonAge < 14) return "🌔";
+  if (moonAge === 14 || moonAge === 15) return "🌕";
+  if (moonAge < 22) return "🌖";
+  if (moonAge === 22 || moonAge === 23) return "🌗";
+  return "🌘";
+}

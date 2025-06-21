@@ -1,17 +1,63 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import Layout from "@/components/Layout";
 
 export const metadata: Metadata = {
-  title: "翔葵丸 - 萩湾でイカ釣り体験",
-  description: "山口県萩市でイカ釣りを楽しめる釣り船、翔葵丸（しょうきまる）。初心者・女性大歓迎！レンタル竿もご用意しています。",
-  keywords: "萩市,釣り船,イカ釣り,翔葵丸,しょうきまる,山口県,釣り体験,初心者歓迎",
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://shokimaru.com'),
+  title: {
+    default: "翔葵丸 - 萩湾でイカ釣り体験 | 山口県萩市の釣り船",
+    template: "%s | 翔葵丸"
+  },
+  description: "山口県萩市でイカ釣りを楽しめる釣り船、翔葵丸（しょうきまる）。初心者・女性大歓迎！レンタル竿もご用意。萩湾の豊かな漁場で、思い出に残る釣り体験を。",
+  keywords: ["萩市", "釣り船", "イカ釣り", "翔葵丸", "しょうきまる", "山口県", "釣り体験", "初心者歓迎", "女性歓迎", "レンタル竿", "萩湾", "ケンサキイカ"],
+  authors: [{ name: "翔葵丸" }],
+  creator: "翔葵丸",
+  publisher: "翔葵丸",
+  formatDetection: {
+    email: false,
+    address: false,
+    telephone: false,
+  },
   openGraph: {
     title: "翔葵丸 - 萩湾でイカ釣り体験",
     description: "山口県萩市でイカ釣りを楽しめる釣り船、翔葵丸（しょうきまる）。初心者・女性大歓迎！",
     type: "website",
+    locale: "ja_JP",
+    siteName: "翔葵丸",
+    images: [{
+      url: "/og-image.jpg",
+      width: 1200,
+      height: 630,
+      alt: "翔葵丸 - 萩湾でイカ釣り体験"
+    }]
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "翔葵丸 - 萩湾でイカ釣り体験",
+    description: "山口県萩市でイカ釣りを楽しめる釣り船。初心者・女性大歓迎！",
+    images: ["/og-image.jpg"]
+  },
+  alternates: {
+    canonical: '/',
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
   },
 };
+
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 1,
+}
 
 export default function RootLayout({
   children,

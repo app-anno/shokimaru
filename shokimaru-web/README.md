@@ -75,3 +75,16 @@ Vercelにデプロイする場合：
 2. Vercelでプロジェクトをインポート
 3. 環境変数を設定
 4. デプロイ
+
+詳細な手順は [デプロイメントガイド](./docs/DEPLOYMENT.md) を参照してください。
+
+## 運用
+
+日常の運用方法については [運用マニュアル](./docs/OPERATION_MANUAL.md) を参照してください。
+
+## ドキュメント
+
+- [Supabaseセットアップガイド](./docs/SUPABASE_SETUP.md)
+- [APIリファレンス](./docs/API_REFERENCE.md)
+- [デプロイメントガイド](./docs/DEPLOYMENT.md)
+- [運用マニュアル](./docs/OPERATION_MANUAL.md)
