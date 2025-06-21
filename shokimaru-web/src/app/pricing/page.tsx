@@ -71,10 +71,8 @@ export default function PricingPage() {
                 <ul className="text-left space-y-3 mb-6">
                   {[
                     "最少催行人数：2名",
-                    "最大乗船人数：6名",
-                    "※スタッフが乗る場合、最大5名になります",
+                    "最大乗船人数：5名",
                     "出船時間をお選びいただけます",
-                    "道具レンタル無料",
                     "初心者講習付き"
                   ].map((item, index) => (
                     <li key={index} className="flex items-start animate-slide-in-right" style={{ animationDelay: `${(index + 3) * 100}ms` }}>
@@ -335,8 +333,8 @@ export default function PricingPage() {
           
           <AnimatedSection animation="fade" delay={300}>
             <p className="text-xl text-white/90 mb-8 max-w-2xl mx-auto">
-              道具は全て無料レンタル。手ぶらでOK！<br />
-              初心者の方も船長が丁寧にサポートします。
+              初心者の方も船長が丁寧にサポートします。<br />
+              手ぶらでお気軽にお越しください！
             </p>
           </AnimatedSection>
           

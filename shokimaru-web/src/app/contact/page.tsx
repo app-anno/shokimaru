@@ -51,8 +51,6 @@ export default function ContactPage() {
             {/* LINE */}
             <AnimatedSection animation="slide-left" delay={0}>
               <div className="relative group">
-                {/* 背景の装飾 */}
-                <div className="absolute -inset-1 bg-gradient-to-r from-green-400 via-green-500 to-green-600 rounded-3xl blur-xl opacity-25 group-hover:opacity-40 transition duration-500 animate-pulse-slow"></div>
                 
                 <Card className="relative bg-gradient-to-br from-white via-white to-green-50/30 text-center hover:scale-[1.02] transition-all duration-500 group hover:shadow-2xl overflow-hidden">
                   {/* 装飾的な背景要素 */}
@@ -73,8 +71,6 @@ export default function ContactPage() {
                             <path d="M18.205 2.25h3.308l-7.227 8.26 8.502 11.24H16.13l-5.214-6.817L4.95 21.75H1.64l7.73-8.835L1.215 2.25H8.04l4.713 6.231zm-1.161 17.52h1.833L7.045 4.126H5.078z"/>
                           </svg>
                         </div>
-                        {/* 光るエフェクト */}
-                        <div className="absolute -inset-4 bg-green-400 rounded-full opacity-0 group-hover:opacity-30 blur-xl transition-opacity duration-500 animate-pulse"></div>
                       </div>
                       <h3 className="text-3xl font-bold mb-3 bg-gradient-to-r from-green-600 to-green-700 bg-clip-text text-transparent">LINE</h3>
                       <p className="text-gray-700 mb-2 font-medium">
@@ -128,8 +124,6 @@ export default function ContactPage() {
             {/* Instagram */}
             <AnimatedSection animation="slide-up" delay={200}>
               <div className="relative group">
-                {/* 背景の装飾 */}
-                <div className="absolute -inset-1 bg-gradient-to-r from-purple-400 via-pink-500 to-pink-600 rounded-3xl blur-xl opacity-25 group-hover:opacity-40 transition duration-500 animate-pulse-slow"></div>
                 
                 <Card className="relative bg-gradient-to-br from-white via-white to-purple-50/30 text-center hover:scale-[1.02] transition-all duration-500 group hover:shadow-2xl overflow-hidden">
                   {/* 装飾的な背景要素 */}
@@ -145,8 +139,6 @@ export default function ContactPage() {
                             <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zM5.838 12a6.162 6.162 0 1112.324 0 6.162 6.162 0 01-12.324 0zM12 16a4 4 0 110-8 4 4 0 010 8zm4.965-10.405a1.44 1.44 0 112.881.001 1.44 1.44 0 01-2.881-.001z"/>
                           </svg>
                         </div>
-                        {/* 光るエフェクト */}
-                        <div className="absolute -inset-4 bg-gradient-to-r from-purple-400 to-pink-400 rounded-full opacity-0 group-hover:opacity-30 blur-xl transition-opacity duration-500 animate-pulse"></div>
                       </div>
                       <h3 className="text-3xl font-bold mb-3 bg-gradient-to-r from-purple-600 via-pink-600 to-pink-700 bg-clip-text text-transparent">Instagram</h3>
                       <p className="text-gray-700 mb-2 font-medium">
@@ -205,8 +197,6 @@ export default function ContactPage() {
             {/* 電話 */}
             <AnimatedSection animation="slide-right" delay={400}>
               <div className="relative group">
-                {/* 背景の装飾 */}
-                <div className="absolute -inset-1 bg-gradient-to-r from-primary-400 to-primary-600 rounded-3xl blur-xl opacity-25 group-hover:opacity-40 transition duration-500 animate-pulse-slow"></div>
                 
                 <Card className="relative bg-gradient-to-br from-white via-white to-primary-50/30 text-center hover:scale-[1.02] transition-all duration-500 group hover:shadow-2xl overflow-hidden">
                   {/* 装飾的な背景要素 */}
@@ -228,8 +218,6 @@ export default function ContactPage() {
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                           </svg>
                         </div>
-                        {/* 光るエフェクト */}
-                        <div className="absolute -inset-4 bg-primary-400 rounded-full opacity-0 group-hover:opacity-30 blur-xl transition-opacity duration-500 animate-pulse"></div>
                       </div>
                       <h3 className="text-3xl font-bold mb-3 bg-gradient-to-r from-primary-600 to-primary-700 bg-clip-text text-transparent">お電話</h3>
                       <p className="text-gray-700 mb-2 font-medium">
@@ -285,8 +273,6 @@ export default function ContactPage() {
             {/* Google Form */}
             <AnimatedSection animation="slide-up" delay={600}>
               <div className="relative group">
-                {/* 背景の装飾 */}
-                <div className="absolute -inset-1 bg-gradient-to-r from-blue-400 to-blue-600 rounded-3xl blur-xl opacity-25 group-hover:opacity-40 transition duration-500 animate-pulse-slow"></div>
                 
                 <Card className="relative bg-gradient-to-br from-white via-white to-blue-50/30 text-center hover:scale-[1.02] transition-all duration-500 group hover:shadow-2xl overflow-hidden">
                   {/* 装飾的な背景要素 */}
@@ -307,8 +293,6 @@ export default function ContactPage() {
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                           </svg>
                         </div>
-                        {/* 光るエフェクト */}
-                        <div className="absolute -inset-4 bg-blue-400 rounded-full opacity-0 group-hover:opacity-30 blur-xl transition-opacity duration-500 animate-pulse"></div>
                       </div>
                       <h3 className="text-3xl font-bold mb-3 bg-gradient-to-r from-blue-600 to-blue-700 bg-clip-text text-transparent">ネット予約</h3>
                       <p className="text-gray-700 mb-2 font-medium">

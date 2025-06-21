@@ -4,14 +4,22 @@ import { Database } from "@/types/database";
 type FishingResult = Database["public"]["Tables"]["fishing_results"]["Row"];
 type FishingResultInsert = Database["public"]["Tables"]["fishing_results"]["Insert"];
 type FishingResultUpdate = Database["public"]["Tables"]["fishing_results"]["Update"];
+type FishingResultImage = Database["public"]["Tables"]["fishing_result_images"]["Row"];
+
+export type FishingResultWithImages = FishingResult & {
+  images: FishingResultImage[];
+};
 
 // 釣果一覧を取得（公開データのみ）
-export async function getFishingResults(limit?: number) {
+export async function getFishingResults(limit?: number): Promise<FishingResultWithImages[]> {
   const supabase = await createClient();
   
   let query = supabase
     .from("fishing_results")
-    .select("*")
+    .select(`
+      *,
+      images:fishing_result_images(*)
+    `)
     .eq("is_public", true)
     .order("date", { ascending: false });
 
@@ -26,16 +34,25 @@ export async function getFishingResults(limit?: number) {
     return [];
   }
 
-  return data || [];
+  // 画像を表示順でソート
+  const resultsWithSortedImages = (data || []).map(result => ({
+    ...result,
+    images: result.images?.sort((a: FishingResultImage, b: FishingResultImage) => a.display_order - b.display_order) || []
+  }));
+
+  return resultsWithSortedImages;
 }
 
 // 特定の釣果を取得
-export async function getFishingResultById(id: string) {
+export async function getFishingResultById(id: string): Promise<FishingResultWithImages | null> {
   const supabase = await createClient();
   
   const { data, error } = await supabase
     .from("fishing_results")
-    .select("*")
+    .select(`
+      *,
+      images:fishing_result_images(*)
+    `)
     .eq("id", id)
     .single();
 
@@ -44,7 +61,15 @@ export async function getFishingResultById(id: string) {
     return null;
   }
 
-  return data;
+  // 画像を表示順でソート
+  if (data) {
+    return {
+      ...data,
+      images: data.images?.sort((a: FishingResultImage, b: FishingResultImage) => a.display_order - b.display_order) || []
+    };
+  }
+
+  return null;
 }
 
 // 釣果を作成

@@ -70,6 +70,29 @@ export interface Database {
           created_at?: string
         }
       }
+      fishing_result_images: {
+        Row: {
+          id: string
+          fishing_result_id: string
+          image_url: string
+          display_order: number
+          created_at: string
+        }
+        Insert: {
+          id?: string
+          fishing_result_id: string
+          image_url: string
+          display_order?: number
+          created_at?: string
+        }
+        Update: {
+          id?: string
+          fishing_result_id?: string
+          image_url?: string
+          display_order?: number
+          created_at?: string
+        }
+      }
     }
     Views: {
       [_ in never]: never

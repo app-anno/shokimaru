@@ -5,6 +5,7 @@ import AnimatedSection from "@/components/AnimatedSection";
 import ParallaxSection from "@/components/ParallaxSection";
 import AnimatedBackground from "@/components/AnimatedBackground";
 import SquidAnimation from "@/components/SquidAnimation";
+import ImageCarousel from "@/components/ImageCarousel";
 import { getFishingResults } from "@/lib/supabase/fishing-results";
 import Link from "next/link";
 
@@ -89,18 +90,31 @@ export default async function Home() {
                       <div className="absolute -top-20 -right-20 w-40 h-40 bg-gradient-to-br from-primary-200/20 to-secondary-200/20 rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
                       <div className="absolute -bottom-20 -left-20 w-40 h-40 bg-gradient-to-tr from-secondary-200/20 to-ocean-light/20 rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
                       
-                      {result.image_url ? (
+                      {(result.image_url || result.images?.length > 0) ? (
                         <div className="aspect-square relative overflow-hidden rounded-2xl shadow-inner">
                           <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent z-10" />
-                          <div className="absolute inset-0">
-                            <OptimizedImage
-                              src={result.image_url}
+                          
+                          {/* カルーセルまたは単一画像 */}
+                          {result.images && result.images.length > 0 ? (
+                            <ImageCarousel
+                              images={result.images.map(img => img.image_url).filter(Boolean) as string[]}
                               alt={`${result.date}の釣果`}
-                              fill
-                              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                              className="object-cover group-hover:scale-125 transition-transform duration-700 ease-out"
+                              className="absolute inset-0 group-hover:scale-125 transition-transform duration-700 ease-out"
+                              showBadge={true}
+                              showIndicators={true}
                             />
-                          </div>
+                          ) : result.image_url ? (
+                            <div className="absolute inset-0">
+                              <OptimizedImage
+                                src={result.image_url}
+                                alt={`${result.date}の釣果`}
+                                fill
+                                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                                className="object-cover group-hover:scale-125 transition-transform duration-700 ease-out"
+                              />
+                            </div>
+                          ) : null}
+                          
                           {/* ホバー時のオーバーレイ */}
                           <div className="absolute inset-0 bg-gradient-to-t from-primary-900/80 via-primary-600/40 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500 z-20" />
                           

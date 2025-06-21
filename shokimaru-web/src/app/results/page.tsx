@@ -4,6 +4,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import AnimatedSection from '@/components/AnimatedSection'
 import FloatingElements from '@/components/FloatingElements'
+import ImageCarousel from '@/components/ImageCarousel'
 import { Metadata } from 'next'
 
 export const metadata: Metadata = {
@@ -76,15 +77,28 @@ export default async function ResultsPage({
                       <div className="absolute -top-20 -right-20 w-40 h-40 bg-gradient-to-br from-primary-200/20 to-secondary-200/20 rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-700 z-0" />
                       <div className="absolute -bottom-20 -left-20 w-40 h-40 bg-gradient-to-tr from-secondary-200/20 to-ocean-light/20 rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-700 z-0" />
                       
-                      {result.image_url ? (
+                      {(result.image_url || result.images?.length > 0) ? (
                         <div className="aspect-square relative overflow-hidden">
                           <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent z-10" />
-                          <Image
-                            src={result.image_url}
-                            alt={`${formatDate(result.date)}の釣果`}
-                            fill
-                            className="object-cover group-hover:scale-125 transition-transform duration-700 ease-out"
-                          />
+                          
+                          {/* カルーセルまたは単一画像 */}
+                          {result.images && result.images.length > 0 ? (
+                            <ImageCarousel
+                              images={result.images.map(img => img.image_url).filter(Boolean) as string[]}
+                              alt={`${formatDate(result.date)}の釣果`}
+                              className="absolute inset-0 group-hover:scale-125 transition-transform duration-700 ease-out"
+                              showBadge={true}
+                              showIndicators={true}
+                            />
+                          ) : result.image_url ? (
+                            <Image
+                              src={result.image_url}
+                              alt={`${formatDate(result.date)}の釣果`}
+                              fill
+                              className="object-cover group-hover:scale-125 transition-transform duration-700 ease-out"
+                            />
+                          ) : null}
+                          
                           {/* ホバー時のオーバーレイ */}
                           <div className="absolute inset-0 bg-gradient-to-t from-primary-900/80 via-primary-600/40 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500 z-20" />
                           

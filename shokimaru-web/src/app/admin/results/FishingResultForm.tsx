@@ -8,12 +8,18 @@ import { uploadImage } from '@/lib/supabase/storage-client'
 import { Database } from '@/types/database'
 import { useToast } from '@/lib/hooks/useToast'
 import Image from 'next/image'
+import MultiImageUpload from '@/components/admin/MultiImageUpload'
 
 type FishingResult = Database['public']['Tables']['fishing_results']['Row']
 type FishingResultInsert = Database['public']['Tables']['fishing_results']['Insert']
+type FishingResultImage = Database['public']['Tables']['fishing_result_images']['Row']
+
+interface FishingResultWithImages extends FishingResult {
+  images?: FishingResultImage[]
+}
 
 interface FishingResultFormProps {
-  defaultValues?: FishingResult
+  defaultValues?: FishingResultWithImages
   isEdit?: boolean
 }
 
@@ -23,25 +29,10 @@ export function FishingResultForm({ defaultValues, isEdit = false }: FishingResu
   const { showToast } = useToast()
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [error, setError] = useState<string | null>(null)
-  const [imageFile, setImageFile] = useState<File | null>(null)
-  const [imagePreview, setImagePreview] = useState<string | null>(
-    defaultValues?.image_url || null
-  )
+  const [selectedImages, setSelectedImages] = useState<any[]>([])
 
-  const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0]
-    if (file) {
-      if (file.size > 5 * 1024 * 1024) {
-        setError('画像サイズは5MB以下にしてください')
-        return
-      }
-      setImageFile(file)
-      const reader = new FileReader()
-      reader.onloadend = () => {
-        setImagePreview(reader.result as string)
-      }
-      reader.readAsDataURL(file)
-    }
+  const handleImagesChange = (images: any[]) => {
+    setSelectedImages(images)
   }
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -52,14 +43,30 @@ export function FishingResultForm({ defaultValues, isEdit = false }: FishingResu
     try {
       const formData = new FormData(e.currentTarget)
       
-      // 画像のアップロード
-      let imageUrl = defaultValues?.image_url || null
-      if (imageFile) {
-        const uploadedUrl = await uploadImage(imageFile)
-        if (!uploadedUrl) {
-          throw new Error('画像のアップロードに失敗しました')
+      // メイン画像のアップロード（最初の画像）
+      let mainImageUrl = defaultValues?.image_url || null
+      const additionalImages: Array<{ url: string; order: number }> = []
+      
+      // 新しい画像をアップロード
+      for (let i = 0; i < selectedImages.length; i++) {
+        const img = selectedImages[i]
+        if (img.file) {
+          const uploadedUrl = await uploadImage(img.file)
+          if (!uploadedUrl) {
+            throw new Error(`画像${i + 1}のアップロードに失敗しました`)
+          }
+          if (i === 0) {
+            mainImageUrl = uploadedUrl
+          } else {
+            additionalImages.push({ url: uploadedUrl, order: i })
+          }
+        } else if (img.isExisting) {
+          if (i === 0) {
+            mainImageUrl = img.url
+          } else {
+            additionalImages.push({ url: img.url, order: i })
+          }
         }
-        imageUrl = uploadedUrl
       }
 
       const data: FishingResultInsert = {
@@ -70,10 +77,12 @@ export function FishingResultForm({ defaultValues, isEdit = false }: FishingResu
         catch_count: parseInt(formData.get('catch_count') as string),
         size: formData.get('size') as string || null,
         participants_count: formData.get('participants_count') ? parseInt(formData.get('participants_count') as string) : null,
-        image_url: imageUrl,
+        image_url: mainImageUrl,
         is_public: formData.get('is_public') === 'true',
       }
 
+      let resultId: string
+      
       if (isEdit && defaultValues) {
         const { error } = await supabase
           .from('fishing_results')
@@ -81,12 +90,37 @@ export function FishingResultForm({ defaultValues, isEdit = false }: FishingResu
           .eq('id', defaultValues.id)
 
         if (error) throw error
+        resultId = defaultValues.id
+        
+        // 既存の追加画像を削除
+        await supabase
+          .from('fishing_result_images')
+          .delete()
+          .eq('fishing_result_id', resultId)
       } else {
-        const { error } = await supabase
+        const { data: newResult, error } = await supabase
           .from('fishing_results')
           .insert(data)
+          .select()
+          .single()
 
-        if (error) throw error
+        if (error || !newResult) throw error
+        resultId = newResult.id
+      }
+      
+      // 追加画像を保存
+      if (additionalImages.length > 0) {
+        const imagesToInsert = additionalImages.map(img => ({
+          fishing_result_id: resultId,
+          image_url: img.url,
+          display_order: img.order
+        }))
+        
+        const { error: imageError } = await supabase
+          .from('fishing_result_images')
+          .insert(imagesToInsert)
+          
+        if (imageError) throw imageError
       }
 
       showToast(isEdit ? '釣果を更新しました' : '釣果を登録しました', 'success')
@@ -228,33 +262,14 @@ export function FishingResultForm({ defaultValues, isEdit = false }: FishingResu
       </div>
 
       <div>
-        <label htmlFor="image" className="block text-sm font-medium text-gray-700">
-          画像
+        <label className="block text-sm font-medium text-gray-700 mb-2">
+          画像（最大3枚）
         </label>
-        <input
-          type="file"
-          name="image"
-          id="image"
-          accept="image/*"
-          onChange={handleImageChange}
-          className="mt-1 block w-full text-sm text-gray-500
-            file:mr-4 file:py-2 file:px-4
-            file:rounded-full file:border-0
-            file:text-sm file:font-semibold
-            file:bg-sky-50 file:text-sky-700
-            hover:file:bg-sky-100"
+        <MultiImageUpload
+          existingImages={defaultValues?.images || []}
+          onImagesChange={handleImagesChange}
+          maxImages={3}
         />
-        <p className="mt-1 text-sm text-gray-500">最大5MBまでの画像ファイル</p>
-        {imagePreview && (
-          <div className="mt-4 relative h-48 w-96">
-            <Image
-              src={imagePreview}
-              alt="プレビュー"
-              fill
-              className="object-contain rounded-lg shadow-sm"
-            />
-          </div>
-        )}
       </div>
 
       <div className="flex items-center">

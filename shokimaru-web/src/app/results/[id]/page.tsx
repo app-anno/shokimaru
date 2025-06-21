@@ -4,6 +4,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { getMoonPhaseEmoji } from '@/lib/constants/fishing'
+import ImageCarousel from '@/components/ImageCarousel'
 
 export default async function ResultDetailPage({
   params,
@@ -28,15 +29,26 @@ export default async function ResultDetailPage({
         </Link>
 
         <div className="bg-white rounded-lg shadow-lg overflow-hidden">
-          {result.image_url && (
+          {(result.image_url || result.images?.length > 0) && (
             <div className="relative h-96 md:h-[500px]">
-              <Image
-                src={result.image_url}
-                alt={`${formatDate(result.date)}の釣果`}
-                fill
-                className="object-contain bg-gray-100"
-                priority
-              />
+              {result.images && result.images.length > 0 ? (
+                <ImageCarousel
+                  images={result.images.map(img => img.image_url).filter(Boolean) as string[]}
+                  alt={`${formatDate(result.date)}の釣果`}
+                  className="absolute inset-0"
+                  showBadge={false}
+                  showIndicators={true}
+                  autoPlayInterval={4000}
+                />
+              ) : result.image_url ? (
+                <Image
+                  src={result.image_url}
+                  alt={`${formatDate(result.date)}の釣果`}
+                  fill
+                  className="object-contain bg-gray-100"
+                  priority
+                />
+              ) : null}
             </div>
           )}
 
