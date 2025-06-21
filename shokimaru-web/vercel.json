@@ -8,14 +8,5 @@
     "src/app/api/**.ts": {
       "maxDuration": 30
     }
-  },
-  "env": {
-    "NEXT_PUBLIC_SITE_URL": "@site_url",
-    "NEXT_PUBLIC_SUPABASE_URL": "@supabase_url",
-    "NEXT_PUBLIC_SUPABASE_ANON_KEY": "@supabase_anon_key",
-    "SUPABASE_SERVICE_ROLE_KEY": "@supabase_service_role_key",
-    "BASIC_AUTH_USER": "@basic_auth_user",
-    "BASIC_AUTH_PASSWORD": "@basic_auth_password",
-    "NEXT_PUBLIC_GOOGLE_MAPS_API_KEY": "@google_maps_api_key"
   }
 }
