@@ -70,7 +70,7 @@ export default function PricingPage() {
                 </div>
                 <ul className="text-left space-y-3 mb-6">
                   {[
-                    "最少催行人数：2名",
+                    "最少催行人数：1名",
                     "最大乗船人数：5名",
                     "出船時間をお選びいただけます",
                     "初心者講習付き"
@@ -134,7 +134,11 @@ export default function PricingPage() {
 
           <AnimatedSection animation="fade" delay={600}>
             <p className="text-center text-gray-600 mt-8">
-              ※料金は税込価格です。天候により出船できない場合は全額返金いたします。
+              ※料金は税込価格です。天候により出船できない場合は全額返金いたします。<br />
+              ※高校生以下は半額（4,500円）となります。年齢がわかる書類をお持ちください（コピー可）。<br />
+              ※レンタルタックルは半額対象外です。<br />
+              <span className="text-red-600 font-bold">※お支払いは現金のみとなります。</span><br />
+              <span className="text-gray-700">※領収証ご利用の場合は事前にお伝えください。</span>
             </p>
           </AnimatedSection>
         </div>
