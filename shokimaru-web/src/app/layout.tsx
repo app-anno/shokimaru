@@ -3,6 +3,8 @@ import "./globals.css";
 import Layout from "@/components/Layout";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import { LocalBusinessStructuredData, WebSiteStructuredData } from "@/components/StructuredData";
+import { GoogleAnalytics } from "@/components/GoogleAnalytics";
 
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://shokimaru.com'),
@@ -53,6 +55,9 @@ export const metadata: Metadata = {
       'max-snippet': -1,
     },
   },
+  verification: {
+    google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION,
+  },
 };
 
 export const viewport: Viewport = {
@@ -72,6 +77,9 @@ export default function RootLayout({
         <Layout>{children}</Layout>
         <Analytics />
         <SpeedInsights />
+        <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID || ''} />
+        <LocalBusinessStructuredData />
+        <WebSiteStructuredData />
       </body>
     </html>
   );
