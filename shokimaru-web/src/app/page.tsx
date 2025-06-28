@@ -135,9 +135,9 @@ export default async function Home() {
                             天気: {result.weather}
                           </p>
                         )}
-                        {result.tide && (
+                        {result.tide_type && (
                           <p className="text-sm text-gray-600">
-                            潮: {result.tide}
+                            潮: {result.tide_type}
                           </p>
                         )}
                         <div className="pt-2 flex items-center text-primary-600 group-hover:text-primary-700 transition-colors">
