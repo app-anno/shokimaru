@@ -10,6 +10,8 @@ export default function Header() {
     { href: "/", label: "ホーム" },
     { href: "/results", label: "釣果情報" },
     { href: "/pricing", label: "料金・サービス" },
+    { href: "/guide", label: "釣り方ガイド" },
+    { href: "/sightseeing", label: "観光情報" },
     { href: "/access", label: "アクセス" },
     { href: "/faq", label: "よくある質問" },
     { href: "/contact", label: "予約・お問い合わせ" },

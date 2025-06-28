@@ -346,8 +346,8 @@ export default async function Home() {
           
           <AnimatedSection animation="fade" delay={300}>
             <p className="text-xl text-white/90 mb-8 max-w-2xl mx-auto leading-relaxed">
-              初めての方でも大歓迎！<br />
-              プロの船長が丁寧にサポートします
+              山口県萩市・玉江港から出船する釣り船<br />
+              初めての方でも大歓迎！プロの船長が丁寧にサポートします
             </p>
           </AnimatedSection>
           

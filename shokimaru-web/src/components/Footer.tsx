@@ -86,6 +86,18 @@ export default function Footer() {
                   よくある質問
                 </Link>
               </li>
+              <li>
+                <Link href="/guide" className="text-gray-300 hover:text-secondary-400 transition-colors flex items-center group">
+                  <span className="text-secondary-400 mr-2 transform group-hover:translate-x-1 transition-transform">▶</span>
+                  釣り方ガイド
+                </Link>
+              </li>
+              <li>
+                <Link href="/sightseeing" className="text-gray-300 hover:text-secondary-400 transition-colors flex items-center group">
+                  <span className="text-secondary-400 mr-2 transform group-hover:translate-x-1 transition-transform">▶</span>
+                  観光情報
+                </Link>
+              </li>
             </ul>
           </div>
 
