@@ -72,7 +72,7 @@ export default async function Home() {
           </AnimatedSection>
           <AnimatedSection animation="slide-up" delay={600}>
             <div className="flex flex-col sm:flex-row gap-4 justify-center mt-8">
-              <Button href="/contact" size="lg" className="animate-pulse-slow shadow-2xl hover:shadow-3xl hover:scale-110 transform transition-all duration-300 bg-gradient-to-r from-primary-600 to-primary-700 hover:from-primary-700 hover:to-primary-800">
+              <Button href="/contact" size="lg" className="animate-pulse-slow shadow-2xl hover:shadow-3xl hover:scale-110 transform transition-all duration-300">
                 今すぐ予約する
               </Button>
               <Button href="/results" variant="outline" size="lg" className="!text-white !border-white/70 hover:!bg-white/20 animate-float shadow-xl">
@@ -169,61 +169,6 @@ export default async function Home() {
           </AnimatedSection>
         </div>
       </section>
-
-      {/* 特徴セクション */}
-      <ParallaxSection className="py-20 bg-gradient-to-br from-ocean-light via-white to-primary-50">
-        <div className="container-custom">
-          <AnimatedSection animation="slide-down">
-            <h2 className="text-3xl md:text-4xl font-bold text-center mb-4 title-decorated">
-              翔葵丸が選ばれる理由
-            </h2>
-            <p className="text-center text-gray-600 mb-12 text-lg">
-              初心者から上級者まで、すべてのお客様に最高の釣り体験を
-            </p>
-          </AnimatedSection>
-          
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {[
-              {
-                icon: "M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z",
-                title: "初心者・女性大歓迎",
-                description: "道具の使い方から釣り方まで、親切丁寧にレクチャーします。手ぶらでOK！",
-                color: "from-pink-400 to-rose-600"
-              },
-              {
-                icon: "M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z",
-                title: "手ぶらでOK",
-                description: "釣り道具一式レンタル可能（¥1,000）。ライフジャケット、氷は無料でご用意。",
-                color: "from-blue-400 to-cyan-600"
-              },
-              {
-                icon: "M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z",
-                title: "豊富な実績",
-                description: "萩湾の海を知り尽くした船長が、その日のベストポイントへご案内します。",
-                color: "from-amber-400 to-orange-600"
-              }
-            ].map((feature, index) => (
-              <AnimatedSection key={index} animation="flip" delay={index * 200}>
-                <Card className={`text-center h-full group hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 hover:scale-105 bg-gradient-to-br ${feature.color} text-white relative overflow-hidden`}>
-                  <div className="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                  <div className="relative z-10">
-                    <div className="relative w-20 h-20 mx-auto mb-6">
-                      <div className="absolute inset-0 bg-white/20 rounded-full animate-ping" />
-                      <div className="relative w-full h-full bg-white/30 backdrop-blur-sm rounded-full flex items-center justify-center shadow-lg group-hover:animate-bounce">
-                        <svg className="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d={feature.icon} />
-                        </svg>
-                      </div>
-                    </div>
-                    <h3 className="text-2xl font-bold mb-4">{feature.title}</h3>
-                    <p className="text-white/90 leading-relaxed">{feature.description}</p>
-                  </div>
-                </Card>
-              </AnimatedSection>
-            ))}
-          </div>
-        </div>
-      </ParallaxSection>
 
       {/* 料金プランセクション */}
       <section className="py-20 bg-gray-50 relative overflow-hidden">
@@ -356,7 +301,7 @@ export default async function Home() {
               <Button 
                 href="/contact" 
                 size="lg" 
-                className="bg-white text-primary-600 hover:bg-gray-100 font-bold animate-bounce-slow shadow-2xl"
+                className="font-bold animate-bounce-slow shadow-2xl"
               >
                 <span className="flex items-center gap-2">
                   <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
