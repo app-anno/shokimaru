@@ -522,3 +522,50 @@
     box-shadow: 0 0 30px rgba(59, 130, 246, 0.4);
   }
 }
+
+/* FullCalendar用のスタイル */
+@layer components {
+  /* FullCalendarの基本スタイル */
+  .fc {
+    @apply font-sans;
+  }
+
+  .fc-button-primary {
+    @apply bg-primary-500 hover:bg-primary-600 border-primary-500 hover:border-primary-600 !important;
+  }
+
+  .fc-button-primary:not(:disabled):active,
+  .fc-button-primary:not(:disabled).fc-button-active {
+    @apply bg-primary-700 border-primary-700 !important;
+  }
+
+  .fc-col-header-cell-cushion,
+  .fc-daygrid-day-number {
+    @apply text-gray-700 no-underline hover:no-underline;
+  }
+
+  .fc-daygrid-day.fc-day-today {
+    @apply bg-blue-50;
+  }
+
+  .fc-event {
+    @apply border-none rounded px-2 py-1 text-xs font-medium;
+  }
+
+  .fc-daygrid-event-dot {
+    @apply hidden;
+  }
+
+  .fc-daygrid-day-events {
+    @apply mt-1;
+  }
+
+  /* カレンダーの日付セルのホバー効果 */
+  .fc-daygrid-day:hover {
+    @apply bg-gray-50 cursor-pointer;
+  }
+
+  .fc-daygrid-day.fc-day-today:hover {
+    @apply bg-blue-100;
+  }
+}

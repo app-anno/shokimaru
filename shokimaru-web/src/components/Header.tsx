@@ -14,7 +14,7 @@ export default function Header() {
     { href: "/sightseeing", label: "観光情報" },
     { href: "/access", label: "アクセス" },
     { href: "/faq", label: "よくある質問" },
-    { href: "/contact", label: "予約・お問い合わせ" },
+    { href: "/contact", label: "お問い合わせ" },
   ];
 
   return (
@@ -40,6 +40,12 @@ export default function Header() {
                 {item.label}
               </Link>
             ))}
+            <Link
+              href="/booking"
+              className="btn-primary px-4 py-2 text-sm"
+            >
+              予約する
+            </Link>
           </div>
 
           {/* モバイルメニューボタン */}
@@ -84,6 +90,13 @@ export default function Header() {
                 {item.label}
               </Link>
             ))}
+            <Link
+              href="/booking"
+              onClick={() => setIsOpen(false)}
+              className="block mx-4 mt-4 px-4 py-3 text-base font-medium text-white bg-primary-500 hover:bg-primary-600 rounded-xl transition-all duration-200 text-center"
+            >
+              予約する
+            </Link>
           </div>
         </div>
       </nav>
