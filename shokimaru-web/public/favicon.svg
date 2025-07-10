@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="none">
+  <!-- 波 -->
+  <path d="M2 24c2-1 4-1 6 0s4 1 6 0 4-1 6 0 4 1 6 0 4-1 6 0" stroke="#64acc8" stroke-width="1.5" stroke-linecap="round"/>
+  <path d="M2 27c2-1 4-1 6 0s4 1 6 0 4-1 6 0 4 1 6 0 4-1 6 0" stroke="#4a8db5" stroke-width="1.5" stroke-linecap="round"/>
+  
+  <!-- 釣り船の本体 -->
+  <path d="M8 20h16l-2 3H10z" fill="#4a8db5" stroke="#2e5f7a" stroke-width="1"/>
+  
+  <!-- キャビン -->
+  <rect x="11" y="16" width="6" height="4" fill="#64acc8" stroke="#2e5f7a" stroke-width="1" rx="0.5"/>
+  
+  <!-- 釣り竿 -->
+  <line x1="19" y1="17" x2="24" y2="12" stroke="#2e5f7a" stroke-width="1" stroke-linecap="round"/>
+  <line x1="24" y1="12" x2="23" y2="18" stroke="#2e5f7a" stroke-width="0.5" stroke-linecap="round" stroke-dasharray="1 1"/>
+  
+  <!-- イカ（シンプル） -->
+  <ellipse cx="23" cy="20" rx="1.5" ry="2" fill="#ff8c42" stroke="#e67329" stroke-width="0.5"/>
+  <path d="M22 21.5c0 0.5 0 1 0.5 1.5M23 21.5c0 0.5 0 1 0 1.5M24 21.5c0 0.5 0 1 -0.5 1.5" stroke="#e67329" stroke-width="0.5" stroke-linecap="round"/>
+  
+  <!-- 太陽/月（シンプル） -->
+  <circle cx="26" cy="6" r="3" fill="#ffd93d" opacity="0.8"/>
+</svg>

@@ -22,6 +22,13 @@ export const metadata: Metadata = {
     address: false,
     telephone: false,
   },
+  icons: {
+    icon: [
+      { url: '/favicon.svg', type: 'image/svg+xml' },
+      { url: '/favicon.ico', sizes: 'any' }
+    ],
+    apple: '/apple-touch-icon.png',
+  },
   openGraph: {
     title: "翔葵丸 - 旬のイカで最高の1日を！",
     description: "山口県萩市でイカ釣りを楽しめる釣り船、翔葵丸（しょうきまる）。初心者・女性も大歓迎！",
