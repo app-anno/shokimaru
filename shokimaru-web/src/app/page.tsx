@@ -107,7 +107,7 @@ export default async function Home() {
                   <Link href={`/results/${result.id}`} className="block group">
                     <Card className="hover:shadow-2xl transition-all duration-300 group-hover:-translate-y-2 overflow-hidden">
                       {result.images && result.images.length > 0 && (
-                        <div className="relative h-48 -mx-6 -mt-6 mb-4 overflow-hidden">
+                        <div className="relative aspect-square -mx-6 -mt-6 mb-4 overflow-hidden">
                           <ImageCarousel
                             images={result.images.map(img => img.image_url).filter(Boolean) as string[]}
                             alt={`${new Date(result.date).toLocaleDateString('ja-JP')}の釣果`}
