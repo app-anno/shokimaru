@@ -67,13 +67,17 @@ export default function Header() {
 
         {/* モバイルメニュー */}
         <div
-          className={`md:hidden transition-all duration-300 ease-in-out ${
+          className={`md:hidden fixed top-20 left-0 w-full bg-white transition-all duration-300 ease-in-out ${
             isOpen
-              ? "max-h-96 opacity-100 py-4"
-              : "max-h-0 opacity-0 overflow-hidden"
+              ? "opacity-100 visible"
+              : "opacity-0 invisible"
           }`}
+          style={{
+            height: isOpen ? 'calc(100vh - 5rem)' : '0',
+            overflow: 'auto'
+          }}
         >
-          <div className="space-y-2">
+          <div className="p-4 space-y-2">
             {navItems.map((item) => (
               <Link
                 key={item.href}
