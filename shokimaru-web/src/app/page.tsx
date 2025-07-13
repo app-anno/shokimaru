@@ -262,6 +262,72 @@ export default async function Home() {
         </div>
       </section>
 
+      {/* 予約カレンダーセクション */}
+      <section className="py-20 bg-white relative overflow-hidden">
+        <div className="absolute inset-0 opacity-10">
+          <div className="absolute top-40 left-20 w-72 h-72 bg-primary-200 rounded-full blur-3xl animate-morph" />
+          <div className="absolute bottom-20 right-40 w-64 h-64 bg-secondary-200 rounded-full blur-3xl animate-morph" style={{ animationDelay: '3s' }} />
+        </div>
+        
+        <div className="container-custom relative">
+          <AnimatedSection animation="slide-down">
+            <h2 className="text-3xl md:text-4xl font-bold text-center mb-4 title-decorated">
+              出船スケジュール
+            </h2>
+            <p className="text-center text-gray-600 mb-12 text-lg">
+              ご予約前に空き状況をご確認いただけます
+            </p>
+          </AnimatedSection>
+          
+          <AnimatedSection animation="zoom" delay={300}>
+            <div className="max-w-4xl mx-auto">
+              <Card className="overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-300">
+                <div className="bg-gradient-to-r from-primary-500 to-secondary-500 text-white p-4">
+                  <h3 className="text-xl font-bold flex items-center gap-2">
+                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                    </svg>
+                    翔葵丸 予約状況カレンダー
+                  </h3>
+                </div>
+                <div className="p-2 md:p-4 bg-white">
+                  <div className="relative w-full overflow-hidden rounded-lg">
+                    <iframe 
+                      src="https://calendar.google.com/calendar/embed?src=shokimaru.schedule%40gmail.com&ctz=Asia%2FTokyo" 
+                      style={{ border: 0 }}
+                      className="w-full h-[400px] md:h-[500px]"
+                      frameBorder="0"
+                      scrolling="no"
+                    ></iframe>
+                  </div>
+                </div>
+                <div className="bg-gray-50 p-4 border-t">
+                  <div className="flex flex-col md:flex-row items-center justify-between gap-4">
+                    <div className="flex flex-wrap gap-4 text-sm">
+                      <div className="flex items-center gap-2">
+                        <div className="w-4 h-4 bg-blue-500 rounded"></div>
+                        <span>予約可能</span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <div className="w-4 h-4 bg-red-500 rounded"></div>
+                        <span>満席</span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <div className="w-4 h-4 bg-gray-400 rounded"></div>
+                        <span>欠航</span>
+                      </div>
+                    </div>
+                    <Button href="/contact" size="sm" className="animate-pulse-slow">
+                      予約する →
+                    </Button>
+                  </div>
+                </div>
+              </Card>
+            </div>
+          </AnimatedSection>
+        </div>
+      </section>
+
       {/* CTAセクション */}
       <section className="py-20 bg-gradient-to-r from-primary-500 via-primary-600 to-secondary-500 relative overflow-hidden">
         <div className="absolute inset-0">

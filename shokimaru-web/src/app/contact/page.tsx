@@ -138,6 +138,60 @@ export default function ContactPage() {
             </AnimatedSection>
           </div>
 
+
+      {/* 予約カレンダーセクション */}
+      <section className="py-16 bg-gray-50">
+        <div className="container-custom">
+          <AnimatedSection animation="slide-down">
+            <h2 className="text-3xl font-bold text-center mb-4 title-decorated">
+              出船スケジュール
+            </h2>
+            <p className="text-center text-gray-600 mb-8">
+              ご予約前に空き状況をご確認ください
+            </p>
+          </AnimatedSection>
+          
+          <AnimatedSection animation="zoom" delay={300}>
+            <div className="max-w-5xl mx-auto">
+              <Card className="overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-300">
+                <div className="bg-gradient-to-r from-primary-500 to-secondary-500 text-white p-4">
+                  <h3 className="text-xl font-bold">翔葵丸 予約カレンダー</h3>
+                  <p className="text-sm opacity-90 mt-1">
+                    ※カレンダーが表示されない場合は、お電話やLINEでお問い合わせください
+                  </p>
+                </div>
+                <div className="p-4 bg-white">
+                  <div className="relative w-full overflow-hidden rounded-lg">
+                    <iframe 
+                      src="https://calendar.google.com/calendar/embed?src=shokimaru.schedule%40gmail.com&ctz=Asia%2FTokyo" 
+                      style={{ border: 0 }}
+                      className="w-full h-[600px] md:h-[700px]"
+                      frameBorder="0"
+                      scrolling="no"
+                    ></iframe>
+                  </div>
+                </div>
+                <div className="bg-gray-50 p-4 border-t">
+                  <div className="flex flex-wrap gap-4 text-sm">
+                    <div className="flex items-center gap-2">
+                      <div className="w-4 h-4 bg-blue-500 rounded"></div>
+                      <span>予約可能</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <div className="w-4 h-4 bg-red-500 rounded"></div>
+                      <span>満席・出船済み</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <div className="w-4 h-4 bg-gray-400 rounded"></div>
+                      <span>定休日・欠航</span>
+                    </div>
+                  </div>
+                </div>
+              </Card>
+            </div>
+          </AnimatedSection>
+        </div>
+      </section>
           {/* ネット予約以外からのお問い合わせ */}
           <div className="mt-16">
             <AnimatedSection animation="slide-down">
