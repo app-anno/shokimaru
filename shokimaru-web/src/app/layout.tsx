@@ -5,6 +5,7 @@ import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { LocalBusinessStructuredData, WebSiteStructuredData } from "@/components/StructuredData";
 import { GoogleAnalytics } from "@/components/GoogleAnalytics";
+import { GoogleTagManager, GoogleTagManagerNoscript } from "@/components/GoogleTagManager";
 
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://shokimaru.com'),
@@ -81,10 +82,12 @@ export default function RootLayout({
   return (
     <html lang="ja">
       <body className="antialiased">
+        <GoogleTagManagerNoscript gtmId={process.env.NEXT_PUBLIC_GTM_ID} />
         <Layout>{children}</Layout>
         <Analytics />
         <SpeedInsights />
         <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID || ''} />
+        <GoogleTagManager gtmId={process.env.NEXT_PUBLIC_GTM_ID} />
         <LocalBusinessStructuredData />
         <WebSiteStructuredData />
       </body>
