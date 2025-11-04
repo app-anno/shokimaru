@@ -11,7 +11,7 @@ export function LocalBusinessStructuredData({ type = 'BoatRentalService' }: Loca
     '@id': 'https://shokimaru.com/#business',
     name: '翔葵丸',
     alternateName: 'しょうきまる',
-    description: '山口県萩市の玉江漁港から出港するイカ釣り専門の釣り船。初心者・女性大歓迎。手ぶらでイカ釣り体験ができます。',
+    description: '山口県萩市の玉江漁港から出港する釣り船。スーパーライトジギング（SLJ）・ナイトティップラン・イカ釣りなど季節ごとの釣りをご提供。初心者・女性大歓迎。',
     url: 'https://shokimaru.com',
     telephone: '090-7548-2904',
     priceRange: '¥9,000-¥45,000',
@@ -32,8 +32,9 @@ export function LocalBusinessStructuredData({ type = 'BoatRentalService' }: Loca
       {
         '@type': 'OpeningHoursSpecification',
         dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
-        opens: '17:00',
-        closes: '22:00'
+        opens: '05:30',
+        closes: '24:00',
+        description: 'スーパーライトジギング（朝5:30〜13:00前後）、ナイトティップラン（夕方17:30〜24:00前後）'
       }
     ],
     sameAs: [
@@ -46,23 +47,65 @@ export function LocalBusinessStructuredData({ type = 'BoatRentalService' }: Loca
       itemListElement: [
         {
           '@type': 'Offer',
-          name: '乗り合いプラン',
-          description: '他のお客様と一緒に出船。最少催行人数1名から。初心者講習付き。',
+          name: 'スーパーライトジギング（SLJ）乗り合いプラン',
+          description: 'キジハタ・カサゴ・マダイ等を狙うスーパーライトジギング。朝5:30〜13:00前後。初心者・女性も大歓迎。',
           price: '9000',
           priceCurrency: 'JPY',
           availability: 'https://schema.org/InStock',
-          validFrom: '2024-01-01',
-          category: '釣り船乗合'
+          validFrom: '2024-10-01',
+          category: 'スーパーライトジギング乗合'
         },
         {
           '@type': 'Offer',
-          name: 'チャータープラン',
-          description: '船を貸し切りでご利用。最大6名まで乗船可能。プライベート空間で釣りを楽しめます。',
+          name: 'スーパーライトジギング（SLJ）チャータープラン',
+          description: 'SLJの船貸し切りプラン。最大6名まで乗船可能。プライベート空間で釣りを楽しめます。',
           price: '45000',
           priceCurrency: 'JPY',
           availability: 'https://schema.org/InStock',
-          validFrom: '2024-01-01',
-          category: '釣り船チャーター'
+          validFrom: '2024-10-01',
+          category: 'スーパーライトジギングチャーター'
+        },
+        {
+          '@type': 'Offer',
+          name: 'ナイトティップラン 乗り合いプラン',
+          description: 'ケンサキイカ・アオリイカを狙うナイトティップラン。夕方17:30〜24:00前後。初心者・女性も大歓迎。',
+          price: '9000',
+          priceCurrency: 'JPY',
+          availability: 'https://schema.org/InStock',
+          validFrom: '2024-10-01',
+          category: 'ナイトティップラン乗合'
+        },
+        {
+          '@type': 'Offer',
+          name: 'ナイトティップラン チャータープラン',
+          description: 'ナイトティップランの船貸し切りプラン。最大6名まで乗船可能。プライベート空間で釣りを楽しめます。',
+          price: '45000',
+          priceCurrency: 'JPY',
+          availability: 'https://schema.org/InStock',
+          validFrom: '2024-10-01',
+          category: 'ナイトティップランチャーター'
+        },
+        {
+          '@type': 'Offer',
+          name: 'イカメタル・オモリグ 乗り合いプラン',
+          description: 'ケンサキイカを狙うイカメタル・オモリグ。6月〜9月のケンサキイカシーズン限定。レンタルタックル利用可能。初心者・女性も大歓迎。',
+          price: '9000',
+          priceCurrency: 'JPY',
+          availability: 'https://schema.org/InStock',
+          validFrom: '2024-06-01',
+          validThrough: '2024-09-30',
+          category: 'イカメタル乗合'
+        },
+        {
+          '@type': 'Offer',
+          name: 'イカメタル・オモリグ チャータープラン',
+          description: 'イカメタル・オモリグの船貸し切りプラン。最大6名まで乗船可能。プライベート空間で釣りを楽しめます。6月〜9月限定。',
+          price: '45000',
+          priceCurrency: 'JPY',
+          availability: 'https://schema.org/InStock',
+          validFrom: '2024-06-01',
+          validThrough: '2024-09-30',
+          category: 'イカメタルチャーター'
         }
       ]
     },
@@ -122,8 +165,8 @@ export function ServiceStructuredData() {
     '@context': 'https://schema.org',
     '@type': 'Service',
     '@id': 'https://shokimaru.com/#service',
-    name: 'イカ釣り体験サービス',
-    serviceType: '釣り船サービス',
+    name: '翔葵丸 釣り体験サービス',
+    serviceType: '釣り船サービス（スーパーライトジギング・ナイトティップラン・イカ釣り）',
     provider: {
       '@type': 'LocalBusiness',
       '@id': 'https://shokimaru.com/#business'
@@ -142,7 +185,7 @@ export function ServiceStructuredData() {
       '@type': 'OfferCatalog',
       '@id': 'https://shokimaru.com/#offers'
     },
-    description: '萩湾でのイカ釣り体験。初心者でも安心して楽しめる、道具レンタル・講習付きのサービスです。'
+    description: '萩湾でのスーパーライトジギング・ナイトティップラン・イカ釣り体験。季節ごとに様々な釣りをお楽しみいただけます。初心者でも安心して楽しめるサービスです。'
   }
 
   return (
@@ -274,8 +317,8 @@ export function WebSiteStructuredData() {
     '@type': 'WebSite',
     '@id': 'https://shokimaru.com/#website',
     url: 'https://shokimaru.com',
-    name: '翔葵丸 - 萩市のイカ釣り専門釣り船',
-    description: '山口県萩市でイカ釣り体験。初心者・女性大歓迎の釣り船',
+    name: '翔葵丸 - 萩市の釣り船 | SLJ・ナイトティップラン・イカ釣り',
+    description: '山口県萩市でスーパーライトジギング・ナイトティップラン・イカ釣り体験。初心者・女性大歓迎の釣り船',
     publisher: {
       '@type': 'LocalBusiness',
       '@id': 'https://shokimaru.com/#business'

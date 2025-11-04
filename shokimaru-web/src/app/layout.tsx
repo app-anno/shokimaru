@@ -10,11 +10,11 @@ import { GoogleTagManager, GoogleTagManagerNoscript } from "@/components/GoogleT
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://shokimaru.com'),
   title: {
-    default: "翔葵丸 - 旬のイカで最高の1日を！ | 山口県萩市の釣り船",
+    default: "翔葵丸 - 萩湾で最高の釣り体験を！ | 山口県萩市の釣り船",
     template: "%s | 翔葵丸"
   },
-  description: "山口県萩市でイカ釣りを楽しめる釣り船、翔葵丸（しょうきまる）。初心者・女性も大歓迎！レンタル竿もご用意。萩湾の豊かな漁場で、思い出に残る釣り体験を。",
-  keywords: ["萩市", "釣り船", "イカ釣り", "翔葵丸", "しょうきまる", "山口県", "釣り体験", "初心者歓迎", "女性歓迎", "レンタル竿", "萩湾", "ケンサキイカ"],
+  description: "山口県萩市でスーパーライトジギング・ナイトティップラン・イカメタル等の釣り体験ができる釣り船、翔葵丸（しょうきまる）。初心者・女性も大歓迎！萩湾の豊かな漁場で、思い出に残る釣り体験を。",
+  keywords: ["萩市", "釣り船", "イカ釣り", "翔葵丸", "しょうきまる", "山口県", "釣り体験", "初心者歓迎", "女性歓迎", "レンタル竿", "萩湾", "ケンサキイカ", "SLJ", "スーパーライトジギング", "ナイトティップラン", "イカメタル", "オモリグ"],
   authors: [{ name: "翔葵丸" }],
   creator: "翔葵丸",
   publisher: "翔葵丸",
@@ -31,8 +31,8 @@ export const metadata: Metadata = {
     apple: '/apple-touch-icon.png',
   },
   openGraph: {
-    title: "翔葵丸 - 旬のイカで最高の1日を！",
-    description: "山口県萩市でイカ釣りを楽しめる釣り船、翔葵丸（しょうきまる）。初心者・女性も大歓迎！",
+    title: "翔葵丸 - 萩湾で最高の釣り体験を！",
+    description: "山口県萩市でスーパーライトジギング・ナイトティップラン・イカメタル等の釣り体験ができる釣り船、翔葵丸（しょうきまる）。初心者・女性も大歓迎！",
     type: "website",
     locale: "ja_JP",
     siteName: "翔葵丸",

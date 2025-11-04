@@ -188,3 +188,43 @@ shokimaru-web/
 - Ocean: #2e5f7a (深海ブルー)
 - Background: #f8fafb (薄いグレー)
 - Text: #1e2936 (濃いグレー)
+
+### ページ構成
+- **/**：トップページ（ヒーローセクション、サービス紹介）
+- **/results**：釣果情報一覧
+- **/guide**：初心者ガイド
+- **/pricing**：料金プラン
+- **/access**：アクセス情報
+- **/sightseeing**：周辺観光情報
+- **/faq**：よくある質問
+- **/contact**：お問い合わせ
+- **/admin**：管理画面（ベーシック認証付き）
+- **/privacy**：プライバシーポリシー
+
+### 重要なコンポーネント
+- **AnimatedSection**: スクロールアニメーション
+- **AnimatedBackground**: 背景アニメーション
+- **FloatingElements**: 浮遊要素アニメーション
+- **MobileBottomBar**: モバイル用固定ボトムバー
+- **MoonPhase**: 月齢表示
+- **ImageCarousel**: 画像カルーセル
+- **WaveAnimation**: 波アニメーション
+- **SquidAnimation**: イカアニメーション
+
+### Supabase関連
+- **テーブル**: fishing_results（釣果情報）
+- **ストレージ**: result-images（釣果画像）
+- **認証**: 管理画面用のベーシック認証
+
+### 環境変数
+```
+NEXT_PUBLIC_SUPABASE_URL=<Supabase URL>
+NEXT_PUBLIC_SUPABASE_ANON_KEY=<Supabase Anonymous Key>
+ADMIN_PASSWORD=<管理画面パスワード>
+```
+
+### デプロイ情報
+- **ホスティング**: Vercel
+- **リージョン**: 東京（hnd1）
+- **ビルドコマンド**: npm run build
+- **API関数の最大実行時間**: 30秒

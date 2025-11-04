@@ -5,23 +5,25 @@ import AnimatedSection from "@/components/AnimatedSection";
 import ParallaxSection from "@/components/ParallaxSection";
 import AnimatedBackground from "@/components/AnimatedBackground";
 import SquidAnimation from "@/components/SquidAnimation";
+import FishAnimation from "@/components/FishAnimation";
 import ImageCarousel from "@/components/ImageCarousel";
+import SeasonalCalendar from "@/components/SeasonalCalendar";
 import { getFishingResults } from "@/lib/supabase/fishing-results";
 import Link from "next/link";
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: "翔葵丸 - 萩市玉江港のイカ釣り専門釣り船 | 初心者・女性大歓迎",
-  description: "山口県萩市玉江港から出港するイカ釣り専門の釣り船「翔葵丸」。初心者・女性大歓迎！手ぶらでOK、レンタルタックル完備。乗り合い9,000円〜。萩湾の豊かな漁場で最高のイカ釣り体験を。LINEで簡単予約。",
-  keywords: ["翔葵丸", "しょうきまる", "萩市", "釣り船", "イカ釣り", "玉江港", "山口県", "ケンサキイカ", "スルメイカ", "釣り体験", "初心者歓迎", "女性歓迎", "レンタルタックル", "釣果情報", "予約"],
+  title: "翔葵丸 - 萩市玉江港の釣り船 | SLJ・ナイトティップラン・イカ釣り | 初心者・女性大歓迎",
+  description: "山口県萩市玉江港から出港する釣り船「翔葵丸」。スーパーライトジギング（SLJ）・ナイトティップラン・ケンサキイカ釣りなど季節ごとの釣りをご提供。初心者・女性大歓迎！乗り合い9,000円〜。萩湾の豊かな漁場で最高の釣り体験を。LINEで簡単予約。",
+  keywords: ["翔葵丸", "しょうきまる", "萩市", "萩", "山口", "釣り船", "イカ釣り", "SLJ", "スーパーライトジギング", "ナイトティップラン", "玉江港", "山口県", "ケンサキイカ", "アオリイカ", "キジハタ", "カサゴ", "マダイ", "釣り体験", "初心者歓迎", "女性歓迎", "釣果情報", "予約"],
   openGraph: {
-    title: "翔葵丸 - 萩市玉江港のイカ釣り専門釣り船",
-    description: "初心者・女性大歓迎！手ぶらでイカ釣り体験。乗り合い9,000円〜。萩湾の豊かな漁場で最高の思い出を。",
+    title: "翔葵丸 - 萩市玉江港の釣り船 | SLJ・ナイトティップラン・イカ釣り",
+    description: "初心者・女性大歓迎！スーパーライトジギング・ナイトティップラン・イカ釣り体験。乗り合い9,000円〜。萩湾の豊かな漁場で最高の思い出を。",
     images: [{
       url: "/og-image.jpg",
       width: 1200,
       height: 630,
-      alt: "翔葵丸でイカ釣り体験"
+      alt: "翔葵丸で釣り体験"
     }]
   },
   alternates: {
@@ -51,22 +53,27 @@ export default async function Home() {
           </div>
         </div>
         
-        {/* 装飾的な波とイカ */}
+        {/* 装飾的な波とイカ・魚 */}
         <div className="absolute -bottom-[2px] left-0 right-0 z-10">
-          <SquidAnimation />
+          <div className="relative">
+            <SquidAnimation />
+            <div className="absolute top-0 left-0 right-0 opacity-70">
+              <FishAnimation />
+            </div>
+          </div>
         </div>
 
         <div className="container-custom text-center relative z-20">
           <AnimatedSection animation="fade" delay={300}>
             <div className="animate-float">
               <h1 className="text-5xl md:text-7xl font-bold mb-6 text-white text-shadow-lg">
-                旬のイカで最高の1日を！
+                萩湾で最高の釣り体験を！
               </h1>
               <p className="text-xl md:text-3xl mb-6 text-white/90 text-shadow animate-slide-in-up stagger-2">
                 山陰屈指の人気スポット・玉江港から出船
               </p>
               <p className="text-lg md:text-xl mb-10 text-white/80 text-shadow animate-slide-in-up stagger-3">
-                海の上から楽しむ特別な釣り体験をあなたに
+                海の上で楽しむ特別な釣り体験をあなたに
               </p>
             </div>
           </AnimatedSection>
@@ -77,6 +84,38 @@ export default async function Home() {
               </Button>
               <Button href="/results" variant="outline" size="lg" className="!text-white !border-white/70 hover:!bg-white/20 animate-float shadow-xl">
                 釣果を見る
+              </Button>
+            </div>
+          </AnimatedSection>
+        </div>
+      </section>
+
+      {/* 新プラン受付開始バナー */}
+      <section className="py-8 bg-gradient-to-r from-accent-500 via-primary-500 to-secondary-500 relative overflow-hidden">
+        <div className="absolute inset-0 opacity-10">
+          <div className="absolute top-0 left-0 w-96 h-96 bg-white rounded-full blur-3xl animate-morph" />
+          <div className="absolute bottom-0 right-0 w-80 h-80 bg-white rounded-full blur-3xl animate-morph" style={{ animationDelay: '2s' }} />
+        </div>
+
+        <div className="container-custom relative">
+          <AnimatedSection animation="zoom">
+            <div className="text-center">
+              <div className="inline-block mb-3">
+                <span className="bg-white text-accent-600 font-bold px-4 py-1 rounded-full text-sm animate-pulse-slow shadow-md">
+                  🎊 NEW
+                </span>
+              </div>
+              <h2 className="text-2xl md:text-4xl font-bold mb-3 animate-bounce-slow text-[#1d242f]">
+                スーパーライトジギング・ナイトティップラン
+              </h2>
+              <p className="text-xl md:text-2xl font-bold mb-4 text-[#1d242f]">
+                受付開始しました！
+              </p>
+              <p className="text-sm md:text-base mb-6 text-[#1d242f]/90">
+                萩沖の豊かな漁場で、多彩な魚種との出会いをお楽しみください
+              </p>
+              <Button href="/pricing" size="lg" className="!bg-white !text-primary-600 !border-primary-200 hover:!bg-primary-50 hover:!border-primary-300 !shadow-xl animate-wiggle">
+                詳しく見る →
               </Button>
             </div>
           </AnimatedSection>
@@ -176,91 +215,279 @@ export default async function Home() {
           <div className="absolute top-20 right-20 w-64 h-64 bg-primary-200 rounded-full blur-3xl animate-morph" />
           <div className="absolute bottom-20 left-20 w-80 h-80 bg-secondary-200 rounded-full blur-3xl animate-morph" style={{ animationDelay: '4s' }} />
         </div>
-        
+
         <div className="container-custom relative">
           <AnimatedSection animation="zoom">
             <h2 className="text-3xl md:text-4xl font-bold text-center mb-4 title-decorated">
               料金プラン
             </h2>
             <p className="text-center text-gray-600 mb-12 text-lg">
-              お客様のニーズに合わせた2つのプランをご用意
+              お客様のニーズに合わせたプランをご用意
             </p>
           </AnimatedSection>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-            {/* 乗り合いプラン */}
-            <AnimatedSection animation="slide-left">
-              <Card className="text-center hover:shadow-2xl transition-all duration-300 group hover:scale-105">
-                <div className="mb-6">
-                  <h3 className="text-2xl font-bold mb-2">乗り合いプラン</h3>
-                  <p className="text-gray-600">他のお客様と一緒に出船</p>
-                </div>
-                <div className="mb-6">
-                  <p className="text-5xl font-bold text-gradient animate-pulse-slow">
-                    ¥9,000
-                    <span className="text-lg text-gray-600 font-normal">/人</span>
-                  </p>
-                </div>
-                <ul className="text-left space-y-2 mb-6">
-                  <li className="flex items-center animate-slide-in-right">
-                    <span className="text-primary-500 mr-2">✓</span>
-                    最少催行人数：1名
-                  </li>
-                  <li className="flex items-center animate-slide-in-right" style={{ animationDelay: '100ms' }}>
-                    <span className="text-primary-500 mr-2">✓</span>
-                    初心者講習付き
-                  </li>
-                  <li className="flex items-center animate-slide-in-right" style={{ animationDelay: '200ms' }}>
-                    <span className="text-primary-500 mr-2">✓</span>
-                    お一人様でも安心
-                  </li>
-                </ul>
-                <Button href="/pricing" fullWidth className="animate-bounce-slow">
-                  詳細を見る
-                </Button>
-              </Card>
+
+          {/* スーパーライトジギング（SLJ） */}
+          <div className="mb-12">
+            <AnimatedSection animation="fade">
+              <div className="text-center mb-6">
+                <h3 className="text-2xl font-bold mb-2 inline-block bg-gradient-to-r from-primary-600 to-secondary-600 text-white px-6 py-2 rounded-full">
+                  スーパーライトジギング（SLJ）
+                </h3>
+                <p className="text-gray-600 mt-3 text-lg">朝 5:30 〜 13:00前後</p>
+                <p className="text-gray-600 text-sm mt-1">対象魚：キジハタ・カサゴ・マダイ等</p>
+              </div>
             </AnimatedSection>
 
-            {/* チャータープラン */}
-            <AnimatedSection animation="slide-right">
-              <Card className="text-center border-2 border-primary-400 relative overflow-hidden hover:shadow-2xl transition-all duration-300 group hover:scale-105">
-                <div className="absolute -top-1 -right-1">
-                  <div className="bg-primary-600 text-white px-4 py-1 text-sm font-bold rounded-bl-lg animate-wiggle">
-                    人気！
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+              {/* SLJ 乗り合いプラン */}
+              <AnimatedSection animation="slide-left">
+                <Card className="text-center hover:shadow-2xl transition-all duration-300 group hover:scale-105">
+                  <div className="mb-6">
+                    <h4 className="text-xl font-bold mb-2">乗り合いプラン</h4>
+                    <p className="text-gray-600">他のお客様と一緒に出船</p>
                   </div>
-                </div>
-                <div className="mb-6">
-                  <h3 className="text-2xl font-bold mb-2">チャータープラン</h3>
-                  <p className="text-gray-600">船を貸し切りでご利用</p>
-                </div>
-                <div className="mb-6">
-                  <p className="text-5xl font-bold text-gradient animate-pulse-slow">
-                    ¥45,000
-                    <span className="text-lg text-gray-600 font-normal">/艇</span>
-                  </p>
-                </div>
-                <ul className="text-left space-y-2 mb-6">
-                  <li className="flex items-center animate-slide-in-left">
-                    <span className="text-primary-500 mr-2">✓</span>
-                    最大6名まで乗船可能
-                  </li>
-                  <li className="flex items-center animate-slide-in-left" style={{ animationDelay: '100ms' }}>
-                    <span className="text-primary-500 mr-2">✓</span>
-                    プライベート空間
-                  </li>
-                  <li className="flex items-center animate-slide-in-left" style={{ animationDelay: '200ms' }}>
-                    <span className="text-primary-500 mr-2">✓</span>
-                    グループ・家族に最適
-                  </li>
-                </ul>
-                <Button href="/pricing" variant="primary" fullWidth className="animate-pulse-slow">
-                  詳細を見る
-                </Button>
-              </Card>
+                  <div className="mb-6">
+                    <p className="text-5xl font-bold text-gradient animate-pulse-slow">
+                      ¥9,000
+                      <span className="text-lg text-gray-600 font-normal">/人</span>
+                    </p>
+                  </div>
+                  <ul className="text-left space-y-2 mb-6 text-sm">
+                    <li className="flex items-center animate-slide-in-right">
+                      <span className="text-primary-500 mr-2">✓</span>
+                      最大乗船人数：6名
+                    </li>
+                    <li className="flex items-center animate-slide-in-right" style={{ animationDelay: '100ms' }}>
+                      <span className="text-primary-500 mr-2">✓</span>
+                      初心者・女性も大歓迎
+                    </li>
+                    <li className="flex items-center animate-slide-in-right" style={{ animationDelay: '200ms' }}>
+                      <span className="text-primary-500 mr-2">✓</span>
+                      レンタルタックルなし
+                    </li>
+                  </ul>
+                  <Button href="/pricing" fullWidth className="animate-bounce-slow">
+                    詳細を見る
+                  </Button>
+                </Card>
+              </AnimatedSection>
+
+              {/* SLJ チャータープラン */}
+              <AnimatedSection animation="slide-right">
+                <Card className="text-center border-2 border-primary-400 relative overflow-hidden hover:shadow-2xl transition-all duration-300 group hover:scale-105">
+                  <div className="absolute -top-1 -right-1">
+                    <div className="bg-primary-600 text-white px-4 py-1 text-sm font-bold rounded-bl-lg animate-wiggle">
+                      人気！
+                    </div>
+                  </div>
+                  <div className="mb-6">
+                    <h4 className="text-xl font-bold mb-2">チャータープラン</h4>
+                    <p className="text-gray-600">船を貸し切りでご利用</p>
+                  </div>
+                  <div className="mb-6">
+                    <p className="text-5xl font-bold text-gradient animate-pulse-slow">
+                      ¥45,000
+                      <span className="text-lg text-gray-600 font-normal">/艇</span>
+                    </p>
+                  </div>
+                  <ul className="text-left space-y-2 mb-6 text-sm">
+                    <li className="flex items-center animate-slide-in-left">
+                      <span className="text-primary-500 mr-2">✓</span>
+                      最大6名まで乗船可能
+                    </li>
+                    <li className="flex items-center animate-slide-in-left" style={{ animationDelay: '100ms' }}>
+                      <span className="text-primary-500 mr-2">✓</span>
+                      プライベート空間
+                    </li>
+                    <li className="flex items-center animate-slide-in-left" style={{ animationDelay: '200ms' }}>
+                      <span className="text-primary-500 mr-2">✓</span>
+                      グループ・家族に最適
+                    </li>
+                  </ul>
+                  <Button href="/pricing" variant="primary" fullWidth className="animate-pulse-slow">
+                    詳細を見る
+                  </Button>
+                </Card>
+              </AnimatedSection>
+            </div>
+          </div>
+
+          {/* ナイトティップラン */}
+          <div>
+            <AnimatedSection animation="fade">
+              <div className="text-center mb-6">
+                <h3 className="text-2xl font-bold mb-2 inline-block bg-gradient-to-r from-primary-600 to-secondary-600 text-white px-6 py-2 rounded-full">
+                  ナイトティップラン
+                </h3>
+                <p className="text-gray-600 mt-3 text-lg">夕方 17:30 〜 24:00前後</p>
+                <p className="text-gray-600 text-sm mt-1">対象魚：ケンサキイカ・アオリイカ</p>
+              </div>
             </AnimatedSection>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+              {/* ナイトティップラン 乗り合いプラン */}
+              <AnimatedSection animation="slide-left">
+                <Card className="text-center hover:shadow-2xl transition-all duration-300 group hover:scale-105">
+                  <div className="mb-6">
+                    <h4 className="text-xl font-bold mb-2">乗り合いプラン</h4>
+                    <p className="text-gray-600">他のお客様と一緒に出船</p>
+                  </div>
+                  <div className="mb-6">
+                    <p className="text-5xl font-bold text-gradient animate-pulse-slow">
+                      ¥9,000
+                      <span className="text-lg text-gray-600 font-normal">/人</span>
+                    </p>
+                  </div>
+                  <ul className="text-left space-y-2 mb-6 text-sm">
+                    <li className="flex items-center animate-slide-in-right">
+                      <span className="text-primary-500 mr-2">✓</span>
+                      最大乗船人数：6名
+                    </li>
+                    <li className="flex items-center animate-slide-in-right" style={{ animationDelay: '100ms' }}>
+                      <span className="text-primary-500 mr-2">✓</span>
+                      初心者・女性も大歓迎
+                    </li>
+                    <li className="flex items-center animate-slide-in-right" style={{ animationDelay: '200ms' }}>
+                      <span className="text-primary-500 mr-2">✓</span>
+                      レンタルタックルなし
+                    </li>
+                  </ul>
+                  <Button href="/pricing" fullWidth className="animate-bounce-slow">
+                    詳細を見る
+                  </Button>
+                </Card>
+              </AnimatedSection>
+
+              {/* ナイトティップラン チャータープラン */}
+              <AnimatedSection animation="slide-right">
+                <Card className="text-center border-2 border-primary-400 relative overflow-hidden hover:shadow-2xl transition-all duration-300 group hover:scale-105">
+                  <div className="absolute -top-1 -right-1">
+                    <div className="bg-primary-600 text-white px-4 py-1 text-sm font-bold rounded-bl-lg animate-wiggle">
+                      人気！
+                    </div>
+                  </div>
+                  <div className="mb-6">
+                    <h4 className="text-xl font-bold mb-2">チャータープラン</h4>
+                    <p className="text-gray-600">船を貸し切りでご利用</p>
+                  </div>
+                  <div className="mb-6">
+                    <p className="text-5xl font-bold text-gradient animate-pulse-slow">
+                      ¥45,000
+                      <span className="text-lg text-gray-600 font-normal">/艇</span>
+                    </p>
+                  </div>
+                  <ul className="text-left space-y-2 mb-6 text-sm">
+                    <li className="flex items-center animate-slide-in-left">
+                      <span className="text-primary-500 mr-2">✓</span>
+                      最大6名まで乗船可能
+                    </li>
+                    <li className="flex items-center animate-slide-in-left" style={{ animationDelay: '100ms' }}>
+                      <span className="text-primary-500 mr-2">✓</span>
+                      プライベート空間
+                    </li>
+                    <li className="flex items-center animate-slide-in-left" style={{ animationDelay: '200ms' }}>
+                      <span className="text-primary-500 mr-2">✓</span>
+                      グループ・家族に最適
+                    </li>
+                  </ul>
+                  <Button href="/pricing" variant="primary" fullWidth className="animate-pulse-slow">
+                    詳細を見る
+                  </Button>
+                </Card>
+              </AnimatedSection>
+            </div>
+          </div>
+
+          {/* イカメタル・オモリグ */}
+          <div className="mt-12">
+            <AnimatedSection animation="fade">
+              <div className="text-center mb-6">
+                <h3 className="text-2xl font-bold mb-2 inline-block bg-gradient-to-r from-primary-600 to-secondary-600 text-white px-6 py-2 rounded-full">
+                  イカメタル・オモリグ
+                </h3>
+                <p className="text-gray-600 mt-3 text-lg">6月 〜 9月（ケンサキイカシーズン）</p>
+                <p className="text-gray-600 text-sm mt-1">対象魚：ケンサキイカ</p>
+              </div>
+            </AnimatedSection>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+              {/* イカメタル・オモリグ 乗り合いプラン */}
+              <AnimatedSection animation="slide-left">
+                <Card className="text-center hover:shadow-2xl transition-all duration-300 group hover:scale-105">
+                  <div className="mb-6">
+                    <h4 className="text-xl font-bold mb-2">乗り合いプラン</h4>
+                    <p className="text-gray-600">他のお客様と一緒に出船</p>
+                  </div>
+                  <div className="mb-6">
+                    <p className="text-5xl font-bold text-gradient animate-pulse-slow">
+                      ¥9,000
+                      <span className="text-lg text-gray-600 font-normal">/人</span>
+                    </p>
+                  </div>
+                  <ul className="text-left space-y-2 mb-6 text-sm">
+                    <li className="flex items-center animate-slide-in-right">
+                      <span className="text-primary-500 mr-2">✓</span>
+                      最大乗船人数：6名
+                    </li>
+                    <li className="flex items-center animate-slide-in-right" style={{ animationDelay: '100ms' }}>
+                      <span className="text-primary-500 mr-2">✓</span>
+                      初心者・女性も大歓迎
+                    </li>
+                    <li className="flex items-center animate-slide-in-right" style={{ animationDelay: '200ms' }}>
+                      <span className="text-primary-500 mr-2">✓</span>
+                      レンタルタックル あり（+1,000円）
+                    </li>
+                  </ul>
+                  <Button href="/pricing" fullWidth className="animate-bounce-slow">
+                    詳細を見る
+                  </Button>
+                </Card>
+              </AnimatedSection>
+
+              {/* イカメタル・オモリグ チャータープラン */}
+              <AnimatedSection animation="slide-right">
+                <Card className="text-center border-2 border-primary-400 relative overflow-hidden hover:shadow-2xl transition-all duration-300 group hover:scale-105">
+                  <div className="absolute -top-1 -right-1">
+                    <div className="bg-primary-600 text-white px-4 py-1 text-sm font-bold rounded-bl-lg animate-wiggle">
+                      夏限定！
+                    </div>
+                  </div>
+                  <div className="mb-6">
+                    <h4 className="text-xl font-bold mb-2">チャータープラン</h4>
+                    <p className="text-gray-600">船を貸し切りでご利用</p>
+                  </div>
+                  <div className="mb-6">
+                    <p className="text-5xl font-bold text-gradient animate-pulse-slow">
+                      ¥45,000
+                      <span className="text-lg text-gray-600 font-normal">/艇</span>
+                    </p>
+                  </div>
+                  <ul className="text-left space-y-2 mb-6 text-sm">
+                    <li className="flex items-center animate-slide-in-left">
+                      <span className="text-primary-500 mr-2">✓</span>
+                      最大6名まで乗船可能
+                    </li>
+                    <li className="flex items-center animate-slide-in-left" style={{ animationDelay: '100ms' }}>
+                      <span className="text-primary-500 mr-2">✓</span>
+                      プライベート空間
+                    </li>
+                    <li className="flex items-center animate-slide-in-left" style={{ animationDelay: '200ms' }}>
+                      <span className="text-primary-500 mr-2">✓</span>
+                      グループ・家族に最適
+                    </li>
+                  </ul>
+                  <Button href="/pricing" variant="primary" fullWidth className="animate-pulse-slow">
+                    詳細を見る
+                  </Button>
+                </Card>
+              </AnimatedSection>
+            </div>
           </div>
         </div>
       </section>
+
+      {/* 年間カレンダーセクション */}
+      <SeasonalCalendar />
 
       {/* 予約カレンダーセクション */}
       <section className="py-20 bg-white relative overflow-hidden">
@@ -351,7 +578,7 @@ export default async function Home() {
         <div className="container-custom text-center relative">
           <AnimatedSection animation="zoom">
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-6 animate-pulse-slow">
-              萩湾で最高のイカ釣り体験を
+              萩湾で最高の釣り体験を
             </h2>
           </AnimatedSection>
           

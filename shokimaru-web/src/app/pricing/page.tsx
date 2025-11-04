@@ -7,11 +7,12 @@ import FloatingElements from "@/components/FloatingElements";
 import { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: "料金・サービス",
-  description: "翔葵丸の料金プランとサービス内容をご案内します。乗り合い¥9,000/人、チャーター¥45,000/艇。イカ釣り専門の釣り船で、初心者の方も安心してご利用いただけます。",
+  title: "料金・サービス | スーパーライトジギング・ナイトティップラン・イカ釣り | 翔葵丸",
+  description: "翔葵丸の料金プランとサービス内容をご案内します。スーパーライトジギング（SLJ）・ナイトティップラン・ケンサキイカ釣りなど季節ごとの釣り。乗り合い¥9,000/人、チャーター¥45,000/艇。初心者・女性の方も安心してご利用いただけます。",
+  keywords: ["料金", "価格", "プラン", "スーパーライトジギング", "SLJ", "ナイトティップラン", "イカ釣り", "萩市", "山口", "釣り船", "翔葵丸"],
   openGraph: {
     title: "料金・サービス | 翔葵丸",
-    description: "乗り合い¥9,000/人、チャーター¥45,000/艇。イカ釣り専門の釣り船で、初心者の方も安心。",
+    description: "SLJ・ナイトティップラン・イカ釣り。乗り合い¥9,000/人、チャーター¥45,000/艇。初心者・女性の方も安心。",
   },
   alternates: {
     canonical: '/pricing',
@@ -48,88 +49,287 @@ export default function PricingPage() {
           <AnimatedSection animation="slide-up">
             <h2 className="text-3xl font-bold text-center mb-12 title-decorated">料金プラン</h2>
           </AnimatedSection>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-            {/* 乗り合いプラン */}
-            <AnimatedSection animation="slide-left" delay={200}>
-              <Card className="text-center hover:animate-wiggle group">
-                <div className="mb-6">
-                  <div className="w-20 h-20 mx-auto bg-gradient-to-br from-primary-100 to-primary-200 rounded-full flex items-center justify-center mb-4 animate-pulse-slow">
-                    <svg className="w-10 h-10 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
-                    </svg>
-                  </div>
-                  <h3 className="text-2xl font-bold mb-2">乗り合いプラン</h3>
-                  <p className="text-gray-600">他のお客様と一緒に出船</p>
-                </div>
-                <div className="mb-6">
-                  <p className="text-5xl font-bold text-gradient animate-pulse-slow">
-                    ¥9,000
-                    <span className="text-lg text-gray-600 font-normal">/人</span>
-                  </p>
-                </div>
-                <ul className="text-left space-y-3 mb-6">
-                  {[
-                    "最少催行人数：1名",
-                    "最大乗船人数：5名",
-                    "出船時間をお選びいただけます",
-                    "初心者講習付き"
-                  ].map((item, index) => (
-                    <li key={index} className="flex items-start animate-slide-in-right" style={{ animationDelay: `${(index + 3) * 100}ms` }}>
-                      <span className="text-primary-500 mr-2 animate-bounce-slow" style={{ animationDelay: `${index * 200}ms` }}>✓</span>
-                      <span>{item}</span>
-                    </li>
-                  ))}
-                </ul>
-                <Button href="/contact" fullWidth className="animate-pulse-slow">
-                  予約する
-                </Button>
-              </Card>
+
+          {/* スーパーライトジギング（SLJ） */}
+          <div className="mb-16">
+            <AnimatedSection animation="fade">
+              <div className="text-center mb-8">
+                <h3 className="text-2xl font-bold mb-3 inline-block bg-gradient-to-r from-primary-600 to-secondary-600 text-white px-6 py-3 rounded-full">
+                  スーパーライトジギング（SLJ）
+                </h3>
+                <p className="text-gray-600 mt-4 text-lg">朝 5:30 〜 13:00前後</p>
+                <p className="text-gray-600 mt-2">対象魚：キジハタ・カサゴ・マダイ等</p>
+                <p className="text-sm text-gray-500 mt-2">※時期により変動あり（12月〜）</p>
+              </div>
             </AnimatedSection>
 
-            {/* チャータープラン */}
-            <AnimatedSection animation="slide-right" delay={400}>
-              <Card className="text-center border-2 border-primary-400 relative overflow-hidden hover:animate-wiggle group">
-                <div className="absolute -top-1 -right-1">
-                  <div className="bg-primary-600 text-white px-4 py-1 text-sm font-bold rounded-bl-lg animate-wiggle">
-                    人気！
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+              {/* SLJ 乗り合いプラン */}
+              <AnimatedSection animation="slide-left" delay={200}>
+                <Card className="text-center hover:animate-wiggle group">
+                  <div className="mb-6">
+                    <div className="w-20 h-20 mx-auto bg-gradient-to-br from-primary-100 to-primary-200 rounded-full flex items-center justify-center mb-4 animate-pulse-slow">
+                      <svg className="w-10 h-10 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                      </svg>
+                    </div>
+                    <h4 className="text-2xl font-bold mb-2">乗り合いプラン</h4>
+                    <p className="text-gray-600">他のお客様と一緒に出船</p>
                   </div>
-                </div>
-                <div className="mb-6">
-                  <div className="w-20 h-20 mx-auto bg-gradient-to-br from-primary-100 to-primary-200 rounded-full flex items-center justify-center mb-4 animate-spin-slow">
-                    <svg className="w-10 h-10 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
-                    </svg>
+                  <div className="mb-6">
+                    <p className="text-5xl font-bold text-gradient animate-pulse-slow">
+                      ¥9,000
+                      <span className="text-lg text-gray-600 font-normal">/人</span>
+                    </p>
                   </div>
-                  <h3 className="text-2xl font-bold mb-2">チャータープラン</h3>
-                  <p className="text-gray-600">船を貸し切りでご利用</p>
-                </div>
-                <div className="mb-6">
-                  <p className="text-5xl font-bold text-gradient ">
-                    ¥45,000
-                    <span className="text-lg text-gray-600 font-normal">/艇</span>
-                  </p>
-                </div>
-                <ul className="text-left space-y-3 mb-6">
-                  {[
-                    "1艇まるごと貸し切り",
-                    "最大乗船人数：6名",
-                    "※スタッフが乗る場合、最大5名になります",
-                    "時間を気にせず楽しめる",
-                    "プライベート空間で釣り",
-                    "グループ・家族におすすめ"
-                  ].map((item, index) => (
-                    <li key={index} className="flex items-start animate-slide-in-left" style={{ animationDelay: `${(index + 3) * 100}ms` }}>
-                      <span className="text-primary-500 mr-2 animate-bounce-slow" style={{ animationDelay: `${index * 200}ms` }}>✓</span>
-                      <span>{item}</span>
-                    </li>
-                  ))}
-                </ul>
-                <Button href="/contact" variant="primary" fullWidth className="">
-                  予約する
-                </Button>
-              </Card>
+                  <ul className="text-left space-y-3 mb-6">
+                    {[
+                      "最大乗船人数：6名",
+                      "初心者・女性も大歓迎",
+                      "レンタルタックルなし"
+                    ].map((item, index) => (
+                      <li key={index} className="flex items-start animate-slide-in-right" style={{ animationDelay: `${(index + 3) * 100}ms` }}>
+                        <span className="text-primary-500 mr-2 animate-bounce-slow" style={{ animationDelay: `${index * 200}ms` }}>✓</span>
+                        <span>{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                  <Button href="/contact" fullWidth className="animate-pulse-slow">
+                    予約する
+                  </Button>
+                </Card>
+              </AnimatedSection>
+
+              {/* SLJ チャータープラン */}
+              <AnimatedSection animation="slide-right" delay={400}>
+                <Card className="text-center border-2 border-primary-400 relative overflow-hidden hover:animate-wiggle group">
+                  <div className="absolute -top-1 -right-1">
+                    <div className="bg-primary-600 text-white px-4 py-1 text-sm font-bold rounded-bl-lg animate-wiggle">
+                      人気！
+                    </div>
+                  </div>
+                  <div className="mb-6">
+                    <div className="w-20 h-20 mx-auto bg-gradient-to-br from-primary-100 to-primary-200 rounded-full flex items-center justify-center mb-4 animate-spin-slow">
+                      <svg className="w-10 h-10 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
+                      </svg>
+                    </div>
+                    <h4 className="text-2xl font-bold mb-2">チャータープラン</h4>
+                    <p className="text-gray-600">船を貸し切りでご利用</p>
+                  </div>
+                  <div className="mb-6">
+                    <p className="text-5xl font-bold text-gradient">
+                      ¥45,000
+                      <span className="text-lg text-gray-600 font-normal">/艇</span>
+                    </p>
+                  </div>
+                  <ul className="text-left space-y-3 mb-6">
+                    {[
+                      "1艇まるごと貸し切り",
+                      "最大乗船人数：6名",
+                      "プライベート空間で釣り",
+                      "グループ・家族におすすめ"
+                    ].map((item, index) => (
+                      <li key={index} className="flex items-start animate-slide-in-left" style={{ animationDelay: `${(index + 3) * 100}ms` }}>
+                        <span className="text-primary-500 mr-2 animate-bounce-slow" style={{ animationDelay: `${index * 200}ms` }}>✓</span>
+                        <span>{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                  <Button href="/contact" variant="primary" fullWidth>
+                    予約する
+                  </Button>
+                </Card>
+              </AnimatedSection>
+            </div>
+          </div>
+
+          {/* ナイトティップラン */}
+          <div className="mb-12">
+            <AnimatedSection animation="fade">
+              <div className="text-center mb-8">
+                <h3 className="text-2xl font-bold mb-3 inline-block bg-gradient-to-r from-primary-600 to-secondary-600 text-white px-6 py-3 rounded-full">
+                  ナイトティップラン
+                </h3>
+                <p className="text-gray-600 mt-4 text-lg">夕方 17:30 〜 24:00前後</p>
+                <p className="text-gray-600 mt-2">対象魚：ケンサキイカ・アオリイカ</p>
+                <p className="text-sm text-gray-500 mt-2">※時期により変動あり（10月〜12月）</p>
+              </div>
             </AnimatedSection>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+              {/* ナイトティップラン 乗り合いプラン */}
+              <AnimatedSection animation="slide-left" delay={200}>
+                <Card className="text-center hover:animate-wiggle group">
+                  <div className="mb-6">
+                    <div className="w-20 h-20 mx-auto bg-gradient-to-br from-primary-100 to-primary-200 rounded-full flex items-center justify-center mb-4 animate-pulse-slow">
+                      <svg className="w-10 h-10 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                      </svg>
+                    </div>
+                    <h4 className="text-2xl font-bold mb-2">乗り合いプラン</h4>
+                    <p className="text-gray-600">他のお客様と一緒に出船</p>
+                  </div>
+                  <div className="mb-6">
+                    <p className="text-5xl font-bold text-gradient animate-pulse-slow">
+                      ¥9,000
+                      <span className="text-lg text-gray-600 font-normal">/人</span>
+                    </p>
+                  </div>
+                  <ul className="text-left space-y-3 mb-6">
+                    {[
+                      "最大乗船人数：6名",
+                      "初心者・女性も大歓迎",
+                      "レンタルタックルなし"
+                    ].map((item, index) => (
+                      <li key={index} className="flex items-start animate-slide-in-right" style={{ animationDelay: `${(index + 3) * 100}ms` }}>
+                        <span className="text-primary-500 mr-2 animate-bounce-slow" style={{ animationDelay: `${index * 200}ms` }}>✓</span>
+                        <span>{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                  <Button href="/contact" fullWidth className="animate-pulse-slow">
+                    予約する
+                  </Button>
+                </Card>
+              </AnimatedSection>
+
+              {/* ナイトティップラン チャータープラン */}
+              <AnimatedSection animation="slide-right" delay={400}>
+                <Card className="text-center border-2 border-primary-400 relative overflow-hidden hover:animate-wiggle group">
+                  <div className="absolute -top-1 -right-1">
+                    <div className="bg-primary-600 text-white px-4 py-1 text-sm font-bold rounded-bl-lg animate-wiggle">
+                      人気！
+                    </div>
+                  </div>
+                  <div className="mb-6">
+                    <div className="w-20 h-20 mx-auto bg-gradient-to-br from-primary-100 to-primary-200 rounded-full flex items-center justify-center mb-4 animate-spin-slow">
+                      <svg className="w-10 h-10 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
+                      </svg>
+                    </div>
+                    <h4 className="text-2xl font-bold mb-2">チャータープラン</h4>
+                    <p className="text-gray-600">船を貸し切りでご利用</p>
+                  </div>
+                  <div className="mb-6">
+                    <p className="text-5xl font-bold text-gradient">
+                      ¥45,000
+                      <span className="text-lg text-gray-600 font-normal">/艇</span>
+                    </p>
+                  </div>
+                  <ul className="text-left space-y-3 mb-6">
+                    {[
+                      "1艇まるごと貸し切り",
+                      "最大乗船人数：6名",
+                      "プライベート空間で釣り",
+                      "グループ・家族におすすめ"
+                    ].map((item, index) => (
+                      <li key={index} className="flex items-start animate-slide-in-left" style={{ animationDelay: `${(index + 3) * 100}ms` }}>
+                        <span className="text-primary-500 mr-2 animate-bounce-slow" style={{ animationDelay: `${index * 200}ms` }}>✓</span>
+                        <span>{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                  <Button href="/contact" variant="primary" fullWidth>
+                    予約する
+                  </Button>
+                </Card>
+              </AnimatedSection>
+            </div>
+          </div>
+
+          {/* イカメタル・オモリグ */}
+          <div className="mb-16">
+            <AnimatedSection animation="fade">
+              <div className="text-center mb-8">
+                <h3 className="text-2xl font-bold mb-3 inline-block bg-gradient-to-r from-primary-600 to-secondary-600 text-white px-6 py-3 rounded-full">
+                  イカメタル・オモリグ
+                </h3>
+                <p className="text-gray-600 mt-4 text-lg">6月 〜 9月（ケンサキイカシーズン）</p>
+                <p className="text-gray-600 mt-2">対象魚：ケンサキイカ</p>
+                <p className="text-sm text-gray-500 mt-2">※レンタルタックル利用可能（+1,000円）</p>
+              </div>
+            </AnimatedSection>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+              {/* イカメタル・オモリグ 乗り合いプラン */}
+              <AnimatedSection animation="slide-left" delay={200}>
+                <Card className="text-center hover:animate-wiggle group">
+                  <div className="mb-6">
+                    <div className="w-20 h-20 mx-auto bg-gradient-to-br from-primary-100 to-primary-200 rounded-full flex items-center justify-center mb-4 animate-pulse-slow">
+                      <svg className="w-10 h-10 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                      </svg>
+                    </div>
+                    <h4 className="text-2xl font-bold mb-2">乗り合いプラン</h4>
+                    <p className="text-gray-600">他のお客様と一緒に出船</p>
+                  </div>
+                  <div className="mb-6">
+                    <p className="text-5xl font-bold text-gradient animate-pulse-slow">
+                      ¥9,000
+                      <span className="text-lg text-gray-600 font-normal">/人</span>
+                    </p>
+                  </div>
+                  <ul className="text-left space-y-3 mb-6">
+                    {[
+                      "最大乗船人数：6名",
+                      "初心者・女性も大歓迎",
+                      "レンタルタックル あり（+1,000円）"
+                    ].map((item, index) => (
+                      <li key={index} className="flex items-start animate-slide-in-right" style={{ animationDelay: `${(index + 3) * 100}ms` }}>
+                        <span className="text-primary-500 mr-2 animate-bounce-slow" style={{ animationDelay: `${index * 200}ms` }}>✓</span>
+                        <span>{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                  <Button href="/contact" fullWidth className="animate-pulse-slow">
+                    予約する
+                  </Button>
+                </Card>
+              </AnimatedSection>
+
+              {/* イカメタル・オモリグ チャータープラン */}
+              <AnimatedSection animation="slide-right" delay={400}>
+                <Card className="text-center border-2 border-primary-400 relative overflow-hidden hover:animate-wiggle group">
+                  <div className="absolute -top-1 -right-1">
+                    <div className="bg-primary-600 text-white px-4 py-1 text-sm font-bold rounded-bl-lg animate-wiggle">
+                      夏限定！
+                    </div>
+                  </div>
+                  <div className="mb-6">
+                    <div className="w-20 h-20 mx-auto bg-gradient-to-br from-primary-100 to-primary-200 rounded-full flex items-center justify-center mb-4 animate-spin-slow">
+                      <svg className="w-10 h-10 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
+                      </svg>
+                    </div>
+                    <h4 className="text-2xl font-bold mb-2">チャータープラン</h4>
+                    <p className="text-gray-600">船を貸し切りでご利用</p>
+                  </div>
+                  <div className="mb-6">
+                    <p className="text-5xl font-bold text-gradient">
+                      ¥45,000
+                      <span className="text-lg text-gray-600 font-normal">/艇</span>
+                    </p>
+                  </div>
+                  <ul className="text-left space-y-3 mb-6">
+                    {[
+                      "1艇まるごと貸し切り",
+                      "最大乗船人数：6名",
+                      "プライベート空間で釣り",
+                      "グループ・家族におすすめ"
+                    ].map((item, index) => (
+                      <li key={index} className="flex items-start animate-slide-in-left" style={{ animationDelay: `${(index + 3) * 100}ms` }}>
+                        <span className="text-primary-500 mr-2 animate-bounce-slow" style={{ animationDelay: `${index * 200}ms` }}>✓</span>
+                        <span>{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                  <Button href="/contact" variant="primary" fullWidth>
+                    予約する
+                  </Button>
+                </Card>
+              </AnimatedSection>
+            </div>
           </div>
 
           <AnimatedSection animation="fade" delay={600}>
@@ -166,7 +366,8 @@ export default function PricingPage() {
                   <span className="text-lg text-gray-600 font-normal">/1セット</span>
                 </p>
                 <div className="text-sm text-gray-700 space-y-2">
-                  <p>※レンタルタックルの仕掛けが切れた場合、追加の仕掛けは＋1,000円いただきます</p>
+                  <p className="text-red-600 font-bold">※レンタルタックルは6月〜9月のケンサキイカシーズン（イカメタル・オモリグ）のみご利用いただけます。</p>
+                  <p>※レンタルタックルの仕掛けが切れた場合、追加の仕掛けは＋1,000円いただきます。</p>
                 </div>
               </Card>
             </AnimatedSection>
@@ -331,7 +532,7 @@ export default function PricingPage() {
         <div className="container-custom text-center relative">
           <AnimatedSection animation="zoom">
             <h2 className="text-3xl font-bold text-white mb-6 ">
-              イカ釣りデビューしませんか？
+              釣りデビューしませんか？
             </h2>
           </AnimatedSection>
           

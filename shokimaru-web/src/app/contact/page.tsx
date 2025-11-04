@@ -8,7 +8,7 @@ import { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: "予約・お問い合わせ",
-  description: "翔葵丸へのご予約・お問い合わせはLINE、Instagram、お電話から。萩湾でのイカ釣り体験をお待ちしています。",
+  description: "翔葵丸へのご予約・お問い合わせはLINE、Instagram、お電話から。萩湾での釣り体験をお待ちしています。",
   openGraph: {
     title: "予約・お問い合わせ | 翔葵丸",
     description: "翔葵丸へのご予約・お問い合わせはLINE、Instagram、お電話から。",

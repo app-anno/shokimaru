@@ -188,7 +188,6 @@ export default function SightseeingPage() {
                   <div className="border-t pt-4">
                     <h4 className="font-bold text-lg text-gray-800 mb-2">イカ料理</h4>
                     <p className="text-gray-700 text-sm">
-                      翔葵丸で釣ったイカを調理してくれる提携店もご紹介可能です！
                       透明感のある新鮮なイカ刺しは格別の美味しさ。
                     </p>
                   </div>
@@ -302,14 +301,6 @@ export default function SightseeingPage() {
                       </li>
                     </ul>
                   </div>
-                  
-                  <div className="bg-yellow-50 p-4 rounded-lg">
-                    <p className="text-sm text-yellow-800">
-                      <span className="font-bold">💡 予約のコツ：</span><br />
-                      釣りの予定をお伝えいただければ、朝食時間の調整や
-                      釣果の保管など、各宿で対応していただけます。
-                    </p>
-                  </div>
                 </div>
               </Card>
             </AnimatedSection>
@@ -400,7 +391,7 @@ export default function SightseeingPage() {
                       <div className="flex items-start bg-yellow-50 p-3 rounded-lg -ml-6 pl-6">
                         <span className="bg-yellow-500 text-white px-3 py-1 rounded-full text-sm font-bold mr-3">17:30</span>
                         <div>
-                          <p className="font-semibold">🎣 翔葵丸でイカ釣り体験</p>
+                          <p className="font-semibold">🎣 翔葵丸で釣り体験</p>
                           <p className="text-sm text-gray-600">玉江港から出船（約4時間）</p>
                         </div>
                       </div>
@@ -457,7 +448,7 @@ export default function SightseeingPage() {
           <AnimatedSection animation="fade" delay={300}>
             <p className="text-xl mb-8 max-w-3xl mx-auto leading-relaxed">
               山口県萩市の豊かな自然と歴史、そして新鮮な海の幸。<br />
-              翔葵丸のイカ釣り体験と合わせて、忘れられない旅をお楽しみください。
+              翔葵丸の釣り体験と合わせて、忘れられない旅をお楽しみください。
             </p>
           </AnimatedSection>
           
