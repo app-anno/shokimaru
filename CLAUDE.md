@@ -19,13 +19,13 @@ This is a web application for a squid fishing boat business operating in Hagi Ba
 
 ### Key Information
 - **Boat Name**: 翔葵丸 (Shokimaru)
-- **Capacity**: Maximum 6 people
+- **Capacity**: Maximum 8 people
 - **Location**: Hagi Bay, Yamaguchi Prefecture
 - **Service**: Squid fishing experiences
 - **Target Audience**: Beginners and women interested in fishing
 - **Business Model**:
   - Shared boat: ¥9,000 per person
-  - Charter: ¥45,000 per boat (max 6 people)
+  - Charter: ¥60,000 per boat (max 8 people)
   - Rod rental: ¥1,000 per set
 
 ### Project Goals

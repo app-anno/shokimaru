@@ -11,14 +11,15 @@ import SeasonalCalendar from "@/components/SeasonalCalendar";
 import { getFishingResults } from "@/lib/supabase/fishing-results";
 import Link from "next/link";
 import { Metadata } from 'next';
+import { SHARED_PRICE_DISPLAY, CHARTER_PRICE_DISPLAY, MAX_PASSENGERS, MAX_PASSENGERS_DISPLAY, RENTAL_TACKLE_PRICE_DISPLAY } from '@/lib/constants/pricing';
 
 export const metadata: Metadata = {
   title: "翔葵丸 - 萩市玉江港の釣り船 | SLJ・ナイトティップラン・イカ釣り | 初心者・女性大歓迎",
-  description: "山口県萩市玉江港から出港する釣り船「翔葵丸」。スーパーライトジギング（SLJ）・ナイトティップラン・ケンサキイカ釣りなど季節ごとの釣りをご提供。初心者・女性大歓迎！乗り合い9,000円〜。萩湾の豊かな漁場で最高の釣り体験を。LINEで簡単予約。",
+  description: `山口県萩市玉江港から出港する釣り船「翔葵丸」。スーパーライトジギング（SLJ）・ナイトティップラン・ケンサキイカ釣りなど季節ごとの釣りをご提供。初心者・女性大歓迎！乗り合い${SHARED_PRICE_DISPLAY}〜。萩湾の豊かな漁場で最高の釣り体験を。LINEで簡単予約。`,
   keywords: ["翔葵丸", "しょうきまる", "萩市", "萩", "山口", "釣り船", "イカ釣り", "SLJ", "スーパーライトジギング", "ナイトティップラン", "玉江港", "山口県", "ケンサキイカ", "アオリイカ", "キジハタ", "カサゴ", "マダイ", "釣り体験", "初心者歓迎", "女性歓迎", "釣果情報", "予約"],
   openGraph: {
     title: "翔葵丸 - 萩市玉江港の釣り船 | SLJ・ナイトティップラン・イカ釣り",
-    description: "初心者・女性大歓迎！スーパーライトジギング・ナイトティップラン・イカ釣り体験。乗り合い9,000円〜。萩湾の豊かな漁場で最高の思い出を。",
+    description: `初心者・女性大歓迎！スーパーライトジギング・ナイトティップラン・イカ釣り体験。乗り合い${SHARED_PRICE_DISPLAY}〜。萩湾の豊かな漁場で最高の思い出を。`,
     images: [{
       url: "/og-image.jpg",
       width: 1200,
@@ -248,14 +249,14 @@ export default async function Home() {
                   </div>
                   <div className="mb-6">
                     <p className="text-5xl font-bold text-gradient animate-pulse-slow">
-                      ¥9,000
+                      {SHARED_PRICE_DISPLAY}
                       <span className="text-lg text-gray-600 font-normal">/人</span>
                     </p>
                   </div>
                   <ul className="text-left space-y-2 mb-6 text-sm">
                     <li className="flex items-center animate-slide-in-right">
                       <span className="text-primary-500 mr-2">✓</span>
-                      最大乗船人数：6名
+                      {`最大乗船人数：${MAX_PASSENGERS_DISPLAY}`}
                     </li>
                     <li className="flex items-center animate-slide-in-right" style={{ animationDelay: '100ms' }}>
                       <span className="text-primary-500 mr-2">✓</span>
@@ -286,14 +287,14 @@ export default async function Home() {
                   </div>
                   <div className="mb-6">
                     <p className="text-5xl font-bold text-gradient animate-pulse-slow">
-                      ¥45,000
+                      {CHARTER_PRICE_DISPLAY}
                       <span className="text-lg text-gray-600 font-normal">/艇</span>
                     </p>
                   </div>
                   <ul className="text-left space-y-2 mb-6 text-sm">
                     <li className="flex items-center animate-slide-in-left">
                       <span className="text-primary-500 mr-2">✓</span>
-                      最大6名まで乗船可能
+                      {`最大${MAX_PASSENGERS}名まで乗船可能`}
                     </li>
                     <li className="flex items-center animate-slide-in-left" style={{ animationDelay: '100ms' }}>
                       <span className="text-primary-500 mr-2">✓</span>
@@ -334,14 +335,14 @@ export default async function Home() {
                   </div>
                   <div className="mb-6">
                     <p className="text-5xl font-bold text-gradient animate-pulse-slow">
-                      ¥9,000
+                      {SHARED_PRICE_DISPLAY}
                       <span className="text-lg text-gray-600 font-normal">/人</span>
                     </p>
                   </div>
                   <ul className="text-left space-y-2 mb-6 text-sm">
                     <li className="flex items-center animate-slide-in-right">
                       <span className="text-primary-500 mr-2">✓</span>
-                      最大乗船人数：6名
+                      {`最大乗船人数：${MAX_PASSENGERS_DISPLAY}`}
                     </li>
                     <li className="flex items-center animate-slide-in-right" style={{ animationDelay: '100ms' }}>
                       <span className="text-primary-500 mr-2">✓</span>
@@ -372,14 +373,14 @@ export default async function Home() {
                   </div>
                   <div className="mb-6">
                     <p className="text-5xl font-bold text-gradient animate-pulse-slow">
-                      ¥45,000
+                      {CHARTER_PRICE_DISPLAY}
                       <span className="text-lg text-gray-600 font-normal">/艇</span>
                     </p>
                   </div>
                   <ul className="text-left space-y-2 mb-6 text-sm">
                     <li className="flex items-center animate-slide-in-left">
                       <span className="text-primary-500 mr-2">✓</span>
-                      最大6名まで乗船可能
+                      {`最大${MAX_PASSENGERS}名まで乗船可能`}
                     </li>
                     <li className="flex items-center animate-slide-in-left" style={{ animationDelay: '100ms' }}>
                       <span className="text-primary-500 mr-2">✓</span>
@@ -420,14 +421,14 @@ export default async function Home() {
                   </div>
                   <div className="mb-6">
                     <p className="text-5xl font-bold text-gradient animate-pulse-slow">
-                      ¥9,000
+                      {SHARED_PRICE_DISPLAY}
                       <span className="text-lg text-gray-600 font-normal">/人</span>
                     </p>
                   </div>
                   <ul className="text-left space-y-2 mb-6 text-sm">
                     <li className="flex items-center animate-slide-in-right">
                       <span className="text-primary-500 mr-2">✓</span>
-                      最大乗船人数：6名
+                      {`最大乗船人数：${MAX_PASSENGERS_DISPLAY}`}
                     </li>
                     <li className="flex items-center animate-slide-in-right" style={{ animationDelay: '100ms' }}>
                       <span className="text-primary-500 mr-2">✓</span>
@@ -435,7 +436,7 @@ export default async function Home() {
                     </li>
                     <li className="flex items-center animate-slide-in-right" style={{ animationDelay: '200ms' }}>
                       <span className="text-primary-500 mr-2">✓</span>
-                      レンタルタックル あり（+1,000円）
+                      {`レンタルタックル あり（+${RENTAL_TACKLE_PRICE_DISPLAY}）`}
                     </li>
                   </ul>
                   <Button href="/pricing" fullWidth className="animate-bounce-slow">
@@ -458,14 +459,14 @@ export default async function Home() {
                   </div>
                   <div className="mb-6">
                     <p className="text-5xl font-bold text-gradient animate-pulse-slow">
-                      ¥45,000
+                      {CHARTER_PRICE_DISPLAY}
                       <span className="text-lg text-gray-600 font-normal">/艇</span>
                     </p>
                   </div>
                   <ul className="text-left space-y-2 mb-6 text-sm">
                     <li className="flex items-center animate-slide-in-left">
                       <span className="text-primary-500 mr-2">✓</span>
-                      最大6名まで乗船可能
+                      {`最大${MAX_PASSENGERS}名まで乗船可能`}
                     </li>
                     <li className="flex items-center animate-slide-in-left" style={{ animationDelay: '100ms' }}>
                       <span className="text-primary-500 mr-2">✓</span>

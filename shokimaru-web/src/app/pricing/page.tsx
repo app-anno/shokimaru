@@ -3,16 +3,17 @@ import Button from "@/components/Button";
 import AnimatedSection from "@/components/AnimatedSection";
 import AnimatedBackground from "@/components/AnimatedBackground";
 import FloatingElements from "@/components/FloatingElements";
+import { SHARED_PRICE_DISPLAY, CHARTER_PRICE_DISPLAY, MAX_PASSENGERS, MAX_PASSENGERS_DISPLAY, RENTAL_TACKLE_PRICE_DISPLAY, STUDENT_PRICE_DISPLAY, PRICING_SUMMARY } from '@/lib/constants/pricing';
 
 import { Metadata } from 'next'
 
 export const metadata: Metadata = {
   title: "料金・サービス | スーパーライトジギング・ナイトティップラン・イカ釣り | 翔葵丸",
-  description: "翔葵丸の料金プランとサービス内容をご案内します。スーパーライトジギング（SLJ）・ナイトティップラン・ケンサキイカ釣りなど季節ごとの釣り。乗り合い¥9,000/人、チャーター¥45,000/艇。初心者・女性の方も安心してご利用いただけます。",
+  description: `翔葵丸の料金プランとサービス内容をご案内します。スーパーライトジギング（SLJ）・ナイトティップラン・ケンサキイカ釣りなど季節ごとの釣り。${PRICING_SUMMARY}。初心者・女性の方も安心してご利用いただけます。`,
   keywords: ["料金", "価格", "プラン", "スーパーライトジギング", "SLJ", "ナイトティップラン", "イカ釣り", "萩市", "山口", "釣り船", "翔葵丸"],
   openGraph: {
     title: "料金・サービス | 翔葵丸",
-    description: "SLJ・ナイトティップラン・イカ釣り。乗り合い¥9,000/人、チャーター¥45,000/艇。初心者・女性の方も安心。",
+    description: `SLJ・ナイトティップラン・イカ釣り。${PRICING_SUMMARY}。初心者・女性の方も安心。`,
   },
   alternates: {
     canonical: '/pricing',
@@ -78,13 +79,13 @@ export default function PricingPage() {
                   </div>
                   <div className="mb-6">
                     <p className="text-5xl font-bold text-gradient animate-pulse-slow">
-                      ¥9,000
+                      {SHARED_PRICE_DISPLAY}
                       <span className="text-lg text-gray-600 font-normal">/人</span>
                     </p>
                   </div>
                   <ul className="text-left space-y-3 mb-6">
                     {[
-                      "最大乗船人数：6名",
+                      `最大乗船人数：${MAX_PASSENGERS_DISPLAY}`,
                       "初心者・女性も大歓迎",
                       "レンタルタックルなし"
                     ].map((item, index) => (
@@ -119,14 +120,14 @@ export default function PricingPage() {
                   </div>
                   <div className="mb-6">
                     <p className="text-5xl font-bold text-gradient">
-                      ¥45,000
+                      {CHARTER_PRICE_DISPLAY}
                       <span className="text-lg text-gray-600 font-normal">/艇</span>
                     </p>
                   </div>
                   <ul className="text-left space-y-3 mb-6">
                     {[
                       "1艇まるごと貸し切り",
-                      "最大乗船人数：6名",
+                      `最大乗船人数：${MAX_PASSENGERS_DISPLAY}`,
                       "プライベート空間で釣り",
                       "グループ・家族におすすめ"
                     ].map((item, index) => (
@@ -172,13 +173,13 @@ export default function PricingPage() {
                   </div>
                   <div className="mb-6">
                     <p className="text-5xl font-bold text-gradient animate-pulse-slow">
-                      ¥9,000
+                      {SHARED_PRICE_DISPLAY}
                       <span className="text-lg text-gray-600 font-normal">/人</span>
                     </p>
                   </div>
                   <ul className="text-left space-y-3 mb-6">
                     {[
-                      "最大乗船人数：6名",
+                      `最大乗船人数：${MAX_PASSENGERS_DISPLAY}`,
                       "初心者・女性も大歓迎",
                       "レンタルタックルなし"
                     ].map((item, index) => (
@@ -213,14 +214,14 @@ export default function PricingPage() {
                   </div>
                   <div className="mb-6">
                     <p className="text-5xl font-bold text-gradient">
-                      ¥45,000
+                      {CHARTER_PRICE_DISPLAY}
                       <span className="text-lg text-gray-600 font-normal">/艇</span>
                     </p>
                   </div>
                   <ul className="text-left space-y-3 mb-6">
                     {[
                       "1艇まるごと貸し切り",
-                      "最大乗船人数：6名",
+                      `最大乗船人数：${MAX_PASSENGERS_DISPLAY}`,
                       "プライベート空間で釣り",
                       "グループ・家族におすすめ"
                     ].map((item, index) => (
@@ -247,7 +248,7 @@ export default function PricingPage() {
                 </h3>
                 <p className="text-gray-600 mt-4 text-lg">6月 〜 9月（ケンサキイカシーズン）</p>
                 <p className="text-gray-600 mt-2">対象魚：ケンサキイカ</p>
-                <p className="text-sm text-gray-500 mt-2">※レンタルタックル利用可能（+1,000円）</p>
+                <p className="text-sm text-gray-500 mt-2">{`※レンタルタックル利用可能（+${RENTAL_TACKLE_PRICE_DISPLAY}）`}</p>
               </div>
             </AnimatedSection>
 
@@ -266,15 +267,15 @@ export default function PricingPage() {
                   </div>
                   <div className="mb-6">
                     <p className="text-5xl font-bold text-gradient animate-pulse-slow">
-                      ¥9,000
+                      {SHARED_PRICE_DISPLAY}
                       <span className="text-lg text-gray-600 font-normal">/人</span>
                     </p>
                   </div>
                   <ul className="text-left space-y-3 mb-6">
                     {[
-                      "最大乗船人数：6名",
+                      `最大乗船人数：${MAX_PASSENGERS_DISPLAY}`,
                       "初心者・女性も大歓迎",
-                      "レンタルタックル あり（+1,000円）"
+                      `レンタルタックル あり（+${RENTAL_TACKLE_PRICE_DISPLAY}）`
                     ].map((item, index) => (
                       <li key={index} className="flex items-start animate-slide-in-right" style={{ animationDelay: `${(index + 3) * 100}ms` }}>
                         <span className="text-primary-500 mr-2 animate-bounce-slow" style={{ animationDelay: `${index * 200}ms` }}>✓</span>
@@ -307,14 +308,14 @@ export default function PricingPage() {
                   </div>
                   <div className="mb-6">
                     <p className="text-5xl font-bold text-gradient">
-                      ¥45,000
+                      {CHARTER_PRICE_DISPLAY}
                       <span className="text-lg text-gray-600 font-normal">/艇</span>
                     </p>
                   </div>
                   <ul className="text-left space-y-3 mb-6">
                     {[
                       "1艇まるごと貸し切り",
-                      "最大乗船人数：6名",
+                      `最大乗船人数：${MAX_PASSENGERS_DISPLAY}`,
                       "プライベート空間で釣り",
                       "グループ・家族におすすめ"
                     ].map((item, index) => (
@@ -335,7 +336,7 @@ export default function PricingPage() {
           <AnimatedSection animation="fade" delay={600}>
             <p className="text-center text-gray-600 mt-8">
               ※料金は税込価格です。天候により出船できない場合は全額返金いたします。<br />
-              ※高校生以下は半額（4,500円）となります。年齢がわかる書類をお持ちください（コピー可）。<br />
+              {`※高校生以下は半額（${STUDENT_PRICE_DISPLAY}）となります。年齢がわかる書類をお持ちください（コピー可）。`}<br />
               ※レンタルタックルは半額対象外です。<br />
               <span className="text-red-600 font-bold">※お支払いは現金のみとなります。</span><br />
               <span className="text-gray-700">※領収証ご利用の場合は事前にお伝えください。</span>
@@ -362,12 +363,12 @@ export default function PricingPage() {
               <Card className="text-center bg-gradient-to-br from-primary-50 to-primary-100/50">
                 <h3 className="text-2xl font-bold mb-4 text-primary-700">レンタルタックル</h3>
                 <p className="text-4xl font-bold text-primary-600 mb-4">
-                  ¥1,000
+                  {RENTAL_TACKLE_PRICE_DISPLAY}
                   <span className="text-lg text-gray-600 font-normal">/1セット</span>
                 </p>
                 <div className="text-sm text-gray-700 space-y-2">
                   <p className="text-red-600 font-bold">※レンタルタックルは6月〜9月のケンサキイカシーズン（イカメタル・オモリグ）のみご利用いただけます。</p>
-                  <p>※レンタルタックルの仕掛けが切れた場合、追加の仕掛けは＋1,000円いただきます。</p>
+                  <p>{`※レンタルタックルの仕掛けが切れた場合、追加の仕掛けは＋${RENTAL_TACKLE_PRICE_DISPLAY}いただきます。`}</p>
                 </div>
               </Card>
             </AnimatedSection>

@@ -1,6 +1,7 @@
 import Card from "@/components/Card";
 import AnimatedSection from "@/components/AnimatedSection";
 import FloatingElements from "@/components/FloatingElements";
+import { RENTAL_TACKLE_PRICE_DISPLAY } from '@/lib/constants/pricing';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -135,7 +136,7 @@ export default function GuidePage() {
                   <div className="bg-accent-50 p-3 rounded-lg">
                     <p className="font-semibold text-accent-700 mb-2 text-sm">レンタル</p>
                     <p className="text-xs text-gray-700">
-                      タックルレンタル可能（+1,000円）
+                      {`タックルレンタル可能（+${RENTAL_TACKLE_PRICE_DISPLAY}）`}
                     </p>
                   </div>
                 </div>
@@ -396,7 +397,7 @@ export default function GuidePage() {
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                       <div>
                         <p className="text-xs text-gray-600 font-semibold mb-1">料金</p>
-                        <p className="text-lg font-bold text-accent-600">+1,000円</p>
+                        <p className="text-lg font-bold text-accent-600">{`+${RENTAL_TACKLE_PRICE_DISPLAY}`}</p>
                       </div>
                       <div>
                         <p className="text-xs text-gray-600 font-semibold mb-1">利用期間</p>

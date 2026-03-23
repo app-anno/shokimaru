@@ -1,4 +1,5 @@
 import Script from 'next/script'
+import { SHARED_PRICE, CHARTER_PRICE, MAX_PASSENGERS, PRICE_RANGE, RENTAL_TACKLE_PRICE_DISPLAY } from '@/lib/constants/pricing'
 
 interface LocalBusinessProps {
   type?: 'LocalBusiness' | 'TouristAttraction' | 'BoatRentalService'
@@ -14,7 +15,7 @@ export function LocalBusinessStructuredData({ type = 'BoatRentalService' }: Loca
     description: '山口県萩市の玉江漁港から出港する釣り船。スーパーライトジギング（SLJ）・ナイトティップラン・イカ釣りなど季節ごとの釣りをご提供。初心者・女性大歓迎。',
     url: 'https://shokimaru.com',
     telephone: '090-7548-2904',
-    priceRange: '¥9,000-¥45,000',
+    priceRange: PRICE_RANGE,
     address: {
       '@type': 'PostalAddress',
       streetAddress: '玉江漁港',
@@ -49,7 +50,7 @@ export function LocalBusinessStructuredData({ type = 'BoatRentalService' }: Loca
           '@type': 'Offer',
           name: 'スーパーライトジギング（SLJ）乗り合いプラン',
           description: 'キジハタ・カサゴ・マダイ等を狙うスーパーライトジギング。朝5:30〜13:00前後。初心者・女性も大歓迎。',
-          price: '9000',
+          price: `${SHARED_PRICE}`,
           priceCurrency: 'JPY',
           availability: 'https://schema.org/InStock',
           validFrom: '2024-10-01',
@@ -58,8 +59,8 @@ export function LocalBusinessStructuredData({ type = 'BoatRentalService' }: Loca
         {
           '@type': 'Offer',
           name: 'スーパーライトジギング（SLJ）チャータープラン',
-          description: 'SLJの船貸し切りプラン。最大6名まで乗船可能。プライベート空間で釣りを楽しめます。',
-          price: '45000',
+          description: `SLJの船貸し切りプラン。最大${MAX_PASSENGERS}名まで乗船可能。プライベート空間で釣りを楽しめます。`,
+          price: `${CHARTER_PRICE}`,
           priceCurrency: 'JPY',
           availability: 'https://schema.org/InStock',
           validFrom: '2024-10-01',
@@ -69,7 +70,7 @@ export function LocalBusinessStructuredData({ type = 'BoatRentalService' }: Loca
           '@type': 'Offer',
           name: 'ナイトティップラン 乗り合いプラン',
           description: 'ケンサキイカ・アオリイカを狙うナイトティップラン。夕方17:30〜24:00前後。初心者・女性も大歓迎。',
-          price: '9000',
+          price: `${SHARED_PRICE}`,
           priceCurrency: 'JPY',
           availability: 'https://schema.org/InStock',
           validFrom: '2024-10-01',
@@ -78,8 +79,8 @@ export function LocalBusinessStructuredData({ type = 'BoatRentalService' }: Loca
         {
           '@type': 'Offer',
           name: 'ナイトティップラン チャータープラン',
-          description: 'ナイトティップランの船貸し切りプラン。最大6名まで乗船可能。プライベート空間で釣りを楽しめます。',
-          price: '45000',
+          description: `ナイトティップランの船貸し切りプラン。最大${MAX_PASSENGERS}名まで乗船可能。プライベート空間で釣りを楽しめます。`,
+          price: `${CHARTER_PRICE}`,
           priceCurrency: 'JPY',
           availability: 'https://schema.org/InStock',
           validFrom: '2024-10-01',
@@ -89,7 +90,7 @@ export function LocalBusinessStructuredData({ type = 'BoatRentalService' }: Loca
           '@type': 'Offer',
           name: 'イカメタル・オモリグ 乗り合いプラン',
           description: 'ケンサキイカを狙うイカメタル・オモリグ。6月〜9月のケンサキイカシーズン限定。レンタルタックル利用可能。初心者・女性も大歓迎。',
-          price: '9000',
+          price: `${SHARED_PRICE}`,
           priceCurrency: 'JPY',
           availability: 'https://schema.org/InStock',
           validFrom: '2024-06-01',
@@ -99,8 +100,8 @@ export function LocalBusinessStructuredData({ type = 'BoatRentalService' }: Loca
         {
           '@type': 'Offer',
           name: 'イカメタル・オモリグ チャータープラン',
-          description: 'イカメタル・オモリグの船貸し切りプラン。最大6名まで乗船可能。プライベート空間で釣りを楽しめます。6月〜9月限定。',
-          price: '45000',
+          description: `イカメタル・オモリグの船貸し切りプラン。最大${MAX_PASSENGERS}名まで乗船可能。プライベート空間で釣りを楽しめます。6月〜9月限定。`,
+          price: `${CHARTER_PRICE}`,
           priceCurrency: 'JPY',
           availability: 'https://schema.org/InStock',
           validFrom: '2024-06-01',
@@ -215,7 +216,7 @@ export function FAQStructuredData() {
         name: '何を持っていけばいいですか？',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: '基本的に手ぶらでOKです！釣り道具はレンタル（¥1,000）できます。防寒着、タオル、飲み物があると便利です。'
+          text: `基本的に手ぶらでOKです！釣り道具はレンタル（${RENTAL_TACKLE_PRICE_DISPLAY}）できます。防寒着、タオル、飲み物があると便利です。`
         }
       },
       {
