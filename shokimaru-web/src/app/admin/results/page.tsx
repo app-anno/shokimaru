@@ -130,12 +130,6 @@ export default async function AdminResultsPage({
                         />
                       </td>
                       <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
-                        <Link
-                          href={`/admin/results/${result.id}/edit`}
-                          className="text-sky-600 hover:text-sky-900 mr-4"
-                        >
-                          編集
-                        </Link>
                         <DeleteButton resultId={result.id} />
                       </td>
                     </tr>

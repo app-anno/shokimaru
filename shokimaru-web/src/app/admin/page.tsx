@@ -16,7 +16,7 @@ export default function AdminPage() {
         >
           <div>
             <h3 className="text-base font-semibold leading-6 text-gray-900">釣果管理</h3>
-            <p className="mt-2 text-sm text-gray-500">釣果の一覧表示、追加、編集、削除を行います</p>
+            <p className="mt-2 text-sm text-gray-500">釣果の一覧表示、追加、削除を行います</p>
           </div>
         </Link>
         <Link

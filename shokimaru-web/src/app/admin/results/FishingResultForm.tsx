@@ -186,7 +186,6 @@ export function FishingResultForm({ defaultValues, isEdit = false }: FishingResu
             name="participants_count"
             id="participants_count"
             min="1"
-            max="6"
             placeholder="例: 3"
             defaultValue={defaultValues?.participants_count || ''}
             className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-sky-500 focus:ring-sky-500 sm:text-sm"
