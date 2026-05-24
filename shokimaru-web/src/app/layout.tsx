@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from "next";
+import { Noto_Sans_JP } from "next/font/google";
 import "./globals.css";
 import Layout from "@/components/Layout";
 import { Analytics } from "@vercel/analytics/next";
@@ -7,14 +8,22 @@ import { LocalBusinessStructuredData, WebSiteStructuredData } from "@/components
 import { GoogleAnalytics } from "@/components/GoogleAnalytics";
 import { GoogleTagManager, GoogleTagManagerNoscript } from "@/components/GoogleTagManager";
 
+const notoSansJP = Noto_Sans_JP({
+  weight: ["400", "500", "700"],
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-noto-sans-jp",
+  preload: false,
+});
+
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://shokimaru.com'),
   title: {
     default: "翔葵丸 - 萩湾で最高の釣り体験を！ | 山口県萩市の釣り船",
     template: "%s | 翔葵丸"
   },
-  description: "山口県萩市でスーパーライトジギング・ナイトティップラン・イカメタル等の釣り体験ができる釣り船、翔葵丸（しょうきまる）。初心者・女性も大歓迎！萩湾の豊かな漁場で、思い出に残る釣り体験を。",
-  keywords: ["萩市", "釣り船", "イカ釣り", "翔葵丸", "しょうきまる", "山口県", "釣り体験", "初心者歓迎", "女性歓迎", "レンタル竿", "萩湾", "ケンサキイカ", "SLJ", "スーパーライトジギング", "ナイトティップラン", "イカメタル", "オモリグ"],
+  description: "山口県萩市・玉江漁港から出港する釣り船「翔葵丸」。スーパーライトジギング（SLJ）・ナイトティップラン・イカメタルで萩湾のケンサキイカや根魚を狙えます。初心者・女性大歓迎、レンタルタックル完備。",
+  keywords: ["萩 釣り船", "萩 イカ釣り", "ケンサキイカ", "翔葵丸", "ナイトティップラン", "スーパーライトジギング", "玉江港"],
   authors: [{ name: "翔葵丸" }],
   creator: "翔葵丸",
   publisher: "翔葵丸",
@@ -28,26 +37,19 @@ export const metadata: Metadata = {
       { url: '/favicon.svg', type: 'image/svg+xml' },
       { url: '/favicon.ico', sizes: 'any' }
     ],
-    apple: '/apple-touch-icon.png',
   },
   openGraph: {
     title: "翔葵丸 - 萩湾で最高の釣り体験を！",
-    description: "山口県萩市でスーパーライトジギング・ナイトティップラン・イカメタル等の釣り体験ができる釣り船、翔葵丸（しょうきまる）。初心者・女性も大歓迎！",
+    description: "山口県萩市・玉江漁港から出港する釣り船。SLJ・ナイトティップラン・イカメタルで萩湾の釣りを楽しめます。初心者・女性も大歓迎！",
     type: "website",
     locale: "ja_JP",
     siteName: "翔葵丸",
-    images: [{
-      url: "/og-image.jpg",
-      width: 1200,
-      height: 630,
-      alt: "翔葵丸 - 旬のイカで最高の1日を！"
-    }]
+    url: "/",
   },
   twitter: {
     card: "summary_large_image",
-    title: "翔葵丸 - 旬のイカで最高の1日を！",
-    description: "山口県萩市でイカ釣りを楽しめる釣り船。初心者・女性も大歓迎！",
-    images: ["/og-image.jpg"]
+    title: "翔葵丸 - 萩湾で最高の釣り体験を！",
+    description: "山口県萩市の釣り船。SLJ・ナイトティップラン・イカ釣り。初心者・女性も大歓迎！",
   },
   alternates: {
     canonical: '/',
@@ -80,7 +82,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="ja">
+    <html lang="ja" className={notoSansJP.variable}>
       <body className="antialiased">
         <GoogleTagManagerNoscript gtmId={process.env.NEXT_PUBLIC_GTM_ID} />
         <Layout>{children}</Layout>

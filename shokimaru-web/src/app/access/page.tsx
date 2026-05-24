@@ -3,13 +3,16 @@ import Card from '@/components/Card'
 import Button from '@/components/Button'
 import AnimatedSection from '@/components/AnimatedSection'
 import FloatingElements from '@/components/FloatingElements'
+import { BreadcrumbStructuredData } from '@/components/StructuredData'
+import { breadcrumbs } from '@/lib/breadcrumbs'
 
 export const metadata: Metadata = {
-  title: 'アクセス',
-  description: '翔葵丸へのアクセス方法。山口県萩市の港から出船します。詳しい場所は予約時にご案内いたします。',
+  title: 'アクセス・玉江漁港の駐車場案内',
+  description: '翔葵丸（山口県萩市・玉江漁港）へのアクセス方法と駐車場情報。萩IC・JR東萩駅からの所要時間、長門市・山口市・防府市・宇部市・下関市・福岡市・広島市など各地域からのアクセスをご案内します。',
+  keywords: ['玉江港 駐車場', '萩 釣り船 アクセス', '玉江漁港', '萩IC', '東萩駅'],
   openGraph: {
-    title: 'アクセス | 翔葵丸',
-    description: '山口県萩市の港から出船。詳しい場所は予約時にご案内します。',
+    title: 'アクセス・玉江漁港の駐車場案内 | 翔葵丸',
+    description: '玉江漁港の駐車場情報と各地域からのアクセス。萩IC・JR東萩駅からの所要時間。',
   },
   alternates: {
     canonical: '/access',
@@ -19,6 +22,7 @@ export const metadata: Metadata = {
 export default function AccessPage() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-primary-50 to-white relative">
+      <BreadcrumbStructuredData items={[...breadcrumbs.access]} />
       <FloatingElements />
       
       {/* ヘッダーセクション */}
@@ -142,18 +146,88 @@ export default function AccessPage() {
 
               {/* 駐車場情報 */}
               <AnimatedSection animation="slide-right" delay={400}>
+                <div id="parking" className="scroll-mt-20">
                 <Card className="hover:shadow-xl transition-all duration-300 hover:animate-pulse-slow">
-                  <h2 className="text-2xl font-bold mb-4 text-gradient">駐車場について</h2>
+                  <h2 className="text-2xl font-bold mb-4 text-gradient">玉江漁港の駐車場について</h2>
                   <div className="bg-gradient-to-r from-primary-50 to-secondary-50 border-l-4 border-primary-400 p-6 rounded-lg animate-fade-in">
                     <div className="flex items-start">
                       <span className="text-3xl mr-4 animate-wiggle">🅿️</span>
                       <p className="text-gray-700">
-                        無料駐車場をご用意しております。
+                        玉江漁港周辺に無料駐車場をご用意しております。
                         <br />
-                        台数や場所の詳細は、ご予約時にお伝えいたします。
+                        台数や具体的な場所の詳細は、ご予約時にお伝えいたします。
+                        <br />
+                        早朝・深夜の出船時もご利用いただけるよう、安全な場所をご案内します。
                       </p>
                     </div>
                   </div>
+                </Card>
+                </div>
+              </AnimatedSection>
+
+              {/* 各地域からのアクセス */}
+              <AnimatedSection animation="slide-left" delay={500}>
+                <Card className="hover:shadow-xl transition-all duration-300">
+                  <h2 className="text-2xl font-bold mb-4 text-gradient">各地域から玉江漁港へのアクセス目安</h2>
+                  <p className="text-sm text-gray-600 mb-6">
+                    山口県内・近隣県の主要エリアから玉江漁港までのおおよその所要時間です。実際の時間は交通状況により変動します。
+                  </p>
+                  <div className="overflow-x-auto">
+                    <table className="min-w-full text-sm">
+                      <thead className="bg-primary-50 text-primary-700">
+                        <tr>
+                          <th className="px-4 py-3 text-left font-bold">出発エリア</th>
+                          <th className="px-4 py-3 text-left font-bold">車（高速道含む）</th>
+                          <th className="px-4 py-3 text-left font-bold">公共交通機関</th>
+                        </tr>
+                      </thead>
+                      <tbody className="text-gray-700">
+                        <tr className="border-b border-gray-100">
+                          <td className="px-4 py-3 font-semibold">萩市内</td>
+                          <td className="px-4 py-3">約5〜15分</td>
+                          <td className="px-4 py-3">JR玉江駅から徒歩圏／タクシー数分</td>
+                        </tr>
+                        <tr className="border-b border-gray-100 bg-gray-50/40">
+                          <td className="px-4 py-3 font-semibold">長門市</td>
+                          <td className="px-4 py-3">約40〜50分</td>
+                          <td className="px-4 py-3">JR山陰本線で東萩駅経由</td>
+                        </tr>
+                        <tr className="border-b border-gray-100">
+                          <td className="px-4 py-3 font-semibold">山口市</td>
+                          <td className="px-4 py-3">約1時間〜1時間20分</td>
+                          <td className="px-4 py-3">バス・JR乗継ぎ約2時間</td>
+                        </tr>
+                        <tr className="border-b border-gray-100 bg-gray-50/40">
+                          <td className="px-4 py-3 font-semibold">防府市</td>
+                          <td className="px-4 py-3">約1時間20分〜1時間40分</td>
+                          <td className="px-4 py-3">JR・バス乗継ぎ約2.5時間</td>
+                        </tr>
+                        <tr className="border-b border-gray-100">
+                          <td className="px-4 py-3 font-semibold">宇部市</td>
+                          <td className="px-4 py-3">約1時間30分〜1時間50分</td>
+                          <td className="px-4 py-3">JR・バス乗継ぎ約3時間</td>
+                        </tr>
+                        <tr className="border-b border-gray-100 bg-gray-50/40">
+                          <td className="px-4 py-3 font-semibold">下関市</td>
+                          <td className="px-4 py-3">約2時間〜2時間30分</td>
+                          <td className="px-4 py-3">JR新山口駅経由で約3〜3.5時間</td>
+                        </tr>
+                        <tr className="border-b border-gray-100">
+                          <td className="px-4 py-3 font-semibold">福岡市</td>
+                          <td className="px-4 py-3">約2時間30分〜3時間（高速利用）</td>
+                          <td className="px-4 py-3">新幹線＋在来線で約3.5時間</td>
+                        </tr>
+                        <tr>
+                          <td className="px-4 py-3 font-semibold">広島市</td>
+                          <td className="px-4 py-3">約3時間〜3時間30分（高速利用）</td>
+                          <td className="px-4 py-3">新幹線＋在来線で約3〜3.5時間</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  <p className="text-xs text-gray-500 mt-4">
+                    ※ 所要時間は目安です。高速道路の渋滞・公共交通機関のダイヤ改正・天候等により変動します。
+                  </p>
                 </Card>
               </AnimatedSection>
 

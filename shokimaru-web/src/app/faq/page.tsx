@@ -103,17 +103,35 @@ const categories = [
   { id: "other", label: "その他" },
 ];
 
+const sectionHeadings: Record<FAQItem["category"], string> = {
+  beginner: "初心者の方からよくいただく質問",
+  equipment: "持ち物・装備に関するご質問",
+  reservation: "ご予約・キャンセルについて",
+  other: "その他のご質問",
+};
+
+const categoryOrder: FAQItem["category"][] = ["beginner", "equipment", "reservation", "other"];
+
 export default function FAQPage() {
   const [selectedCategory, setSelectedCategory] = useState("all");
   const [openItems, setOpenItems] = useState<number[]>([]);
 
-  const filteredFAQ = selectedCategory === "all" 
-    ? faqData 
-    : faqData.filter(item => item.category === selectedCategory);
+  const visibleCategories = selectedCategory === "all"
+    ? categoryOrder
+    : (categoryOrder.includes(selectedCategory as FAQItem["category"])
+        ? [selectedCategory as FAQItem["category"]]
+        : []);
+
+  const groupedFAQ = visibleCategories.map((category) => ({
+    category,
+    items: faqData
+      .map((item, idx) => ({ item, idx }))
+      .filter(({ item }) => item.category === category),
+  }));
 
   const toggleItem = (index: number) => {
-    setOpenItems(prev => 
-      prev.includes(index) 
+    setOpenItems(prev =>
+      prev.includes(index)
         ? prev.filter(i => i !== index)
         : [...prev, index]
     );
@@ -169,43 +187,54 @@ export default function FAQPage() {
       {/* FAQ一覧 */}
       <section className="py-16">
         <div className="container-custom">
-          <div className="max-w-3xl mx-auto space-y-4">
-            {filteredFAQ.map((item, index) => (
-              <AnimatedSection key={index} animation="slide-left" delay={index * 100}>
-                <div className="cursor-pointer group" onClick={() => toggleItem(index)}>
-                  <Card className="hover:shadow-xl transition-all duration-300 hover:scale-[1.02] hover:animate-pulse-slow">
-                    <div className="flex justify-between items-start">
-                      <div className="flex-1 pr-4">
-                        <h3 className="font-bold text-lg mb-2 flex items-start gap-2">
-                          <span className="text-primary-500 animate-bounce-slow" style={{ animationDelay: `${index * 200}ms` }}>Q.</span>
-                          <span className="group-hover:text-primary-600 transition-colors">{item.question}</span>
-                        </h3>
-                        <div
-                          className={`overflow-hidden transition-all duration-500 ${
-                            openItems.includes(index) ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
-                          }`}
-                        >
-                          <div className="pt-4 pl-6 border-l-2 border-primary-200 animate-fade-in">
-                            <p className="text-gray-700 flex items-start gap-2">
-                              <span className="text-secondary-500 font-bold">A.</span>
-                              <span>{item.answer}</span>
-                            </p>
+          <div className="max-w-3xl mx-auto space-y-12">
+            {groupedFAQ.map(({ category, items }) => (
+              <div key={category}>
+                <AnimatedSection animation="slide-down">
+                  <h2 className="text-2xl md:text-3xl font-bold mb-6 text-gradient">
+                    {sectionHeadings[category]}
+                  </h2>
+                </AnimatedSection>
+                <div className="space-y-4">
+                  {items.map(({ item, idx }, position) => (
+                    <AnimatedSection key={idx} animation="slide-left" delay={position * 100}>
+                      <div className="cursor-pointer group" onClick={() => toggleItem(idx)}>
+                        <Card className="hover:shadow-xl transition-all duration-300 hover:scale-[1.02] hover:animate-pulse-slow">
+                          <div className="flex justify-between items-start">
+                            <div className="flex-1 pr-4">
+                              <h3 className="font-bold text-lg mb-2 flex items-start gap-2">
+                                <span className="text-primary-500 animate-bounce-slow" style={{ animationDelay: `${position * 200}ms` }}>Q.</span>
+                                <span className="group-hover:text-primary-600 transition-colors">{item.question}</span>
+                              </h3>
+                              <div
+                                className={`overflow-hidden transition-all duration-500 ${
+                                  openItems.includes(idx) ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
+                                }`}
+                              >
+                                <div className="pt-4 pl-6 border-l-2 border-primary-200 animate-fade-in">
+                                  <p className="text-gray-700 flex items-start gap-2">
+                                    <span className="text-secondary-500 font-bold">A.</span>
+                                    <span>{item.answer}</span>
+                                  </p>
+                                </div>
+                              </div>
+                            </div>
+                            <div className={`text-2xl transition-all duration-300 ${
+                              openItems.includes(idx)
+                                ? "text-primary-500 rotate-180"
+                                : "text-gray-400 group-hover:text-primary-400"
+                            }`}>
+                              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                              </svg>
+                            </div>
                           </div>
-                        </div>
+                        </Card>
                       </div>
-                      <div className={`text-2xl transition-all duration-300 ${
-                        openItems.includes(index) 
-                          ? "text-primary-500 rotate-180" 
-                          : "text-gray-400 group-hover:text-primary-400"
-                      }`}>
-                        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                        </svg>
-                      </div>
-                    </div>
-                  </Card>
+                    </AnimatedSection>
+                  ))}
                 </div>
-              </AnimatedSection>
+              </div>
             ))}
           </div>
         </div>

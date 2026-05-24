@@ -4,6 +4,8 @@ import Link from "next/link";
 import Image from "next/image";
 import AnimatedSection from "@/components/AnimatedSection";
 import FloatingElements from "@/components/FloatingElements";
+import { BreadcrumbStructuredData } from "@/components/StructuredData";
+import { breadcrumbs } from "@/lib/breadcrumbs";
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -21,6 +23,7 @@ export const metadata: Metadata = {
 export default function ContactPage() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-primary-50 to-white relative">
+      <BreadcrumbStructuredData items={[...breadcrumbs.contact]} />
       <FloatingElements />
       
       {/* ヘッダーセクション */}

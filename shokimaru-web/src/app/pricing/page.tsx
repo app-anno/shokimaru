@@ -3,6 +3,8 @@ import Button from "@/components/Button";
 import AnimatedSection from "@/components/AnimatedSection";
 import AnimatedBackground from "@/components/AnimatedBackground";
 import FloatingElements from "@/components/FloatingElements";
+import { BreadcrumbStructuredData } from "@/components/StructuredData";
+import { breadcrumbs } from "@/lib/breadcrumbs";
 import { SHARED_PRICE_DISPLAY, CHARTER_PRICE_DISPLAY, MAX_PASSENGERS, MAX_PASSENGERS_DISPLAY, RENTAL_TACKLE_PRICE_DISPLAY, STUDENT_PRICE_DISPLAY, PRICING_SUMMARY } from '@/lib/constants/pricing';
 
 import { Metadata } from 'next'
@@ -23,6 +25,7 @@ export const metadata: Metadata = {
 export default function PricingPage() {
   return (
     <div className="min-h-screen relative">
+      <BreadcrumbStructuredData items={[...breadcrumbs.pricing]} />
       <FloatingElements />
       
       {/* ヘッダーセクション */}

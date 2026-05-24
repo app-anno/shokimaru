@@ -68,7 +68,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
     if (supabaseUrl && supabaseKey) {
       const response = await fetch(
-        `${supabaseUrl}/rest/v1/fishing_results?select=id,updated_at&order=updated_at.desc`,
+        `${supabaseUrl}/rest/v1/fishing_results?select=id,updated_at,date&is_public=eq.true&order=date.desc&limit=500`,
         {
           headers: {
             apikey: supabaseKey,
@@ -83,8 +83,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         const dynamicPages: MetadataRoute.Sitemap = results.map((result: any) => ({
           url: `${baseUrl}/results/${result.id}`,
           lastModified: new Date(result.updated_at),
-          changeFrequency: 'monthly' as const,
-          priority: 0.5,
+          changeFrequency: 'weekly' as const,
+          priority: 0.6,
         }))
 
         return [...staticPages, ...dynamicPages]

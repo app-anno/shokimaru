@@ -66,7 +66,7 @@ const config: Config = {
         foreground: '#1e2936',
       },
       fontFamily: {
-        sans: ["Noto Sans JP", "sans-serif"],
+        sans: ["var(--font-noto-sans-jp)", "Noto Sans JP", "sans-serif"],
       },
       animation: {
         'slide-in-up': 'slideInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards',

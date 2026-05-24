@@ -1,3 +1,4 @@
+import { cache } from "react";
 import { createClient } from "./server";
 import { Database } from "@/types/database";
 
@@ -43,10 +44,10 @@ export async function getFishingResults(limit?: number): Promise<FishingResultWi
   return resultsWithSortedImages;
 }
 
-// 特定の釣果を取得
-export async function getFishingResultById(id: string): Promise<FishingResultWithImages | null> {
+// 特定の釣果を取得（同一リクエスト内で React cache により dedupe）
+export const getFishingResultById = cache(async (id: string): Promise<FishingResultWithImages | null> => {
   const supabase = await createClient();
-  
+
   const { data, error } = await supabase
     .from("fishing_results")
     .select(`
@@ -61,7 +62,6 @@ export async function getFishingResultById(id: string): Promise<FishingResultWit
     return null;
   }
 
-  // 画像を表示順でソート
   if (data) {
     return {
       ...data,
@@ -70,7 +70,7 @@ export async function getFishingResultById(id: string): Promise<FishingResultWit
   }
 
   return null;
-}
+});
 
 // 釣果を作成
 export async function createFishingResult(result: FishingResultInsert) {

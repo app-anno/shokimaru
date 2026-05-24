@@ -1,6 +1,8 @@
 import Card from "@/components/Card";
 import AnimatedSection from "@/components/AnimatedSection";
 import FloatingElements from "@/components/FloatingElements";
+import { BreadcrumbStructuredData } from "@/components/StructuredData";
+import { breadcrumbs } from "@/lib/breadcrumbs";
 import { RENTAL_TACKLE_PRICE_DISPLAY } from '@/lib/constants/pricing';
 import { Metadata } from 'next';
 
@@ -20,6 +22,7 @@ export const metadata: Metadata = {
 export default function GuidePage() {
   return (
     <div className="min-h-screen relative">
+      <BreadcrumbStructuredData items={[...breadcrumbs.guide]} />
       <FloatingElements />
 
       {/* ヘッダーセクション */}
@@ -147,12 +150,12 @@ export default function GuidePage() {
       </section>
 
       {/* SLJ詳細ガイド */}
-      <section className="py-16 bg-gray-50">
+      <section id="slj" className="py-16 bg-gray-50 scroll-mt-20">
         <div className="container-custom">
           <AnimatedSection animation="zoom">
             <h2 className="text-3xl font-bold text-center mb-12 title-decorated">
               <span className="bg-gradient-to-r from-primary-600 to-secondary-600 text-white px-6 py-3 rounded-full inline-block">
-                スーパーライトジギング（SLJ）
+                スーパーライトジギング（SLJ）の釣り方と仕掛け
               </span>
             </h2>
           </AnimatedSection>
@@ -247,12 +250,12 @@ export default function GuidePage() {
       </section>
 
       {/* ナイトティップラン詳細ガイド */}
-      <section className="py-16">
+      <section id="night-tipran" className="py-16 scroll-mt-20">
         <div className="container-custom">
           <AnimatedSection animation="zoom">
             <h2 className="text-3xl font-bold text-center mb-12 title-decorated">
               <span className="bg-gradient-to-r from-primary-600 to-secondary-600 text-white px-6 py-3 rounded-full inline-block">
-                ナイトティップラン
+                萩湾ナイトティップランの釣り方と仕掛け
               </span>
             </h2>
           </AnimatedSection>
@@ -346,12 +349,12 @@ export default function GuidePage() {
       </section>
 
       {/* イカメタル・オモリグ詳細ガイド */}
-      <section className="py-16 bg-gray-50">
+      <section id="ikametal" className="py-16 bg-gray-50 scroll-mt-20">
         <div className="container-custom">
           <AnimatedSection animation="zoom">
             <h2 className="text-3xl font-bold text-center mb-12 title-decorated">
               <span className="bg-gradient-to-r from-primary-600 to-secondary-600 text-white px-6 py-3 rounded-full inline-block">
-                イカメタル・オモリグ
+                イカメタル・オモリグの釣り方と仕掛け
               </span>
             </h2>
           </AnimatedSection>
@@ -485,11 +488,147 @@ export default function GuidePage() {
         </div>
       </section>
 
-      {/* 共通のアドバイスセクション */}
-      <section className="py-16">
+      {/* 女性のお客様へ */}
+      <section id="women" className="py-16 scroll-mt-20">
         <div className="container-custom">
           <AnimatedSection animation="slide-down">
-            <h2 className="text-3xl font-bold text-center mb-12 title-decorated">初心者の方へ - 共通のアドバイス</h2>
+            <h2 className="text-3xl font-bold text-center mb-4 title-decorated">
+              萩のイカ釣り船を初めて利用される女性のお客様へ
+            </h2>
+          </AnimatedSection>
+          <AnimatedSection animation="fade" delay={200}>
+            <p className="text-center text-gray-600 max-w-3xl mx-auto mb-12">
+              翔葵丸では女性のお客様・カップル・女子旅でのご利用も大歓迎です。手ぶらで気軽に楽しめる環境を整えています。
+            </p>
+          </AnimatedSection>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
+            <AnimatedSection animation="slide-up" delay={100}>
+              <Card className="h-full bg-gradient-to-br from-pink-50 to-white border-l-4 border-pink-400">
+                <h3 className="text-lg font-bold mb-2 text-pink-700">手ぶらでOK</h3>
+                <p className="text-sm text-gray-700">
+                  竿・リール・仕掛けまで全てレンタル可能。釣り未経験でも、お洋服と日焼け止めだけお持ちいただければ大丈夫です。
+                </p>
+              </Card>
+            </AnimatedSection>
+            <AnimatedSection animation="slide-up" delay={200}>
+              <Card className="h-full bg-gradient-to-br from-pink-50 to-white border-l-4 border-pink-400">
+                <h3 className="text-lg font-bold mb-2 text-pink-700">船内トイレ完備</h3>
+                <p className="text-sm text-gray-700">
+                  船内にトイレを設置しています。長時間の釣行でも安心してお過ごしいただけます。
+                </p>
+              </Card>
+            </AnimatedSection>
+            <AnimatedSection animation="slide-up" delay={300}>
+              <Card className="h-full bg-gradient-to-br from-pink-50 to-white border-l-4 border-pink-400">
+                <h3 className="text-lg font-bold mb-2 text-pink-700">服装の目安</h3>
+                <p className="text-sm text-gray-700">
+                  動きやすく、濡れても良い服装で。日焼け対策の薄手の長袖、滑りにくいスニーカー、夏でも夜は冷えるので羽織りものがあると安心。
+                </p>
+              </Card>
+            </AnimatedSection>
+            <AnimatedSection animation="slide-up" delay={400}>
+              <Card className="h-full bg-gradient-to-br from-pink-50 to-white border-l-4 border-pink-400">
+                <h3 className="text-lg font-bold mb-2 text-pink-700">船酔いが心配な方へ</h3>
+                <p className="text-sm text-gray-700">
+                  萩湾は比較的穏やかな海域。出航30分前の酔い止め服用、前日の十分な睡眠、空腹を避けることで多くの方が快適に楽しめます。
+                </p>
+              </Card>
+            </AnimatedSection>
+            <AnimatedSection animation="slide-up" delay={500}>
+              <Card className="h-full bg-gradient-to-br from-pink-50 to-white border-l-4 border-pink-400">
+                <h3 className="text-lg font-bold mb-2 text-pink-700">カップル・女子旅にも</h3>
+                <p className="text-sm text-gray-700">
+                  最大8名乗船・少人数制なのでプライベート感もしっかり。萩観光と組み合わせた特別な思い出作りにもおすすめです。
+                </p>
+              </Card>
+            </AnimatedSection>
+            <AnimatedSection animation="slide-up" delay={600}>
+              <Card className="h-full bg-gradient-to-br from-pink-50 to-white border-l-4 border-pink-400">
+                <h3 className="text-lg font-bold mb-2 text-pink-700">釣れたイカは持ち帰れます</h3>
+                <p className="text-sm text-gray-700">
+                  クーラーボックスをお持ちいただければ氷もご用意。新鮮なケンサキイカをお家で味わえます。
+                </p>
+              </Card>
+            </AnimatedSection>
+          </div>
+        </div>
+      </section>
+
+      {/* 月別シーズンカレンダー */}
+      <section id="season" className="py-16 bg-gradient-to-b from-white to-primary-50 scroll-mt-20">
+        <div className="container-custom">
+          <AnimatedSection animation="slide-down">
+            <h2 className="text-3xl font-bold text-center mb-4 title-decorated">
+              萩湾イカ釣りの月別シーズンカレンダー（6〜10月）
+            </h2>
+          </AnimatedSection>
+          <AnimatedSection animation="fade" delay={200}>
+            <p className="text-center text-gray-600 max-w-3xl mx-auto mb-12">
+              萩湾のケンサキイカは6月から始まり、7〜8月にハイシーズンを迎えます。月ごとの傾向と狙い目をまとめました。
+            </p>
+          </AnimatedSection>
+
+          <div className="max-w-5xl mx-auto overflow-x-auto">
+            <AnimatedSection animation="zoom" delay={300}>
+              <table className="min-w-full bg-white rounded-2xl shadow-lg overflow-hidden">
+                <thead className="bg-gradient-to-r from-primary-600 to-secondary-600 text-white">
+                  <tr>
+                    <th className="px-4 py-3 text-left text-sm font-bold">月</th>
+                    <th className="px-4 py-3 text-left text-sm font-bold">メインターゲット</th>
+                    <th className="px-4 py-3 text-left text-sm font-bold">釣法</th>
+                    <th className="px-4 py-3 text-left text-sm font-bold">サイズ・傾向</th>
+                  </tr>
+                </thead>
+                <tbody className="text-sm text-gray-700">
+                  <tr className="border-b border-gray-100">
+                    <td className="px-4 py-3 font-bold text-primary-700">6月</td>
+                    <td className="px-4 py-3">ケンサキイカ</td>
+                    <td className="px-4 py-3">ナイトティップラン／イカメタル開幕</td>
+                    <td className="px-4 py-3">小〜中型中心、数釣り期</td>
+                  </tr>
+                  <tr className="border-b border-gray-100 bg-primary-50/40">
+                    <td className="px-4 py-3 font-bold text-primary-700">7月</td>
+                    <td className="px-4 py-3">ケンサキイカ</td>
+                    <td className="px-4 py-3">ナイトティップラン／イカメタル／オモリグ</td>
+                    <td className="px-4 py-3">ハイシーズン突入、サイズUP</td>
+                  </tr>
+                  <tr className="border-b border-gray-100">
+                    <td className="px-4 py-3 font-bold text-primary-700">8月</td>
+                    <td className="px-4 py-3">ケンサキイカ（最盛期）</td>
+                    <td className="px-4 py-3">ナイトティップラン／イカメタル／オモリグ</td>
+                    <td className="px-4 py-3">大型混じり、数・型ともに期待大</td>
+                  </tr>
+                  <tr className="border-b border-gray-100 bg-primary-50/40">
+                    <td className="px-4 py-3 font-bold text-primary-700">9月</td>
+                    <td className="px-4 py-3">ケンサキイカ／スルメイカ走り</td>
+                    <td className="px-4 py-3">ナイトティップラン／イカメタル</td>
+                    <td className="px-4 py-3">大型残り＋スルメイカの可能性</td>
+                  </tr>
+                  <tr>
+                    <td className="px-4 py-3 font-bold text-primary-700">10月</td>
+                    <td className="px-4 py-3">スルメイカ／秋イカ</td>
+                    <td className="px-4 py-3">ナイトティップラン中心</td>
+                    <td className="px-4 py-3">スルメイカ本格化、深場狙いに移行</td>
+                  </tr>
+                </tbody>
+              </table>
+            </AnimatedSection>
+          </div>
+
+          <AnimatedSection animation="fade" delay={500}>
+            <p className="text-center text-sm text-gray-500 mt-6 max-w-2xl mx-auto">
+              ※ 上記はあくまで例年の傾向です。気象・海況・潮回りによって変動します。最新の釣況は<a href="/results" className="text-primary-600 underline">釣果情報</a>をご確認ください。
+            </p>
+          </AnimatedSection>
+        </div>
+      </section>
+
+      {/* 共通のアドバイスセクション */}
+      <section id="preparation" className="py-16 scroll-mt-20">
+        <div className="container-custom">
+          <AnimatedSection animation="slide-down">
+            <h2 className="text-3xl font-bold text-center mb-12 title-decorated">萩のイカ釣り 初心者の持ち物・船酔い対策・安全マナー</h2>
           </AnimatedSection>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto">

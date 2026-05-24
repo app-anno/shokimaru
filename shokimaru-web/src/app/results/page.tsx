@@ -1,22 +1,44 @@
 import { getFishingResults } from '@/lib/supabase/fishing-results'
-import { formatDate } from '@/lib/utils'
+import { buildResultAlt, formatDate } from '@/lib/utils'
 import Image from 'next/image'
 import Link from 'next/link'
 import AnimatedSection from '@/components/AnimatedSection'
 import FloatingElements from '@/components/FloatingElements'
 import ImageCarousel from '@/components/ImageCarousel'
+import { BreadcrumbStructuredData, FishingResultsItemListStructuredData } from '@/components/StructuredData'
+import { breadcrumbs } from '@/lib/breadcrumbs'
 import { Metadata } from 'next'
 
-export const metadata: Metadata = {
-  title: '釣果情報',
-  description: '翔葵丸での最新の釣果をご紹介します。イカ釣りの実績と釣果写真をご覧ください。',
-  openGraph: {
-    title: '釣果情報 | 翔葵丸',
-    description: '翔葵丸での最新の釣果をご紹介。イカ釣りの実績と釣果写真。',
-  },
-  alternates: {
-    canonical: '/results',
-  },
+export async function generateMetadata({
+  searchParams,
+}: {
+  searchParams: Promise<{ page?: string }>
+}): Promise<Metadata> {
+  const params = await searchParams
+  const pageNum = Math.max(1, parseInt(params.page ?? '1', 10) || 1)
+  const isFirstPage = pageNum === 1
+
+  const title = isFirstPage ? '釣果情報' : `釣果情報 - ${pageNum}ページ目`
+  const description = isFirstPage
+    ? '翔葵丸（山口県萩市・玉江漁港）の最新の萩湾イカ釣り釣果。ケンサキイカ・SLJ・ナイトティップランの釣行結果と写真をご覧ください。'
+    : `翔葵丸の萩湾イカ釣り釣果アーカイブ（${pageNum}ページ目）。`
+
+  return {
+    title,
+    description,
+    alternates: {
+      canonical: isFirstPage ? '/results' : `/results?page=${pageNum}`,
+    },
+    openGraph: {
+      title: `${title} | 翔葵丸`,
+      description,
+      url: isFirstPage ? '/results' : `/results?page=${pageNum}`,
+      type: 'website',
+    },
+    robots: isFirstPage
+      ? { index: true, follow: true }
+      : { index: false, follow: true },
+  }
 }
 
 export default async function ResultsPage({
@@ -34,6 +56,10 @@ export default async function ResultsPage({
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-primary-50 to-white relative">
+      <BreadcrumbStructuredData items={[...breadcrumbs.results]} />
+      <FishingResultsItemListStructuredData
+        results={results.map((r) => ({ id: r.id, date: r.date, catch_count: r.catch_count }))}
+      />
       <FloatingElements />
       
       {/* ヘッダーセクション */}
@@ -85,7 +111,7 @@ export default async function ResultsPage({
                           {result.images && result.images.length > 0 ? (
                             <ImageCarousel
                               images={result.images.map(img => img.image_url).filter(Boolean) as string[]}
-                              alt={`${formatDate(result.date)}の釣果`}
+                              alt={buildResultAlt(result)}
                               className="absolute inset-0 group-hover:scale-125 transition-transform duration-700 ease-out"
                               showBadge={true}
                               showIndicators={true}
@@ -93,7 +119,7 @@ export default async function ResultsPage({
                           ) : result.image_url ? (
                             <Image
                               src={result.image_url}
-                              alt={`${formatDate(result.date)}の釣果`}
+                              alt={buildResultAlt(result)}
                               fill
                               className="object-cover group-hover:scale-125 transition-transform duration-700 ease-out"
                             />

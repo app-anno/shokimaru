@@ -133,23 +133,9 @@ export function LocalBusinessStructuredData({ type = 'BoatRentalService' }: Loca
       }
     ],
     image: [
-      'https://shokimaru.com/boat-image1.jpg',
-      'https://shokimaru.com/boat-image2.jpg',
-      'https://shokimaru.com/fishing-result.jpg'
-    ],
-    review: {
-      '@type': 'Review',
-      reviewRating: {
-        '@type': 'Rating',
-        ratingValue: '5',
-        bestRating: '5'
-      },
-      author: {
-        '@type': 'Person',
-        name: '釣り初心者'
-      },
-      reviewBody: '初めてのイカ釣りでしたが、船長さんが丁寧に教えてくれて、たくさん釣れました！'
-    }
+      'https://shokimaru.com/hero-image.jpg',
+      'https://shokimaru.com/opengraph-image'
+    ]
   }
 
   return (
@@ -255,6 +241,74 @@ export function FAQStructuredData() {
   )
 }
 
+interface FishingResultForJsonLd {
+  id: string
+  date: string
+  weather: string | null
+  moon_age: number | null
+  tide_type: string | null
+  catch_count: number
+  size: string | null
+  image_url: string | null
+  participants_count: number | null
+  created_at: string
+  updated_at: string
+  images?: { image_url: string }[]
+}
+
+export function FishingResultStructuredData({ result }: { result: FishingResultForJsonLd }) {
+  const baseUrl = 'https://shokimaru.com'
+  const url = `${baseUrl}/results/${result.id}`
+  const dateLabel = new Date(result.date).toLocaleDateString('ja-JP', { year: 'numeric', month: 'long', day: 'numeric' })
+
+  const allImages = [
+    ...(result.images?.map(img => img.image_url) ?? []),
+    ...(result.image_url ? [result.image_url] : []),
+  ].filter((src, idx, arr) => Boolean(src) && arr.indexOf(src) === idx)
+
+  const headline = `${dateLabel}の萩湾イカ釣り釣果 ${result.catch_count}杯`
+  const descParts: string[] = []
+  if (result.weather) descParts.push(`天候: ${result.weather}`)
+  if (result.tide_type) descParts.push(`潮: ${result.tide_type}`)
+  if (result.moon_age !== null) descParts.push(`月齢: ${result.moon_age}日`)
+  if (result.size) descParts.push(`サイズ: ${result.size}`)
+  if (result.participants_count) descParts.push(`釣行人数: ${result.participants_count}名`)
+  const description = `翔葵丸（山口県萩市・玉江漁港）の${dateLabel}の釣果。${descParts.join(' / ')}`
+
+  const structuredData = {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline,
+    description,
+    image: allImages.length > 0 ? allImages : [`${baseUrl}/opengraph-image`],
+    datePublished: result.created_at,
+    dateModified: result.updated_at,
+    mainEntityOfPage: {
+      '@type': 'WebPage',
+      '@id': url,
+    },
+    author: {
+      '@type': 'Organization',
+      '@id': `${baseUrl}/#business`,
+      name: '翔葵丸',
+    },
+    publisher: {
+      '@type': 'Organization',
+      '@id': `${baseUrl}/#business`,
+      name: '翔葵丸',
+    },
+    url,
+  }
+
+  return (
+    <Script
+      id={`fishing-result-structured-data-${result.id}`}
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+    />
+  )
+}
+
 export function BreadcrumbStructuredData({ items }: { items: { name: string; url?: string }[] }) {
   const structuredData = {
     '@context': 'https://schema.org',
@@ -276,7 +330,36 @@ export function BreadcrumbStructuredData({ items }: { items: { name: string; url
   )
 }
 
-export function WebPageStructuredData({ 
+export function FishingResultsItemListStructuredData({
+  results,
+}: {
+  results: Array<{ id: string; date: string; catch_count: number }>
+}) {
+  const baseUrl = 'https://shokimaru.com'
+  const structuredData = {
+    '@context': 'https://schema.org',
+    '@type': 'ItemList',
+    name: '翔葵丸 萩湾イカ釣り釣果一覧',
+    itemListOrder: 'https://schema.org/ItemListOrderDescending',
+    numberOfItems: results.length,
+    itemListElement: results.map((r, idx) => ({
+      '@type': 'ListItem',
+      position: idx + 1,
+      url: `${baseUrl}/results/${r.id}`,
+      name: `${new Date(r.date).toLocaleDateString('ja-JP', { year: 'numeric', month: 'long', day: 'numeric' })}の釣果 ${r.catch_count}杯`,
+    })),
+  }
+
+  return (
+    <Script
+      id="fishing-results-itemlist-structured-data"
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+    />
+  )
+}
+
+export function WebPageStructuredData({
   title, 
   description,
   url,

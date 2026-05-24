@@ -1,6 +1,8 @@
 import Card from "@/components/Card";
 import AnimatedSection from "@/components/AnimatedSection";
 import FloatingElements from "@/components/FloatingElements";
+import { BreadcrumbStructuredData } from "@/components/StructuredData";
+import { breadcrumbs } from "@/lib/breadcrumbs";
 import { Metadata } from 'next';
 import Image from 'next/image';
 
@@ -20,6 +22,7 @@ export const metadata: Metadata = {
 export default function SightseeingPage() {
   return (
     <div className="min-h-screen relative">
+      <BreadcrumbStructuredData items={[...breadcrumbs.sightseeing]} />
       <FloatingElements />
       
       {/* ヘッダーセクション */}

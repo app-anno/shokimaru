@@ -1,10 +1,64 @@
+import type { Metadata } from 'next'
 import { getFishingResultById } from '@/lib/supabase/fishing-results'
-import { formatDate } from '@/lib/utils'
+import { buildResultAlt, formatDate } from '@/lib/utils'
 import Image from 'next/image'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { getMoonPhaseEmoji } from '@/lib/constants/fishing'
 import ImageCarousel from '@/components/ImageCarousel'
+import { BreadcrumbStructuredData, FishingResultStructuredData } from '@/components/StructuredData'
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ id: string }>
+}): Promise<Metadata> {
+  const { id } = await params
+  const result = await getFishingResultById(id)
+
+  if (!result || !result.is_public) {
+    return {
+      title: '釣果が見つかりません',
+      robots: { index: false, follow: false },
+    }
+  }
+
+  const dateLabel = formatDate(result.date)
+  const title = `${dateLabel}の萩湾イカ釣り釣果 ${result.catch_count}杯`
+
+  const descParts: string[] = []
+  if (result.weather) descParts.push(`天候${result.weather}`)
+  if (result.tide_type) descParts.push(`潮${result.tide_type}`)
+  if (result.moon_age !== null) descParts.push(`月齢${result.moon_age}日`)
+  if (result.size) descParts.push(`サイズ${result.size}`)
+  if (result.participants_count) descParts.push(`${result.participants_count}名釣行`)
+  const description = `翔葵丸（山口県萩市・玉江漁港）の${dateLabel}の釣果情報。${result.catch_count}杯（${descParts.join('・') || '萩湾でのイカ釣り'}）。初心者・女性大歓迎の萩のイカ釣り船。`
+
+  const ogImage = result.image_url ?? result.images?.[0]?.image_url ?? undefined
+
+  return {
+    title,
+    description,
+    alternates: {
+      canonical: `/results/${id}`,
+    },
+    openGraph: {
+      title,
+      description,
+      type: 'article',
+      url: `/results/${id}`,
+      publishedTime: result.created_at,
+      modifiedTime: result.updated_at,
+      ...(ogImage ? { images: [{ url: ogImage, alt: title }] } : {}),
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title,
+      description,
+      ...(ogImage ? { images: [ogImage] } : {}),
+    },
+  }
+}
 
 export default async function ResultDetailPage({
   params,
@@ -18,8 +72,18 @@ export default async function ResultDetailPage({
     notFound()
   }
 
+  const dateLabel = formatDate(result.date)
+
   return (
     <div className="min-h-screen bg-sky-50">
+      <FishingResultStructuredData result={result} />
+      <BreadcrumbStructuredData
+        items={[
+          { name: 'ホーム', url: 'https://shokimaru.com' },
+          { name: '釣果情報', url: 'https://shokimaru.com/results' },
+          { name: `${dateLabel}の釣果` },
+        ]}
+      />
       <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 py-12">
         <Link
           href="/results"
@@ -34,7 +98,7 @@ export default async function ResultDetailPage({
               {result.images && result.images.length > 0 ? (
                 <ImageCarousel
                   images={result.images.map(img => img.image_url).filter(Boolean) as string[]}
-                  alt={`${formatDate(result.date)}の釣果`}
+                  alt={buildResultAlt(result)}
                   className="absolute inset-0"
                   showBadge={false}
                   showIndicators={true}
@@ -43,7 +107,7 @@ export default async function ResultDetailPage({
               ) : result.image_url ? (
                 <Image
                   src={result.image_url}
-                  alt={`${formatDate(result.date)}の釣果`}
+                  alt={buildResultAlt(result)}
                   fill
                   className="object-contain bg-gray-100"
                   priority

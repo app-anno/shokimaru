@@ -9,6 +9,7 @@ import FishAnimation from "@/components/FishAnimation";
 import ImageCarousel from "@/components/ImageCarousel";
 import SeasonalCalendar from "@/components/SeasonalCalendar";
 import { getFishingResults } from "@/lib/supabase/fishing-results";
+import { buildResultAlt } from "@/lib/utils";
 import Link from "next/link";
 import { Metadata } from 'next';
 import { SHARED_PRICE_DISPLAY, CHARTER_PRICE_DISPLAY, MAX_PASSENGERS, MAX_PASSENGERS_DISPLAY, RENTAL_TACKLE_PRICE_DISPLAY } from '@/lib/constants/pricing';
@@ -150,7 +151,7 @@ export default async function Home() {
                         <div className="relative aspect-square -mx-6 -mt-6 mb-4 overflow-hidden">
                           <ImageCarousel
                             images={result.images.map(img => img.image_url).filter(Boolean) as string[]}
-                            alt={`${new Date(result.date).toLocaleDateString('ja-JP')}の釣果`}
+                            alt={buildResultAlt(result)}
                             className="absolute inset-0"
                             showBadge={result.images.length > 1}
                           />

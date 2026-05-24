@@ -1,6 +1,8 @@
 import { Metadata } from 'next'
 import AnimatedSection from '@/components/AnimatedSection'
 import FloatingElements from '@/components/FloatingElements'
+import { BreadcrumbStructuredData } from '@/components/StructuredData'
+import { breadcrumbs } from '@/lib/breadcrumbs'
 
 export const metadata: Metadata = {
   title: 'プライバシーポリシー | 翔葵丸',
@@ -10,6 +12,7 @@ export const metadata: Metadata = {
 export default function PrivacyPage() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-primary-50 to-white relative">
+      <BreadcrumbStructuredData items={[...breadcrumbs.privacy]} />
       <FloatingElements />
       
       {/* ヘッダーセクション */}
