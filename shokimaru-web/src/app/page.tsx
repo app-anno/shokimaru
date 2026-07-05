@@ -8,7 +8,9 @@ import SquidAnimation from "@/components/SquidAnimation";
 import FishAnimation from "@/components/FishAnimation";
 import ImageCarousel from "@/components/ImageCarousel";
 import SeasonalCalendar from "@/components/SeasonalCalendar";
+import BookingCalendar from "@/components/BookingCalendar";
 import { getFishingResults } from "@/lib/supabase/fishing-results";
+import { getBookingCalendarData } from "@/lib/google-calendar";
 import { buildResultAlt } from "@/lib/utils";
 import Link from "next/link";
 import { Metadata } from 'next';
@@ -34,8 +36,11 @@ export const metadata: Metadata = {
 };
 
 export default async function Home() {
-  // 最新の釣果を3件取得
-  const latestResults = await getFishingResults(3);
+  // 最新の釣果3件と予約カレンダーを並行取得
+  const [latestResults, calendarData] = await Promise.all([
+    getFishingResults(3),
+    getBookingCalendarData(),
+  ]);
 
   return (
     <>
@@ -143,17 +148,22 @@ export default async function Home() {
           
           {latestResults && latestResults.length > 0 ? (
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              {latestResults.map((result, index) => (
+              {latestResults.map((result, index) => {
+                // 1枚目（image_url）と追加画像（fishing_result_images）を統合して表示する
+                const allImages = Array.from(
+                  new Set([result.image_url, ...result.images.map(img => img.image_url)].filter(Boolean))
+                ) as string[];
+                return (
                 <AnimatedSection key={result.id} animation="slide-up" delay={index * 100}>
                   <Link href={`/results/${result.id}`} className="block group">
                     <Card className="hover:shadow-2xl transition-all duration-300 group-hover:-translate-y-2 overflow-hidden">
-                      {result.images && result.images.length > 0 && (
+                      {allImages.length > 0 && (
                         <div className="relative aspect-square -mx-6 -mt-6 mb-4 overflow-hidden">
                           <ImageCarousel
-                            images={result.images.map(img => img.image_url).filter(Boolean) as string[]}
+                            images={allImages}
                             alt={buildResultAlt(result)}
                             className="absolute inset-0"
-                            showBadge={result.images.length > 1}
+                            showBadge={allImages.length > 1}
                           />
                         </div>
                       )}
@@ -191,7 +201,8 @@ export default async function Home() {
                     </Card>
                   </Link>
                 </AnimatedSection>
-              ))}
+                );
+              })}
             </div>
           ) : (
             <AnimatedSection animation="fade">
@@ -520,31 +531,59 @@ export default async function Home() {
                   </h3>
                 </div>
                 <div className="p-2 md:p-4 bg-white">
-                  <div className="relative w-full overflow-hidden rounded-lg">
-                    <iframe 
-                      src="https://calendar.google.com/calendar/embed?src=shokimaru.schedule%40gmail.com&ctz=Asia%2FTokyo" 
-                      style={{ border: 0 }}
-                      className="w-full h-[400px] md:h-[500px]"
-                      frameBorder="0"
-                      scrolling="no"
-                    ></iframe>
-                  </div>
+                  {calendarData ? (
+                    <BookingCalendar data={calendarData} />
+                  ) : (
+                    // APIキー未設定・取得失敗時はGoogleカレンダー埋め込みにフォールバック
+                    <div className="relative w-full overflow-hidden rounded-lg">
+                      <iframe
+                        src="https://calendar.google.com/calendar/embed?src=shokimaru.schedule%40gmail.com&ctz=Asia%2FTokyo"
+                        style={{ border: 0 }}
+                        className="w-full h-[400px] md:h-[500px]"
+                        frameBorder="0"
+                        scrolling="no"
+                      ></iframe>
+                    </div>
+                  )}
                 </div>
                 <div className="bg-gray-50 p-4 border-t">
                   <div className="flex flex-col md:flex-row items-center justify-between gap-4">
                     <div className="flex flex-wrap gap-4 text-sm">
-                      <div className="flex items-center gap-2">
-                        <div className="w-4 h-4 bg-blue-500 rounded"></div>
-                        <span>予約可能</span>
-                      </div>
-                      <div className="flex items-center gap-2">
-                        <div className="w-4 h-4 bg-red-500 rounded"></div>
-                        <span>満席</span>
-                      </div>
-                      <div className="flex items-center gap-2">
-                        <div className="w-4 h-4 bg-gray-400 rounded"></div>
-                        <span>欠航</span>
-                      </div>
+                      {calendarData ? (
+                        <>
+                          <div className="flex items-center gap-2">
+                            <div className="w-4 h-4 bg-primary-500 rounded"></div>
+                            <span>空きあり</span>
+                          </div>
+                          <div className="flex items-center gap-2">
+                            <div className="w-4 h-4 bg-red-500 rounded"></div>
+                            <span>満席</span>
+                          </div>
+                          <div className="flex items-center gap-2">
+                            <div className="w-4 h-4 bg-gray-300 rounded"></div>
+                            <span>休み・欠航</span>
+                          </div>
+                          <div className="flex items-center gap-2">
+                            <div className="w-4 h-4 bg-amber-400 rounded"></div>
+                            <span>要問い合わせ</span>
+                          </div>
+                        </>
+                      ) : (
+                        <>
+                          <div className="flex items-center gap-2">
+                            <div className="w-4 h-4 bg-blue-500 rounded"></div>
+                            <span>予約可能</span>
+                          </div>
+                          <div className="flex items-center gap-2">
+                            <div className="w-4 h-4 bg-red-500 rounded"></div>
+                            <span>満席</span>
+                          </div>
+                          <div className="flex items-center gap-2">
+                            <div className="w-4 h-4 bg-gray-400 rounded"></div>
+                            <span>欠航</span>
+                          </div>
+                        </>
+                      )}
                     </div>
                     <Button href="/contact" size="sm" className="animate-pulse-slow">
                       予約する →
