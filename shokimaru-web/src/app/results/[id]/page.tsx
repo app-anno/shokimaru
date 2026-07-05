@@ -74,6 +74,11 @@ export default async function ResultDetailPage({
 
   const dateLabel = formatDate(result.date)
 
+  // 1枚目（image_url）と追加画像（fishing_result_images）を統合して表示する
+  const allImages = Array.from(
+    new Set([result.image_url, ...result.images.map(img => img.image_url)].filter(Boolean))
+  ) as string[]
+
   return (
     <div className="min-h-screen bg-sky-50">
       <FishingResultStructuredData result={result} />
@@ -93,26 +98,26 @@ export default async function ResultDetailPage({
         </Link>
 
         <div className="bg-white rounded-lg shadow-lg overflow-hidden">
-          {(result.image_url || result.images?.length > 0) && (
+          {allImages.length > 0 && (
             <div className="relative h-96 md:h-[500px]">
-              {result.images && result.images.length > 0 ? (
+              {allImages.length > 1 ? (
                 <ImageCarousel
-                  images={result.images.map(img => img.image_url).filter(Boolean) as string[]}
+                  images={allImages}
                   alt={buildResultAlt(result)}
                   className="absolute inset-0"
                   showBadge={false}
                   showIndicators={true}
                   autoPlayInterval={4000}
                 />
-              ) : result.image_url ? (
+              ) : (
                 <Image
-                  src={result.image_url}
+                  src={allImages[0]}
                   alt={buildResultAlt(result)}
                   fill
                   className="object-contain bg-gray-100"
                   priority
                 />
-              ) : null}
+              )}
             </div>
           )}
 

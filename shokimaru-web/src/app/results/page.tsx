@@ -92,7 +92,12 @@ export default async function ResultsPage({
         ) : (
           <>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {results.map((result, index) => (
+              {results.map((result, index) => {
+                // 1枚目（image_url）と追加画像（fishing_result_images）を統合して表示する
+                const allImages = Array.from(
+                  new Set([result.image_url, ...result.images.map(img => img.image_url)].filter(Boolean))
+                ) as string[]
+                return (
                 <AnimatedSection key={result.id} animation="zoom" delay={index * 100}>
                   <Link
                     href={`/results/${result.id}`}
@@ -103,27 +108,27 @@ export default async function ResultsPage({
                       <div className="absolute -top-20 -right-20 w-40 h-40 bg-gradient-to-br from-primary-200/20 to-secondary-200/20 rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-700 z-0" />
                       <div className="absolute -bottom-20 -left-20 w-40 h-40 bg-gradient-to-tr from-secondary-200/20 to-ocean-light/20 rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-700 z-0" />
                       
-                      {(result.image_url || result.images?.length > 0) ? (
+                      {allImages.length > 0 ? (
                         <div className="aspect-square relative overflow-hidden">
                           <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent z-10" />
-                          
+
                           {/* カルーセルまたは単一画像 */}
-                          {result.images && result.images.length > 0 ? (
+                          {allImages.length > 1 ? (
                             <ImageCarousel
-                              images={result.images.map(img => img.image_url).filter(Boolean) as string[]}
+                              images={allImages}
                               alt={buildResultAlt(result)}
                               className="absolute inset-0 group-hover:scale-125 transition-transform duration-700 ease-out"
                               showBadge={true}
                               showIndicators={true}
                             />
-                          ) : result.image_url ? (
+                          ) : (
                             <Image
-                              src={result.image_url}
+                              src={allImages[0]}
                               alt={buildResultAlt(result)}
                               fill
                               className="object-cover group-hover:scale-125 transition-transform duration-700 ease-out"
                             />
-                          ) : null}
+                          )}
                           
                           {/* ホバー時のオーバーレイ */}
                           <div className="absolute inset-0 bg-gradient-to-t from-primary-900/80 via-primary-600/40 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500 z-20" />
@@ -313,7 +318,8 @@ export default async function ResultsPage({
                     </div>
                   </Link>
                 </AnimatedSection>
-              ))}
+                )
+              })}
             </div>
 
             {totalPages > 1 && (
