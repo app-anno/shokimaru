@@ -10,6 +10,8 @@ interface ImageCarouselProps {
   autoPlayInterval?: number
   showIndicators?: boolean
   showBadge?: boolean
+  // ビューポート上部で使う場合のみtrue（下部でpriorityを付けるとLCP画像と帯域を奪い合う）
+  priorityFirstImage?: boolean
 }
 
 export default function ImageCarousel({
@@ -18,7 +20,8 @@ export default function ImageCarousel({
   className = '',
   autoPlayInterval = 3000,
   showIndicators = true,
-  showBadge = true
+  showBadge = true,
+  priorityFirstImage = false
 }: ImageCarouselProps) {
   const [currentIndex, setCurrentIndex] = useState(0)
   const [isHovered, setIsHovered] = useState(false)
@@ -71,7 +74,7 @@ export default function ImageCarousel({
               fill
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
               className="object-cover"
-              priority={index === 0}
+              priority={priorityFirstImage && index === 0}
             />
           </div>
         ))}

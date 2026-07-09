@@ -70,8 +70,9 @@ export default async function Home() {
           </div>
         </div>
 
+        {/* ヒーローはLCP対象のためJS発火のAnimatedSectionを使わず、CSSアニメーションのみで表示する */}
         <div className="container-custom text-center relative z-20">
-          <AnimatedSection animation="fade" delay={300}>
+          <div className="animate-fade-in" style={{ animationDelay: '300ms', animationFillMode: 'both' }}>
             <div className="animate-float">
               <h1 className="text-5xl md:text-7xl font-bold mb-6 text-white text-shadow-lg">
                 萩湾で最高の釣り体験を！
@@ -83,8 +84,8 @@ export default async function Home() {
                 海の上で楽しむ特別な釣り体験をあなたに
               </p>
             </div>
-          </AnimatedSection>
-          <AnimatedSection animation="slide-up" delay={600}>
+          </div>
+          <div className="animate-slide-in-up" style={{ animationDelay: '600ms', animationFillMode: 'both' }}>
             <div className="flex flex-col sm:flex-row gap-4 justify-center mt-8">
               <Button href="/contact" size="lg" className="animate-pulse-slow shadow-2xl hover:shadow-3xl hover:scale-110 transform transition-all duration-300">
                 今すぐ予約する
@@ -93,7 +94,7 @@ export default async function Home() {
                 釣果を見る
               </Button>
             </div>
-          </AnimatedSection>
+          </div>
         </div>
       </section>
 
@@ -542,6 +543,8 @@ export default async function Home() {
                         className="w-full h-[400px] md:h-[500px]"
                         frameBorder="0"
                         scrolling="no"
+                        loading="lazy"
+                        title="翔葵丸 予約状況カレンダー"
                       ></iframe>
                     </div>
                   )}

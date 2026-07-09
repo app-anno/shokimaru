@@ -1,5 +1,6 @@
 import Script from 'next/script'
-import { SHARED_PRICE, CHARTER_PRICE, MAX_PASSENGERS, PRICE_RANGE, RENTAL_TACKLE_PRICE_DISPLAY } from '@/lib/constants/pricing'
+import { SHARED_PRICE, CHARTER_PRICE, MAX_PASSENGERS, PRICE_RANGE } from '@/lib/constants/pricing'
+import { FAQ_ITEMS } from '@/lib/constants/faq'
 
 interface LocalBusinessProps {
   type?: 'LocalBusiness' | 'TouristAttraction' | 'BoatRentalService'
@@ -188,48 +189,14 @@ export function FAQStructuredData() {
   const faqData = {
     '@context': 'https://schema.org',
     '@type': 'FAQPage',
-    mainEntity: [
-      {
-        '@type': 'Question',
-        name: '初心者でも大丈夫ですか？',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: 'はい、大丈夫です！初心者の方大歓迎です。道具の使い方から釣り方まで、船長が丁寧にご指導いたします。'
-        }
-      },
-      {
-        '@type': 'Question',
-        name: '何を持っていけばいいですか？',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: `基本的に手ぶらでOKです！釣り道具はレンタル（${RENTAL_TACKLE_PRICE_DISPLAY}）できます。防寒着、タオル、飲み物があると便利です。`
-        }
-      },
-      {
-        '@type': 'Question',
-        name: '支払い方法は？',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: '現金でのお支払いをお願いしています。当日、乗船前にお支払いください。領収証が必要な場合は事前にお伝えください。'
-        }
-      },
-      {
-        '@type': 'Question',
-        name: '予約はいつまでにすればいいですか？',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: '前日までにご予約いただければ大丈夫です。ただし、満員になることもありますので、お早めのご予約をおすすめします。'
-        }
-      },
-      {
-        '@type': 'Question',
-        name: '天候が悪い場合は？',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: '安全を最優先に、天候や海況により出船を中止する場合があります。中止の場合は前日または当日にご連絡し、料金は全額返金いたします。'
-        }
+    mainEntity: FAQ_ITEMS.map((item) => ({
+      '@type': 'Question',
+      name: item.question,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: item.answer
       }
-    ]
+    }))
   }
 
   return (

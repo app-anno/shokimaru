@@ -108,6 +108,7 @@ export default async function ResultDetailPage({
                   showBadge={false}
                   showIndicators={true}
                   autoPlayInterval={4000}
+                  priorityFirstImage
                 />
               ) : (
                 <Image

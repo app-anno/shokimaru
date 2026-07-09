@@ -28,6 +28,8 @@ export default function OptimizedImage({
 }: OptimizedImageProps) {
   const [isLoading, setIsLoading] = useState(true)
   const [hasError, setHasError] = useState(false)
+  // priority画像（LCP候補）はハイドレーション完了を待たず即時に鮮明表示する
+  const showBlur = isLoading && !priority
 
   if (hasError) {
     return (
@@ -63,7 +65,7 @@ export default function OptimizedImage({
           quality={quality}
           priority={priority}
           className={`duration-700 ease-in-out ${className} ${
-            isLoading ? 'scale-105 blur-lg' : 'scale-100 blur-0'
+            showBlur ? 'scale-105 blur-lg' : 'scale-100 blur-0'
           }`}
           onLoad={() => setIsLoading(false)}
           onError={(e) => {
@@ -81,7 +83,7 @@ export default function OptimizedImage({
           quality={quality}
           priority={priority}
           className={`duration-700 ease-in-out ${
-            isLoading ? 'scale-105 blur-lg' : 'scale-100 blur-0'
+            showBlur ? 'scale-105 blur-lg' : 'scale-100 blur-0'
           }`}
           onLoad={() => setIsLoading(false)}
           onError={(e) => {

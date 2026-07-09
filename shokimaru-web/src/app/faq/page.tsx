@@ -5,95 +5,9 @@ import Card from "@/components/Card";
 import Button from "@/components/Button";
 import AnimatedSection from "@/components/AnimatedSection";
 import FloatingElements from "@/components/FloatingElements";
+import { FAQ_ITEMS, type FaqItem } from "@/lib/constants/faq";
 
-interface FAQItem {
-  question: string;
-  answer: string;
-  category: "beginner" | "equipment" | "reservation" | "other";
-}
-
-const faqData: FAQItem[] = [
-  {
-    category: "beginner",
-    question: "釣りが初めてでも大丈夫ですか？",
-    answer: "はい、もちろん大丈夫です！船長が釣り方から仕掛けの使い方まで丁寧にレクチャーします。初心者の方でも安心して釣りを楽しんでいただけます。",
-  },
-  {
-    category: "beginner",
-    question: "子供も参加できますか？",
-    answer: "お子様も大歓迎です。ただし、安全のため小学生以下のお子様は保護者同伴でお願いします。ライフジャケットは子供用もご用意しています。",
-  },
-  {
-    category: "beginner",
-    question: "船酔いが心配です。",
-    answer: "船酔いが心配な方は、事前に酔い止め薬の服用をおすすめします。また、体調が優れない場合は無理をせず、早めに船長にお知らせください。",
-  },
-  {
-    category: "equipment",
-    question: "何を持っていけばいいですか？",
-    answer: "基本的な持ち物：タオル、飲み物、軽食、日焼け止め、帽子、酔い止め（必要な方）。釣り道具はレンタル可能ですが、お持ちの方はご持参いただいても構いません。",
-  },
-  {
-    category: "equipment",
-    question: "服装はどうすればいいですか？",
-    answer: "動きやすく、濡れても良い服装でお越しください。季節に応じて防寒着もご用意ください。滑りにくい靴（スニーカーなど）がおすすめです。",
-  },
-  {
-    category: "equipment",
-    question: "釣った魚の処理はしてもらえますか？",
-    answer: "申し訳ございませんが、現在は魚の処理サービスは行っておりません。クーラーボックスをご持参いただければ、氷はご用意できます。",
-  },
-  {
-    category: "reservation",
-    question: "予約はいつまでにすればいいですか？",
-    answer: "できるだけ早めのご予約をおすすめしますが、空きがあれば前日でも承ります。人気の日程は早めに埋まることがありますので、お早めにご連絡ください。",
-  },
-  {
-    category: "reservation",
-    question: "キャンセル料はかかりますか？",
-    answer: "現在、キャンセルポリシーは設定しておりませんが、予約をキャンセルされる場合は早めにご連絡ください。天候不良による中止の場合、キャンセル料はいただきません。",
-  },
-  {
-    category: "reservation",
-    question: "悪天候の場合はどうなりますか？",
-    answer: "出航又は欠航の判断は、前日に天候の状況を見極めて船長の判断で決定し、ご連絡します。危険を伴う恐れがある無理な出船は致しておりません。",
-  },
-  {
-    category: "other",
-    question: "駐車場はありますか？",
-    answer: "駐車場の詳細については、予約時にご案内いたします。港周辺の駐車可能な場所をお伝えしますので、お問い合わせください。",
-  },
-  {
-    category: "other",
-    question: "トイレはありますか？",
-    answer: "船にはトイレが設置されています。また、出船前に港のトイレもご利用いただけます。",
-  },
-  {
-    category: "other",
-    question: "支払い方法は？",
-    answer: "現金でのお支払いをお願いしています。当日、乗船前にお支払いください。",
-  },
-  {
-    category: "other",
-    question: "集合時間は？",
-    answer: "出船時間の10分前には必ず玉江漁港にお越しください。",
-  },
-  {
-    category: "beginner",
-    question: "安全面での注意事項は？",
-    answer: "ライフジャケットは必ず着用をお願いします。また、船べり（船の外板のてすり上）に座らないでください。遊漁船の運行に関しては船長の判断に従ってください。",
-  },
-  {
-    category: "other",
-    question: "船内でのマナーは？",
-    answer: "タバコを海上や船のデッキに捨てないでください。ゴミは各自お持ち帰りください。魚の血でデッキが汚れましたら洗い流してください。船内での移動、喫煙、飲食、飲酒等は船長の指示に従ってください。",
-  },
-  {
-    category: "other",
-    question: "乗船をお断りする場合はありますか？",
-    answer: "泥酔状態での乗船、乗船中の危険行為は禁止します。体調不良の方は、乗船をお断りする場合があります。",
-  },
-];
+const faqData: FaqItem[] = FAQ_ITEMS;
 
 const categories = [
   { id: "all", label: "すべて" },
@@ -103,14 +17,14 @@ const categories = [
   { id: "other", label: "その他" },
 ];
 
-const sectionHeadings: Record<FAQItem["category"], string> = {
+const sectionHeadings: Record<FaqItem["category"], string> = {
   beginner: "初心者の方からよくいただく質問",
   equipment: "持ち物・装備に関するご質問",
   reservation: "ご予約・キャンセルについて",
   other: "その他のご質問",
 };
 
-const categoryOrder: FAQItem["category"][] = ["beginner", "equipment", "reservation", "other"];
+const categoryOrder: FaqItem["category"][] = ["beginner", "equipment", "reservation", "other"];
 
 export default function FAQPage() {
   const [selectedCategory, setSelectedCategory] = useState("all");
@@ -118,8 +32,8 @@ export default function FAQPage() {
 
   const visibleCategories = selectedCategory === "all"
     ? categoryOrder
-    : (categoryOrder.includes(selectedCategory as FAQItem["category"])
-        ? [selectedCategory as FAQItem["category"]]
+    : (categoryOrder.includes(selectedCategory as FaqItem["category"])
+        ? [selectedCategory as FaqItem["category"]]
         : []);
 
   const groupedFAQ = visibleCategories.map((category) => ({
