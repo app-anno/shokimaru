@@ -90,21 +90,21 @@ export default function GuidePage() {
                     ティップラン
                   </div>
                 </div>
-                <h3 className="text-2xl font-bold mb-4 text-primary-600">ナイトティップラン</h3>
+                <h3 className="text-2xl font-bold mb-4 text-primary-600">ナイト／デイティップラン</h3>
                 <div className="space-y-3">
                   <p className="text-gray-700 text-sm">
-                    夜の海でエギを使ってイカを狙う釣り方。竿先（ティップ）の動きでアタリを取ります。
+                    エギを使ってイカを狙う釣り方。夜のナイト便と朝のデイ便があり、竿先（ティップ）の動きでアタリを取ります。
                   </p>
                   <div className="bg-primary-50 p-3 rounded-lg">
                     <p className="font-semibold text-primary-700 mb-2 text-sm">対象魚</p>
                     <p className="text-xs text-gray-700">
-                      ケンサキイカ、スルメイカ
+                      アオリイカ
                     </p>
                   </div>
                   <div className="bg-secondary-50 p-3 rounded-lg">
                     <p className="font-semibold text-secondary-700 mb-2 text-sm">シーズン</p>
                     <p className="text-xs text-gray-700">
-                      6月〜12月（ケンサキイカ：6-9月、スルメイカ：10-12月）
+                      4月〜6月・10月〜12月
                     </p>
                   </div>
                 </div>
@@ -133,7 +133,7 @@ export default function GuidePage() {
                   <div className="bg-secondary-50 p-3 rounded-lg">
                     <p className="font-semibold text-secondary-700 mb-2 text-sm">シーズン</p>
                     <p className="text-xs text-gray-700">
-                      6月〜9月（ケンサキイカシーズン）
+                      5月〜9月（ケンサキイカシーズン）
                     </p>
                   </div>
                   <div className="bg-accent-50 p-3 rounded-lg">
@@ -255,7 +255,7 @@ export default function GuidePage() {
           <AnimatedSection animation="zoom">
             <h2 className="text-3xl font-bold text-center mb-12 title-decorated">
               <span className="bg-gradient-to-r from-primary-600 to-secondary-600 text-white px-6 py-3 rounded-full inline-block">
-                萩湾ナイトティップランの釣り方と仕掛け
+                萩湾ティップランの釣り方と仕掛け
               </span>
             </h2>
           </AnimatedSection>
@@ -268,7 +268,7 @@ export default function GuidePage() {
                 <p className="text-gray-700 mb-4">
                   ティップランエギングは、ボートからエギ（イカ用のルアー）を使ってイカを狙う釣り方です。
                   竿先（ティップ）の動きでイカのアタリを感じ取ることから「ティップラン」と呼ばれます。
-                  翔葵丸では夜間に行う「ナイトティップラン」でケンサキイカ・スルメイカを狙います。
+                  翔葵丸では夜の「ナイトティップラン」と朝の「デイティップラン」でアオリイカを狙います。
                 </p>
                 <div className="bg-gray-50 p-4 rounded-lg">
                   <p className="font-semibold text-gray-700 mb-2">💡 夜釣りの魅力</p>
@@ -394,8 +394,8 @@ export default function GuidePage() {
                   <div className="bg-accent-50 p-4 rounded-lg">
                     <p className="font-semibold text-accent-700 mb-2">初心者の方に最適！</p>
                     <p className="text-sm text-gray-700 mb-3">
-                      イカメタル・オモリグ専用のレンタルタックルをご用意しています。
-                      道具を持っていない方でも、手ぶらで気軽にケンサキイカ釣りが楽しめます。
+                      全プランでレンタルタックルをご用意しています。
+                      道具を持っていない方でも、手ぶらで気軽に釣りが楽しめます。
                     </p>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                       <div>
@@ -404,14 +404,14 @@ export default function GuidePage() {
                       </div>
                       <div>
                         <p className="text-xs text-gray-600 font-semibold mb-1">利用期間</p>
-                        <p className="text-lg font-bold text-primary-600">6月〜9月のみ</p>
+                        <p className="text-lg font-bold text-primary-600">全プラン</p>
                       </div>
                     </div>
                   </div>
                   <div className="bg-gray-50 p-4 rounded-lg">
                     <p className="font-semibold text-gray-700 mb-2">セット内容</p>
                     <ul className="space-y-1 text-sm text-gray-700">
-                      <li>• イカメタル専用ロッド</li>
+                      <li>• 釣り方に合ったロッド</li>
                       <li>• 電動リール（または手巻きリール）</li>
                       <li>• 基本の仕掛け一式</li>
                       <li>• 使い方の丁寧なレクチャー付き</li>
@@ -539,7 +539,7 @@ export default function GuidePage() {
               <Card className="h-full bg-gradient-to-br from-pink-50 to-white border-l-4 border-pink-400">
                 <h3 className="text-lg font-bold mb-2 text-pink-700">カップル・女子旅にも</h3>
                 <p className="text-sm text-gray-700">
-                  最大8名乗船・少人数制なのでプライベート感もしっかり。萩観光と組み合わせた特別な思い出作りにもおすすめです。
+                  最大6〜8名乗船（プランにより異なります）の少人数制なのでプライベート感もしっかり。萩観光と組み合わせた特別な思い出作りにもおすすめです。
                 </p>
               </Card>
             </AnimatedSection>
@@ -560,12 +560,12 @@ export default function GuidePage() {
         <div className="container-custom">
           <AnimatedSection animation="slide-down">
             <h2 className="text-3xl font-bold text-center mb-4 title-decorated">
-              萩湾イカ釣りの月別シーズンカレンダー（6〜10月）
+              萩湾イカ釣りの月別シーズンカレンダー（5〜10月）
             </h2>
           </AnimatedSection>
           <AnimatedSection animation="fade" delay={200}>
             <p className="text-center text-gray-600 max-w-3xl mx-auto mb-12">
-              萩湾のケンサキイカは6月から始まり、7〜8月にハイシーズンを迎えます。月ごとの傾向と狙い目をまとめました。
+              萩湾のケンサキイカは5月から始まり、7〜8月にハイシーズンを迎えます。月ごとの傾向と狙い目をまとめました。
             </p>
           </AnimatedSection>
 
@@ -581,35 +581,41 @@ export default function GuidePage() {
                   </tr>
                 </thead>
                 <tbody className="text-sm text-gray-700">
+                  <tr className="border-b border-gray-100 bg-primary-50/40">
+                    <td className="px-4 py-3 font-bold text-primary-700">5月</td>
+                    <td className="px-4 py-3">ケンサキイカ／アオリイカ</td>
+                    <td className="px-4 py-3">イカメタル開幕／ティップラン</td>
+                    <td className="px-4 py-3">シーズン開幕</td>
+                  </tr>
                   <tr className="border-b border-gray-100">
                     <td className="px-4 py-3 font-bold text-primary-700">6月</td>
-                    <td className="px-4 py-3">ケンサキイカ</td>
-                    <td className="px-4 py-3">ナイトティップラン／イカメタル開幕</td>
+                    <td className="px-4 py-3">ケンサキイカ／アオリイカ</td>
+                    <td className="px-4 py-3">イカメタル／オモリグ／ティップラン</td>
                     <td className="px-4 py-3">小〜中型中心、数釣り期</td>
                   </tr>
                   <tr className="border-b border-gray-100 bg-primary-50/40">
                     <td className="px-4 py-3 font-bold text-primary-700">7月</td>
                     <td className="px-4 py-3">ケンサキイカ</td>
-                    <td className="px-4 py-3">ナイトティップラン／イカメタル／オモリグ</td>
+                    <td className="px-4 py-3">イカメタル／オモリグ</td>
                     <td className="px-4 py-3">ハイシーズン突入、サイズUP</td>
                   </tr>
                   <tr className="border-b border-gray-100">
                     <td className="px-4 py-3 font-bold text-primary-700">8月</td>
                     <td className="px-4 py-3">ケンサキイカ（最盛期）</td>
-                    <td className="px-4 py-3">ナイトティップラン／イカメタル／オモリグ</td>
+                    <td className="px-4 py-3">イカメタル／オモリグ</td>
                     <td className="px-4 py-3">大型混じり、数・型ともに期待大</td>
                   </tr>
                   <tr className="border-b border-gray-100 bg-primary-50/40">
                     <td className="px-4 py-3 font-bold text-primary-700">9月</td>
                     <td className="px-4 py-3">ケンサキイカ／スルメイカ走り</td>
-                    <td className="px-4 py-3">ナイトティップラン／イカメタル</td>
+                    <td className="px-4 py-3">イカメタル／オモリグ</td>
                     <td className="px-4 py-3">大型残り＋スルメイカの可能性</td>
                   </tr>
                   <tr>
                     <td className="px-4 py-3 font-bold text-primary-700">10月</td>
-                    <td className="px-4 py-3">スルメイカ／秋イカ</td>
-                    <td className="px-4 py-3">ナイトティップラン中心</td>
-                    <td className="px-4 py-3">スルメイカ本格化、深場狙いに移行</td>
+                    <td className="px-4 py-3">アオリイカ（秋イカ）</td>
+                    <td className="px-4 py-3">ティップラン</td>
+                    <td className="px-4 py-3">秋のティップランシーズン開幕</td>
                   </tr>
                 </tbody>
               </table>

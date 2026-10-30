@@ -141,7 +141,7 @@ export default async function ResultsPage({
                           </div>
                           
                           {/* 日付ラベル */}
-                          <div className="absolute top-4 left-4 z-30">
+                          <div className="absolute top-4 left-4 z-30 space-y-2">
                             <div className="bg-white/95 backdrop-blur-sm rounded-xl px-4 py-2 shadow-xl">
                               <p className="text-lg font-medium text-gray-800">
                                 {new Date(result.date).toLocaleDateString('ja-JP', {
@@ -151,6 +151,13 @@ export default async function ResultsPage({
                                 })}
                               </p>
                             </div>
+                            {(result.fishing_method || result.fish_species || typeof result.max_count === 'number') && (
+                              <div className="bg-white/95 backdrop-blur-sm rounded-xl px-4 py-2 shadow-xl text-xs text-gray-800 space-y-0.5">
+                                {result.fishing_method && <p>釣法：<span className="font-bold">{result.fishing_method}</span></p>}
+                                {result.fish_species && <p>魚種：<span className="font-bold">{result.fish_species}</span></p>}
+                                {typeof result.max_count === 'number' && <p>最大：<span className="font-bold">{result.max_count}枚</span></p>}
+                              </div>
+                            )}
                           </div>
                           
                           {/* 釣果詳細（画像上に配置） */}

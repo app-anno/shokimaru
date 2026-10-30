@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { createClient } from '@/lib/supabase/client'
-import { TIDE_TYPES, WEATHER_TYPES } from '@/lib/constants/fishing'
+import { FISHING_METHODS, TIDE_TYPES, WEATHER_TYPES } from '@/lib/constants/fishing'
 import { uploadImage } from '@/lib/supabase/storage-client'
 import { Database } from '@/types/database'
 import { useToast } from '@/lib/hooks/useToast'
@@ -77,6 +77,9 @@ export function FishingResultForm({ defaultValues, isEdit = false }: FishingResu
         catch_count: parseInt(formData.get('catch_count') as string),
         size: formData.get('size') as string || null,
         participants_count: formData.get('participants_count') ? parseInt(formData.get('participants_count') as string) : null,
+        fishing_method: formData.get('fishing_method') as string || null,
+        fish_species: formData.get('fish_species') as string || null,
+        max_count: formData.get('max_count') ? parseInt(formData.get('max_count') as string) : null,
         image_url: mainImageUrl,
         is_public: formData.get('is_public') === 'true',
       }
@@ -158,6 +161,54 @@ export function FishingResultForm({ defaultValues, isEdit = false }: FishingResu
             id="date"
             required
             defaultValue={defaultValues?.date || new Date().toISOString().split('T')[0]}
+            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-sky-500 focus:ring-sky-500 sm:text-sm"
+          />
+        </div>
+
+        <div>
+          <label htmlFor="fishing_method" className="block text-sm font-medium text-gray-700">
+            釣法
+          </label>
+          <select
+            name="fishing_method"
+            id="fishing_method"
+            defaultValue={defaultValues?.fishing_method || ''}
+            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-sky-500 focus:ring-sky-500 sm:text-sm"
+          >
+            <option value="">選択してください</option>
+            {FISHING_METHODS.map((method) => (
+              <option key={method.value} value={method.value}>
+                {method.label}
+              </option>
+            ))}
+          </select>
+        </div>
+
+        <div>
+          <label htmlFor="fish_species" className="block text-sm font-medium text-gray-700">
+            魚種
+          </label>
+          <input
+            type="text"
+            name="fish_species"
+            id="fish_species"
+            placeholder="例: ケンサキイカ"
+            defaultValue={defaultValues?.fish_species || ''}
+            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-sky-500 focus:ring-sky-500 sm:text-sm"
+          />
+        </div>
+
+        <div>
+          <label htmlFor="max_count" className="block text-sm font-medium text-gray-700">
+            最大枚数
+          </label>
+          <input
+            type="number"
+            name="max_count"
+            id="max_count"
+            min="0"
+            placeholder="例: 6"
+            defaultValue={defaultValues?.max_count ?? ''}
             className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-sky-500 focus:ring-sky-500 sm:text-sm"
           />
         </div>

@@ -14,7 +14,7 @@ import { getBookingCalendarData } from "@/lib/google-calendar";
 import { buildResultAlt } from "@/lib/utils";
 import Link from "next/link";
 import { Metadata } from 'next';
-import { SHARED_PRICE_DISPLAY, CHARTER_PRICE_DISPLAY, MAX_PASSENGERS, MAX_PASSENGERS_DISPLAY, RENTAL_TACKLE_PRICE_DISPLAY } from '@/lib/constants/pricing';
+import { SHARED_PRICE_DISPLAY, CHARTER_PRICE_DISPLAY, MAX_PASSENGERS, MAX_PASSENGERS_DISPLAY, SLJ_CHARTER_PRICE_DISPLAY, SLJ_MAX_PASSENGERS, SLJ_MAX_PASSENGERS_DISPLAY, DAY_TIP_RUN_CHARTER_PRICE_DISPLAY, DAY_TIP_RUN_MAX_PASSENGERS, DAY_TIP_RUN_MAX_PASSENGERS_DISPLAY, RENTAL_TACKLE_PRICE_DISPLAY } from '@/lib/constants/pricing';
 
 export const metadata: Metadata = {
   title: "翔葵丸 - 萩市玉江港の釣り船 | SLJ・ナイトティップラン・イカ釣り | 初心者・女性大歓迎",
@@ -114,7 +114,7 @@ export default async function Home() {
                 </span>
               </div>
               <h2 className="text-2xl md:text-4xl font-bold mb-3 animate-bounce-slow text-[#1d242f]">
-                スーパーライトジギング・ナイトティップラン
+                スーパーライトジギング・ティップラン
               </h2>
               <p className="text-xl md:text-2xl font-bold mb-4 text-[#1d242f]">
                 受付開始しました！
@@ -172,6 +172,15 @@ export default async function Home() {
                         <p className="text-sm text-gray-500">
                           {new Date(result.date).toLocaleDateString('ja-JP')}
                         </p>
+                        {(result.fishing_method || result.fish_species || typeof result.max_count === 'number') && (
+                          <p className="text-sm text-gray-600">
+                            {[
+                              result.fishing_method,
+                              result.fish_species,
+                              typeof result.max_count === 'number' ? `最大${result.max_count}枚` : null,
+                            ].filter(Boolean).join('・')}
+                          </p>
+                        )}
                         <div className="flex items-baseline justify-between">
                           <span className="text-2xl font-bold text-primary-600 animate-pulse-slow">
                             {result.catch_count}匹
@@ -247,8 +256,8 @@ export default async function Home() {
                 <h3 className="text-2xl font-bold mb-2 inline-block bg-gradient-to-r from-primary-600 to-secondary-600 text-white px-6 py-2 rounded-full">
                   スーパーライトジギング（SLJ）
                 </h3>
-                <p className="text-gray-600 mt-3 text-lg">朝 5:30 〜 13:00前後</p>
-                <p className="text-gray-600 text-sm mt-1">対象魚：キジハタ・カサゴ・マダイ等</p>
+                <p className="text-gray-600 mt-3 text-lg">朝 5:30 〜 12:00前後</p>
+                <p className="text-gray-600 text-sm mt-1">対象魚：キジハタ・カサゴ・マダイ・青物等</p>
               </div>
             </AnimatedSection>
 
@@ -269,7 +278,7 @@ export default async function Home() {
                   <ul className="text-left space-y-2 mb-6 text-sm">
                     <li className="flex items-center animate-slide-in-right">
                       <span className="text-primary-500 mr-2">✓</span>
-                      {`最大乗船人数：${MAX_PASSENGERS_DISPLAY}`}
+                      {`最大乗船人数：${SLJ_MAX_PASSENGERS_DISPLAY}`}
                     </li>
                     <li className="flex items-center animate-slide-in-right" style={{ animationDelay: '100ms' }}>
                       <span className="text-primary-500 mr-2">✓</span>
@@ -277,7 +286,7 @@ export default async function Home() {
                     </li>
                     <li className="flex items-center animate-slide-in-right" style={{ animationDelay: '200ms' }}>
                       <span className="text-primary-500 mr-2">✓</span>
-                      レンタルタックルなし
+                      {`レンタルタックル あり（+${RENTAL_TACKLE_PRICE_DISPLAY}）`}
                     </li>
                   </ul>
                   <Button href="/pricing" fullWidth className="animate-bounce-slow">
@@ -300,14 +309,14 @@ export default async function Home() {
                   </div>
                   <div className="mb-6">
                     <p className="text-5xl font-bold text-gradient animate-pulse-slow">
-                      {CHARTER_PRICE_DISPLAY}
+                      {SLJ_CHARTER_PRICE_DISPLAY}
                       <span className="text-lg text-gray-600 font-normal">/艇</span>
                     </p>
                   </div>
                   <ul className="text-left space-y-2 mb-6 text-sm">
                     <li className="flex items-center animate-slide-in-left">
                       <span className="text-primary-500 mr-2">✓</span>
-                      {`最大${MAX_PASSENGERS}名まで乗船可能`}
+                      {`最大${SLJ_MAX_PASSENGERS}名まで乗船可能`}
                     </li>
                     <li className="flex items-center animate-slide-in-left" style={{ animationDelay: '100ms' }}>
                       <span className="text-primary-500 mr-2">✓</span>
@@ -327,14 +336,14 @@ export default async function Home() {
           </div>
 
           {/* ナイトティップラン */}
-          <div>
+          <div className="mb-12">
             <AnimatedSection animation="fade">
               <div className="text-center mb-6">
                 <h3 className="text-2xl font-bold mb-2 inline-block bg-gradient-to-r from-primary-600 to-secondary-600 text-white px-6 py-2 rounded-full">
                   ナイトティップラン
                 </h3>
                 <p className="text-gray-600 mt-3 text-lg">夕方 17:30 〜 24:00前後</p>
-                <p className="text-gray-600 text-sm mt-1">対象魚：ケンサキイカ・アオリイカ</p>
+                <p className="text-gray-600 text-sm mt-1">対象魚：アオリイカ</p>
               </div>
             </AnimatedSection>
 
@@ -363,7 +372,7 @@ export default async function Home() {
                     </li>
                     <li className="flex items-center animate-slide-in-right" style={{ animationDelay: '200ms' }}>
                       <span className="text-primary-500 mr-2">✓</span>
-                      レンタルタックルなし
+                      {`レンタルタックル あり（+${RENTAL_TACKLE_PRICE_DISPLAY}）`}
                     </li>
                   </ul>
                   <Button href="/pricing" fullWidth className="animate-bounce-slow">
@@ -412,6 +421,92 @@ export default async function Home() {
             </div>
           </div>
 
+          {/* デイティップラン */}
+          <div>
+            <AnimatedSection animation="fade">
+              <div className="text-center mb-6">
+                <h3 className="text-2xl font-bold mb-2 inline-block bg-gradient-to-r from-primary-600 to-secondary-600 text-white px-6 py-2 rounded-full">
+                  デイティップラン
+                </h3>
+                <p className="text-gray-600 mt-3 text-lg">朝 5:30 〜 12:00前後</p>
+                <p className="text-gray-600 text-sm mt-1">対象魚：アオリイカ</p>
+              </div>
+            </AnimatedSection>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+              {/* デイティップラン 乗り合いプラン */}
+              <AnimatedSection animation="slide-left">
+                <Card className="text-center hover:shadow-2xl transition-all duration-300 group hover:scale-105">
+                  <div className="mb-6">
+                    <h4 className="text-xl font-bold mb-2">乗り合いプラン</h4>
+                    <p className="text-gray-600">他のお客様と一緒に出船</p>
+                  </div>
+                  <div className="mb-6">
+                    <p className="text-5xl font-bold text-gradient animate-pulse-slow">
+                      {SHARED_PRICE_DISPLAY}
+                      <span className="text-lg text-gray-600 font-normal">/人</span>
+                    </p>
+                  </div>
+                  <ul className="text-left space-y-2 mb-6 text-sm">
+                    <li className="flex items-center animate-slide-in-right">
+                      <span className="text-primary-500 mr-2">✓</span>
+                      {`最大乗船人数：${DAY_TIP_RUN_MAX_PASSENGERS_DISPLAY}`}
+                    </li>
+                    <li className="flex items-center animate-slide-in-right" style={{ animationDelay: '100ms' }}>
+                      <span className="text-primary-500 mr-2">✓</span>
+                      初心者・女性も大歓迎
+                    </li>
+                    <li className="flex items-center animate-slide-in-right" style={{ animationDelay: '200ms' }}>
+                      <span className="text-primary-500 mr-2">✓</span>
+                      {`レンタルタックル あり（+${RENTAL_TACKLE_PRICE_DISPLAY}）`}
+                    </li>
+                  </ul>
+                  <Button href="/pricing" fullWidth className="animate-bounce-slow">
+                    詳細を見る
+                  </Button>
+                </Card>
+              </AnimatedSection>
+
+              {/* デイティップラン チャータープラン */}
+              <AnimatedSection animation="slide-right">
+                <Card className="text-center border-2 border-primary-400 relative overflow-hidden hover:shadow-2xl transition-all duration-300 group hover:scale-105">
+                  <div className="absolute -top-1 -right-1">
+                    <div className="bg-primary-600 text-white px-4 py-1 text-sm font-bold rounded-bl-lg animate-wiggle">
+                      人気！
+                    </div>
+                  </div>
+                  <div className="mb-6">
+                    <h4 className="text-xl font-bold mb-2">チャータープラン</h4>
+                    <p className="text-gray-600">船を貸し切りでご利用</p>
+                  </div>
+                  <div className="mb-6">
+                    <p className="text-5xl font-bold text-gradient animate-pulse-slow">
+                      {DAY_TIP_RUN_CHARTER_PRICE_DISPLAY}
+                      <span className="text-lg text-gray-600 font-normal">/艇</span>
+                    </p>
+                  </div>
+                  <ul className="text-left space-y-2 mb-6 text-sm">
+                    <li className="flex items-center animate-slide-in-left">
+                      <span className="text-primary-500 mr-2">✓</span>
+                      {`最大${DAY_TIP_RUN_MAX_PASSENGERS}名まで乗船可能`}
+                    </li>
+                    <li className="flex items-center animate-slide-in-left" style={{ animationDelay: '100ms' }}>
+                      <span className="text-primary-500 mr-2">✓</span>
+                      プライベート空間
+                    </li>
+                    <li className="flex items-center animate-slide-in-left" style={{ animationDelay: '200ms' }}>
+                      <span className="text-primary-500 mr-2">✓</span>
+                      グループ・家族に最適
+                    </li>
+                  </ul>
+                  <Button href="/pricing" variant="primary" fullWidth className="animate-pulse-slow">
+                    詳細を見る
+                  </Button>
+                </Card>
+              </AnimatedSection>
+            </div>
+          </div>
+
           {/* イカメタル・オモリグ */}
           <div className="mt-12">
             <AnimatedSection animation="fade">
@@ -419,7 +514,8 @@ export default async function Home() {
                 <h3 className="text-2xl font-bold mb-2 inline-block bg-gradient-to-r from-primary-600 to-secondary-600 text-white px-6 py-2 rounded-full">
                   イカメタル・オモリグ
                 </h3>
-                <p className="text-gray-600 mt-3 text-lg">6月 〜 9月（ケンサキイカシーズン）</p>
+                <p className="text-gray-600 mt-3 text-lg">夕方 17:30 〜 24:00前後</p>
+                <p className="text-gray-600 text-sm mt-1">5月 〜 9月（ケンサキイカシーズン）</p>
                 <p className="text-gray-600 text-sm mt-1">対象魚：ケンサキイカ</p>
               </div>
             </AnimatedSection>

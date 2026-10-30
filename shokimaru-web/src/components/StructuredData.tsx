@@ -1,5 +1,5 @@
 import Script from 'next/script'
-import { SHARED_PRICE, CHARTER_PRICE, MAX_PASSENGERS, PRICE_RANGE } from '@/lib/constants/pricing'
+import { SHARED_PRICE, CHARTER_PRICE, MAX_PASSENGERS, SLJ_CHARTER_PRICE, SLJ_MAX_PASSENGERS, DAY_TIP_RUN_CHARTER_PRICE, DAY_TIP_RUN_MAX_PASSENGERS, PRICE_RANGE } from '@/lib/constants/pricing'
 import { FAQ_ITEMS } from '@/lib/constants/faq'
 
 interface LocalBusinessProps {
@@ -36,7 +36,7 @@ export function LocalBusinessStructuredData({ type = 'BoatRentalService' }: Loca
         dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
         opens: '05:30',
         closes: '24:00',
-        description: 'スーパーライトジギング（朝5:30〜13:00前後）、ナイトティップラン（夕方17:30〜24:00前後）'
+        description: 'スーパーライトジギング・デイティップラン（朝5:30〜12:00前後）、ナイトティップラン・イカメタル（夕方17:30〜24:00前後）'
       }
     ],
     sameAs: [
@@ -50,7 +50,7 @@ export function LocalBusinessStructuredData({ type = 'BoatRentalService' }: Loca
         {
           '@type': 'Offer',
           name: 'スーパーライトジギング（SLJ）乗り合いプラン',
-          description: 'キジハタ・カサゴ・マダイ等を狙うスーパーライトジギング。朝5:30〜13:00前後。初心者・女性も大歓迎。',
+          description: 'キジハタ・カサゴ・マダイ・青物等を狙うスーパーライトジギング。朝5:30〜12:00前後。初心者・女性も大歓迎。',
           price: `${SHARED_PRICE}`,
           priceCurrency: 'JPY',
           availability: 'https://schema.org/InStock',
@@ -60,8 +60,8 @@ export function LocalBusinessStructuredData({ type = 'BoatRentalService' }: Loca
         {
           '@type': 'Offer',
           name: 'スーパーライトジギング（SLJ）チャータープラン',
-          description: `SLJの船貸し切りプラン。最大${MAX_PASSENGERS}名まで乗船可能。プライベート空間で釣りを楽しめます。`,
-          price: `${CHARTER_PRICE}`,
+          description: `SLJの船貸し切りプラン。最大${SLJ_MAX_PASSENGERS}名まで乗船可能。プライベート空間で釣りを楽しめます。`,
+          price: `${SLJ_CHARTER_PRICE}`,
           priceCurrency: 'JPY',
           availability: 'https://schema.org/InStock',
           validFrom: '2024-10-01',
@@ -70,7 +70,7 @@ export function LocalBusinessStructuredData({ type = 'BoatRentalService' }: Loca
         {
           '@type': 'Offer',
           name: 'ナイトティップラン 乗り合いプラン',
-          description: 'ケンサキイカ・アオリイカを狙うナイトティップラン。夕方17:30〜24:00前後。初心者・女性も大歓迎。',
+          description: 'アオリイカを狙うナイトティップラン。夕方17:30〜24:00前後。初心者・女性も大歓迎。',
           price: `${SHARED_PRICE}`,
           priceCurrency: 'JPY',
           availability: 'https://schema.org/InStock',
@@ -89,23 +89,43 @@ export function LocalBusinessStructuredData({ type = 'BoatRentalService' }: Loca
         },
         {
           '@type': 'Offer',
-          name: 'イカメタル・オモリグ 乗り合いプラン',
-          description: 'ケンサキイカを狙うイカメタル・オモリグ。6月〜9月のケンサキイカシーズン限定。レンタルタックル利用可能。初心者・女性も大歓迎。',
+          name: 'デイティップラン 乗り合いプラン',
+          description: 'アオリイカを狙うデイティップラン。朝5:30〜12:00前後。初心者・女性も大歓迎。',
           price: `${SHARED_PRICE}`,
           priceCurrency: 'JPY',
           availability: 'https://schema.org/InStock',
-          validFrom: '2024-06-01',
+          validFrom: '2024-10-01',
+          category: 'デイティップラン乗合'
+        },
+        {
+          '@type': 'Offer',
+          name: 'デイティップラン チャータープラン',
+          description: `デイティップランの船貸し切りプラン。最大${DAY_TIP_RUN_MAX_PASSENGERS}名まで乗船可能。プライベート空間で釣りを楽しめます。`,
+          price: `${DAY_TIP_RUN_CHARTER_PRICE}`,
+          priceCurrency: 'JPY',
+          availability: 'https://schema.org/InStock',
+          validFrom: '2024-10-01',
+          category: 'デイティップランチャーター'
+        },
+        {
+          '@type': 'Offer',
+          name: 'イカメタル・オモリグ 乗り合いプラン',
+          description: 'ケンサキイカを狙うイカメタル・オモリグ。夕方17:30〜24:00前後。5月〜9月のケンサキイカシーズン限定。レンタルタックル利用可能。初心者・女性も大歓迎。',
+          price: `${SHARED_PRICE}`,
+          priceCurrency: 'JPY',
+          availability: 'https://schema.org/InStock',
+          validFrom: '2024-05-01',
           validThrough: '2024-09-30',
           category: 'イカメタル乗合'
         },
         {
           '@type': 'Offer',
           name: 'イカメタル・オモリグ チャータープラン',
-          description: `イカメタル・オモリグの船貸し切りプラン。最大${MAX_PASSENGERS}名まで乗船可能。プライベート空間で釣りを楽しめます。6月〜9月限定。`,
+          description: `イカメタル・オモリグの船貸し切りプラン。最大${MAX_PASSENGERS}名まで乗船可能。プライベート空間で釣りを楽しめます。5月〜9月限定。`,
           price: `${CHARTER_PRICE}`,
           priceCurrency: 'JPY',
           availability: 'https://schema.org/InStock',
-          validFrom: '2024-06-01',
+          validFrom: '2024-05-01',
           validThrough: '2024-09-30',
           category: 'イカメタルチャーター'
         }

@@ -21,6 +21,9 @@ export interface Database {
           image_url: string | null
           is_public: boolean
           participants_count: number | null
+          fishing_method: string | null
+          fish_species: string | null
+          max_count: number | null
           created_at: string
           updated_at: string
         }
@@ -35,6 +38,9 @@ export interface Database {
           image_url?: string | null
           is_public?: boolean
           participants_count?: number | null
+          fishing_method?: string | null
+          fish_species?: string | null
+          max_count?: number | null
           created_at?: string
           updated_at?: string
         }
@@ -49,6 +55,9 @@ export interface Database {
           image_url?: string | null
           is_public?: boolean
           participants_count?: number | null
+          fishing_method?: string | null
+          fish_species?: string | null
+          max_count?: number | null
           created_at?: string
           updated_at?: string
         }

@@ -127,6 +127,13 @@ export default async function ResultDetailPage({
               <h1 className="text-3xl font-bold text-gray-900 mb-2">
                 {formatDate(result.date)}の釣果
               </h1>
+              {(result.fishing_method || result.fish_species || typeof result.max_count === 'number') && (
+                <div className="flex flex-wrap items-center gap-x-4 gap-y-1 mb-2 text-gray-700">
+                  {result.fishing_method && <span>釣法：{result.fishing_method}</span>}
+                  {result.fish_species && <span>魚種：{result.fish_species}</span>}
+                  {typeof result.max_count === 'number' && <span>最大：{result.max_count}枚</span>}
+                </div>
+              )}
               <div className="flex items-center gap-4">
                 <span className="text-4xl font-bold text-sky-600">
                   {result.catch_count}匹

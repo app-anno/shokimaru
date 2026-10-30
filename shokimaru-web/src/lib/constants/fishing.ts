@@ -1,3 +1,10 @@
+// 釣法
+export const FISHING_METHODS = [
+  { value: "SLJ", label: "SLJ" },
+  { value: "ティップラン", label: "ティップラン" },
+  { value: "イカメタル", label: "イカメタル" },
+] as const;
+
 // 潮の種類
 export const TIDE_TYPES = [
   { value: "大潮", label: "大潮" },

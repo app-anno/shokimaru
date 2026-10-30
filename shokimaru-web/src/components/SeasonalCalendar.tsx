@@ -10,36 +10,33 @@ interface SeasonData {
   color: string
   bgColor: string
   icon: string
+  description: string
 }
 
 const seasons: SeasonData[] = [
   {
-    months: '6月〜9月',
+    months: '通年',
+    name: 'SLJ',
+    color: 'text-accent-600',
+    bgColor: 'bg-accent-100',
+    icon: '🐟',
+    description: '多彩な魚種との出会い'
+  },
+  {
+    months: '4月〜6月・10月〜12月',
+    name: 'ティップラン',
+    color: 'text-secondary-600',
+    bgColor: 'bg-secondary-100',
+    icon: '🎣',
+    description: '春と秋のアオリイカシーズン'
+  },
+  {
+    months: '5月〜9月',
     name: 'ケンサキイカ',
     color: 'text-primary-600',
     bgColor: 'bg-primary-100',
-    icon: '🦑'
-  },
-  {
-    months: '10月〜12月',
-    name: 'SLJ・ナイトティップラン',
-    color: 'text-secondary-600',
-    bgColor: 'bg-secondary-100',
-    icon: '🎣'
-  },
-  {
-    months: '1月',
-    name: '休業期間',
-    color: 'text-gray-600',
-    bgColor: 'bg-gray-100',
-    icon: '🌊'
-  },
-  {
-    months: '2月〜5月',
-    name: 'SLJ（3月頃から本格化）',
-    color: 'text-accent-600',
-    bgColor: 'bg-accent-100',
-    icon: '🐟'
+    icon: '🦑',
+    description: '旬のイカ釣りシーズン'
   }
 ]
 
@@ -56,7 +53,7 @@ export default function SeasonalCalendar() {
           </p>
         </AnimatedSection>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
           {seasons.map((season, index) => (
             <AnimatedSection
               key={index}
@@ -75,26 +72,9 @@ export default function SeasonalCalendar() {
                     {season.name}
                   </h3>
                 </div>
-                {season.name === '休業期間' && (
-                  <p className="text-xs text-gray-500 mt-2">
-                    冬季は日本海の荒波のためお休みをいただきます
-                  </p>
-                )}
-                {season.months === '2月〜5月' && (
-                  <p className="text-xs text-gray-500 mt-2">
-                    水温の上昇とともに魚の活性が上がります
-                  </p>
-                )}
-                {season.months === '6月〜9月' && (
-                  <p className="text-xs text-gray-500 mt-2">
-                    旬のイカ釣りシーズン
-                  </p>
-                )}
-                {season.months === '10月〜12月' && (
-                  <p className="text-xs text-gray-500 mt-2">
-                    多彩な魚種との出会い
-                  </p>
-                )}
+                <p className="text-xs text-gray-500 mt-2">
+                  {season.description}
+                </p>
               </Card>
             </AnimatedSection>
           ))}
